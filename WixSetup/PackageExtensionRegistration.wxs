@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- Extension registration for VS Extension Manager.  -->
+  <?include $(sys.CURRENTDIR)\Properties.wxi?>
+  <Fragment>
+
+    <!--Reference any element from DevenSetup.
+    This will cause the whole fragment to load.-->
+    <PropertyRef Id="DEVENV2010_EXE_PATH"/>
+
+
+    <!--Set some directories first-->
+    <Property Id="VS_10.0_EXTENSIONS_DIR" Secure="yes">
+      <RegistrySearch Id="VS10DevEnvForExtensionsSearch" Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\10.0\Setup\VS" Name="EnvironmentDirectory" Type="raw">
+        <DirectorySearch Id="VS10ExtensionsPathSearch" Path="Extensions" Depth="1" />
+      </RegistrySearch>
+    </Property>
+    <Property Id="VS_11.0_EXTENSIONS_DIR" Secure="yes">
+      <RegistrySearch Id="VS11DevEnvForExtensionsSearch" Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\11.0\Setup\VS" Name="EnvironmentDirectory" Type="raw">
+        <DirectorySearch Id="VS11ExtensionsPathSearch" Path="Extensions" Depth="1" />
+      </RegistrySearch>
+    </Property>
+    <Property Id="VS_12.0_EXTENSIONS_DIR" Secure="yes">
+      <RegistrySearch Id="VS12DevEnvForExtensionsSearch" Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\12.0\Setup\VS" Name="EnvironmentDirectory" Type="raw">
+        <DirectorySearch Id="VS12ExtensionsPathSearch" Path="Extensions" Depth="1" />
+      </RegistrySearch>
+    </Property>
+
+    <DirectoryRef Id='TARGETDIR'>
+      
+      <!--VS 2010-->
+      <Directory Name="Extensions" Id="VS_10.0_EXTENSIONS_DIR">
+        <Directory Name="Helixoft.MultilineSearch" Id="EXTENSIONS_MULTILINE_10.0">
+          <Component Id="C_extension.VsixManifest_10.0" Guid="{984FF5B3-ACFA-454e-BF01-4E52A668727E}">
+            <Condition>DEVENV2010_EXE_PATH</Condition>
+            <File Id="F_extension.VsixManifest_10.0" Name="extension.VsixManifest" KeyPath="yes" DiskId="1" Source="Files\extension.VsixManifest" />
+          </Component>
+          <Component Id="C_main_icon.ico_10.0" Guid="{06CB9E46-ADCF-4b71-AE74-2C1F69A69E48}">
+            <Condition>DEVENV2010_EXE_PATH</Condition>
+            <File Id="F_main_icon.ico_10.0" Name="main_icon.ico" KeyPath="yes" DiskId="1" Source="Files\main_icon.ico" />
+          </Component>
+          <Component Id="C_readme.txt_10.0" Guid="{9FC1079E-5849-44d4-982F-9B3B3B4A41E4}">
+            <Condition>DEVENV2010_EXE_PATH</Condition>
+            <File Id="F_readme.txt_10.0" Name="readme.txt" KeyPath="yes" Vital="no" DiskId="1" Source="Files\readme.txt" />
+          </Component>
+          <Component Id="C_multiline_search_preview.png_10.0" Guid="{53C6B252-CD38-45a2-8DC1-C642623AF5D9}">
+            <Condition>DEVENV2010_EXE_PATH</Condition>
+            <File Id="F_multiline_search_preview.png_10.0" Name="multiline_search_preview.png" KeyPath="yes" Vital="no" DiskId="1" Source="Files\multiline_search_preview.png" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <!--VS 2012-->
+      <Directory Name="Extensions" Id="VS_11.0_EXTENSIONS_DIR">
+        <Directory Name="Helixoft.MultilineSearch" Id="EXTENSIONS_MULTILINE_11.0">
+          <Component Id="C_extension.VsixManifest_11.0" Guid="{F565EDF1-03E6-44c0-9610-02482D88EF40}">
+            <Condition>DEVENV2012_EXE_PATH</Condition>
+            <File Id="F_extension.VsixManifest_11.0" Name="extension.VsixManifest" KeyPath="yes" DiskId="1" Source="Files\extension.VsixManifest" />
+          </Component>
+          <Component Id="C_main_icon.ico_11.0" Guid="{FB958A7B-89D3-4706-B641-141D2D9C704C}">
+            <Condition>DEVENV2012_EXE_PATH</Condition>
+            <File Id="F_main_icon.ico_11.0" Name="main_icon.ico" KeyPath="yes" DiskId="1" Source="Files\main_icon.ico" />
+          </Component>
+          <Component Id="C_readme.txt_11.0" Guid="{AEB6F1B8-FB56-40b9-81FC-E9B2DBEF6BF1}">
+            <Condition>DEVENV2012_EXE_PATH</Condition>
+            <File Id="F_readme.txt_11.0" Name="readme.txt" KeyPath="yes" Vital="no" DiskId="1" Source="Files\readme.txt" />
+          </Component>
+          <Component Id="C_multiline_search_preview.png_11.0" Guid="{B78CA1FD-25FA-4f05-8C88-7BF212CE0D79}">
+            <Condition>DEVENV2012_EXE_PATH</Condition>
+            <File Id="F_multiline_search_preview.png_11.0" Name="multiline_search_preview.png" KeyPath="yes" Vital="no" DiskId="1" Source="Files\multiline_search_preview.png" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <!--VS 2013-->
+      <Directory Name="Extensions" Id="VS_12.0_EXTENSIONS_DIR">
+        <Directory Name="Helixoft.MultilineSearch" Id="EXTENSIONS_MULTILINE_12.0">
+          <Component Id="C_extension.VsixManifest_12.0" Guid="{994F9139-AE56-459f-B805-CEC33F9DC154}">
+            <Condition>DEVENV2013_EXE_PATH</Condition>
+            <File Id="F_extension.VsixManifest_12.0" Name="extension.VsixManifest" KeyPath="yes" DiskId="1" Source="Files\extension.VsixManifest" />
+          </Component>
+          <Component Id="C_main_icon.ico_12.0" Guid="{B3C13490-AE11-4667-9FE0-75DDB53CAB3D}">
+            <Condition>DEVENV2013_EXE_PATH</Condition>
+            <File Id="F_main_icon.ico_12.0" Name="main_icon.ico" KeyPath="yes" DiskId="1" Source="Files\main_icon.ico" />
+          </Component>
+          <Component Id="C_readme.txt_12.0" Guid="{32F353A0-9CDB-4deb-B168-C0691B71535F}">
+            <Condition>DEVENV2013_EXE_PATH</Condition>
+            <File Id="F_readme.txt_12.0" Name="readme.txt" KeyPath="yes" Vital="no" DiskId="1" Source="Files\readme.txt" />
+          </Component>
+          <Component Id="C_multiline_search_preview.png_12.0" Guid="{8D0F6249-5287-4961-92F0-618367140616}">
+            <Condition>DEVENV2013_EXE_PATH</Condition>
+            <File Id="F_multiline_search_preview.png_12.0" Name="multiline_search_preview.png" KeyPath="yes" Vital="no" DiskId="1" Source="Files\multiline_search_preview.png" />
+          </Component>
+        </Directory>
+      </Directory>
+
+    </DirectoryRef>
+
+    <ComponentGroup Id="CG_Extension_registration_components">
+      <ComponentRef Id="C_extension.VsixManifest_10.0" />
+      <ComponentRef Id="C_main_icon.ico_10.0" />
+      <ComponentRef Id="C_readme.txt_10.0" />
+      <ComponentRef Id="C_multiline_search_preview.png_10.0" />
+      <ComponentRef Id="C_extension.VsixManifest_11.0" />
+      <ComponentRef Id="C_main_icon.ico_11.0" />
+      <ComponentRef Id="C_readme.txt_11.0" />
+      <ComponentRef Id="C_multiline_search_preview.png_11.0" />
+      <ComponentRef Id="C_extension.VsixManifest_12.0" />
+      <ComponentRef Id="C_main_icon.ico_12.0" />
+      <ComponentRef Id="C_readme.txt_12.0" />
+      <ComponentRef Id="C_multiline_search_preview.png_12.0" />
+    </ComponentGroup>
+
+
+
+  </Fragment>
+</Wix>

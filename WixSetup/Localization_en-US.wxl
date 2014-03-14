@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-US" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <!--The text on Wix standard Welcome dialog defined in WixUI_en-us.wxl and used in WelcomeDlg.wxs.
+  Override it with the text in WELCOME_DLG_DESCRIPTION property that depends on whether it is a clean install
+  or an upgrade.-->
+  <String Id="WelcomeDlgDescription" Overridable="yes">[WELCOME_DLG_DESCRIPTION]</String>
+  <String Id="WelcomeDlgDescriptionCleanInstall" Overridable="yes">The Setup Wizard will install [ProductName] [ProductVersion] on your computer. Click Next to continue or Cancel to exit the Setup Wizard.</String>
+  <String Id="WelcomeDlgDescriptionUpgrade" Overridable="yes">The Setup Wizard will install [ProductName] [ProductVersion] on your computer. A previous version of [ProductName] was detected and it will be replaced. Click Next to continue or Cancel to exit the Setup Wizard.</String>
+
+  <String Id="InstallDirDlgAllOrMe" Overridable="yes">Install [ProductName] for yourself, or for anyone who uses this computer:</String>
+  <String Id="InstallDirDlgJustMe" Overridable="yes">Just &amp;me</String>
+  <String Id="InstallDirDlgEveryone" Overridable="yes">&amp;Everyone</String>
+
+  <String Id="ERR_ProductRequiresVS" Overridable="yes">This extension requires Visual Studio 2005, 2008, 2010, 2012 or 2013. The Express editions are not supported.</String>
+  <String Id="ERR_ProductRequiresVSclosed" Overridable="yes">This setup requires all instances of Visual Studio to be closed.</String>
+  <String Id="ERR_ProductRequiresAdmin" Overridable="yes">You need to be an administrator to install [ProductName].</String>
+
+  <String Id="StartMenuWebShortcutName" Overridable="yes">Web Site</String>
+
+  <String Id="ProductDescription" Overridable="yes">Multiline Search and Replace - Adds multiline search and replace functionality to Visual Studio.</String>
+  <String Id="ProductComments" Overridable="yes">Multiline Search and Replace in Visual Studio</String>
+  <String Id="ProductKeywords" Overridable="yes">Multiline Search and Replace, Visual Studio, Helixoft, Installer</String>
+
+  <String Id="ProgressUpdatingVS2005" Overridable="yes">Updating Visual Studio 2005...</String>
+  <String Id="ProgressUpdatingVS2008" Overridable="yes">Updating Visual Studio 2008...</String>
+  <String Id="ProgressUpdatingVS2010" Overridable="yes">Updating Visual Studio 2010...</String>
+  <String Id="ProgressUpdatingVS2012" Overridable="yes">Updating Visual Studio 2012...</String>
+  <String Id="ProgressUpdatingVS2013" Overridable="yes">Updating Visual Studio 2013...</String>
+
+  <String Id="ExitDialogOpenVSdocmanWebTooltip" Overridable="yes">Visit VSdocman web site</String>
+  <String Id="ExitDialogVSdocmanDescription" Overridable="yes">VSdocman - Visual Studio documentation generator and .NET code commenter.</String>
+
+  <String Id="ARPCOMMENTS_text" Overridable="yes">Multiline Search and Replace - Adds multiline search and replace functionality to Visual Studio</String>
+
+  <String Id="DowngradeErrorMessage" Overridable="yes">A newer version of [ProductName] is already installed. Setup will now exit.</String>
+</WixLocalization>

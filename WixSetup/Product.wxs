@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(sys.CURRENTDIR)\Properties.wxi?>
+  <Product Id="*"
+           Codepage="1252"
+           Language="1033"
+           Manufacturer="$(var.Manufacturer)"
+           Name="$(var.ProductName)"
+           UpgradeCode="$(var.UpgradeCode)"
+           Version="$(var.ProductVersion)">
+    <Package Id="*"
+             Comments="$(var.ProductComments)"
+             Description="$(var.ProductDescription)"
+             Compressed="yes"
+             InstallerVersion="200"
+             Keywords="$(var.ProductKeywords)"
+             Languages="1033"
+             Manufacturer="$(var.Manufacturer)"
+             Platform="x86" />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" CompressionLevel="high" />
+
+    <!--
+    If ALLUSERS is not defined, or is null, then a single-user install is done.
+    ALLUSERS=1 means, well, "all users", or a per-machine installation. 
+      If the user does not have admin rights the install fails.
+    ALLUSERS=2 tells Windows Installer to see if it's possible to install for all users, 
+      do it if so, and if not to install for one user. THIS IS NOT RECOMMENDED. 
+      It is especially problematic with Windows Vista, and can also cause problems 
+      for later uninstalls and upgrades.
+    Note that ALLUSERS=0 does not exist, for some strange reason.
+
+    Another strange thing to be aware of is that there is no way in WiX to define
+    a Property with a null value using the <Property> element. But this doesn't matter, 
+    because it is possible to both define ALLUSERS and set it to a null value with a <Publish> element. 
+    The syntax is a bit special (Value="{}") but never mind, it does work.
+  -->
+    <Property Id="ALLUSERS" Value='1' Admin="yes" Secure="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLDIR" Name="VS Multiline Search Replace">
+
+
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="CompleteProductFeature" ConfigurableDirectory="INSTALLDIR" Title="Multiline Search and Replace" Description="The complete installation." Level="1">
+      <ComponentGroupRef Id="CG_MainFolder_components" />
+      <ComponentGroupRef Id="CG_PackageRegistration_components" />
+
+      <!-- Note: The following ComponentGroupRef is required to pull in generated authoring from project references. -->
+      <!--<ComponentGroupRef Id="Product.Generated" />-->
+    </Feature>
+
+
+    <!--Reference any element from LaunchConditions.
+    This will cause the whole fragment to load.-->
+    <PropertyRef Id="VS2005INSTALLATIONFOLDER"/>
+
+    <!--Reference any element from DevenvSetup.
+    This will cause the whole fragment to load.-->
+    <CustomActionRef Id="CA_SETUP_VS2005"/>
+
+
+    <!--Add/Remove Programs-->
+    <Icon Id="I_main_icon.ico" SourceFile="..\MultiLineSearch\Resources\main_icon.ico" />
+    <Property Id="ARPPRODUCTICON">I_main_icon.ico</Property>
+    <Property Id="ARPCOMMENTS">!(loc.ARPCOMMENTS_text)</Property>
+    <Property Id="ARPHELPLINK">http://visualstudiogallery.msdn.microsoft.com/699CE302-B0D4-4083-BE0E-1682E873CEBF</Property>
+    <Property Id="ARPURLINFOABOUT">http://visualstudiogallery.msdn.microsoft.com/699CE302-B0D4-4083-BE0E-1682E873CEBF</Property>
+    <Property Id="ARPURLUPDATEINFO">http://visualstudiogallery.msdn.microsoft.com/699CE302-B0D4-4083-BE0E-1682E873CEBF</Property>
+    <CustomAction Id="CA_SET_ARPREADME" Property="ARPREADME" Value="[#F_readme.txt_34933C9E2CDA4A70A5B65246BA814C6B]" />
+
+
+    <InstallExecuteSequence>
+      <Custom Action="CA_SET_ARPREADME" After="InstallValidate"></Custom>
+    </InstallExecuteSequence>
+
+
+    <!--Use our modified version of the built in WixUI_InstallDir GUI-->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <UIRef Id="WixUI_InstallDirEx" />
+    <WixVariable Id="WixUIBannerBmp" Value="Files\wix_install_banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Files\wix_install_dialog.bmp" />
+    <WixVariable Id="WixUINewIco" Value="Files\newfolder.ico" />
+    <WixVariable Id="WixUIUpIco" Value="Files\folder_up.ico" />
+    <WixVariable Id="WixUILicenseRtf" Value="Files\license.rtf" />
+    <Binary Id="WixUI_VSdocmanIcon" SourceFile="Files\vsdocman.ico" />
+
+
+    <!--
+    Upgrades
+    We always do a major upgrade. A major upgrade is a comprehensive update of a product
+    that needs a change of the ProductCode Property. 
+    The MajorUpgrade element sets WIX_UPGRADE_DETECTED property if an older version is found.
+    -->
+    <MajorUpgrade
+      AllowDowngrades="no"
+      DowngradeErrorMessage="!(loc.DowngradeErrorMessage)"
+    />
+
+    <!--Set welcome dialog text that depends on whether it is a clean install or an upgrade.-->
+    <CustomAction Id="CA_WELCOME_DLG_DESCRIPTION_setInstall"
+                  Property="WELCOME_DLG_DESCRIPTION"
+                  Value="!(loc.WelcomeDlgDescriptionCleanInstall)" />
+    <CustomAction Id="CA_WELCOME_DLG_DESCRIPTION_setUpgrade"
+                  Property="WELCOME_DLG_DESCRIPTION"
+                  Value="!(loc.WelcomeDlgDescriptionUpgrade)" />
+
+
+    <!-- Detect previously installed version and if found set the PREVIOUS_VERSION_DETECTED
+    and ALLUSERS properties according to the existing installation-->
+    <CustomAction Id="CA_DETECT_PREVIOUS_VERSION"
+              BinaryKey="HelixoftCA_dll"
+              DllEntry="DetectPreviousVersion"
+              Execute="firstSequence"
+              Return="ignore"
+              Impersonate="yes"/>
+    <!-- Secure PREVIOUS_VERSION_DETECTED property so that 
+    when it's set in a GUI client (c) part (e.g. InstallUISequence),
+    it is available also in server (s) installation part (e.g. InstallExecuteSequence).
+    We never know when we need it.
+    This property is not set if no previous version was detected by CA_DETECT_PREVIOUS_VERSION
+    and it contains a previous version number if one was found. -->
+    <Property Id="PREVIOUS_VERSION_DETECTED" Secure="yes" />
+
+
+    <!-- Open VSdocman web site (by pressing a button on the exit page) -->
+    <CustomAction Id="CA_OpenVSdocmanWebPage"
+      ExeCommand="explorer.exe &quot;http://www.helixoft.com/vsdocman/overview.html?src=multiline&quot;"
+      Directory="INSTALLDIR"
+      Return="asyncNoWait" >
+    </CustomAction>
+    
+
+    <InstallUISequence>
+      <!--Set WELCOME_DLG_DESCRIPTION before WelcomeDlg is shown. We cannot use Before="WelcomeDlg"
+      because it causes compiler errors, probably a bug in Wix 3.5. Instead, we use
+      Before="CostFinalize". CostFinalize is executed even before WelcomeDlg.-->
+      <Custom Action="CA_WELCOME_DLG_DESCRIPTION_setInstall"
+              Before="CostFinalize">NOT WIX_UPGRADE_DETECTED</Custom>
+      <Custom Action="CA_WELCOME_DLG_DESCRIPTION_setUpgrade"
+              Before="CostFinalize">WIX_UPGRADE_DETECTED</Custom>
+
+      <Custom Action="CA_DETECT_PREVIOUS_VERSION"
+          Before="FindRelatedProducts"></Custom>
+
+    </InstallUISequence>
+
+    <InstallExecuteSequence>
+      <Custom Action="CA_DETECT_PREVIOUS_VERSION"
+              Before="FindRelatedProducts"></Custom>
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>

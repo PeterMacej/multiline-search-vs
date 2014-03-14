@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- Custom actions for updating commands and menus in Visual Studio-->
+  <Fragment>
+
+
+    <!-- Get devenv.exe paths. If the values can't be retrieved the properties will remain unset 
+    (with the FALSE value) and can be used in boolean expressions later. -->
+    <Property Id="DEVENV2005_EXE_PATH">
+      <RegistrySearch Id="RS_DEVENV2005_EXE_PATH" Root="HKLM"
+                      Key="Software\Microsoft\VisualStudio\8.0\Setup\VS"
+                      Name="EnvironmentPath" Type="raw" />
+    </Property>
+    <Property Id="DEVENV2008_EXE_PATH">
+      <RegistrySearch Id="RS_DEVENV2008_EXE_PATH" Root="HKLM"
+                      Key="Software\Microsoft\VisualStudio\9.0\Setup\VS"
+                      Name="EnvironmentPath" Type="raw" />
+    </Property>
+    <Property Id="DEVENV2010_EXE_PATH">
+      <RegistrySearch Id="RS_DEVENV2010_EXE_PATH" Root="HKLM"
+                      Key="Software\Microsoft\VisualStudio\10.0\Setup\VS"
+                      Name="EnvironmentPath" Type="raw" />
+    </Property>
+    <Property Id="DEVENV2012_EXE_PATH">
+      <RegistrySearch Id="RS_DEVENV2012_EXE_PATH" Root="HKLM"
+                      Key="Software\Microsoft\VisualStudio\11.0\Setup\VS"
+                      Name="EnvironmentPath" Type="raw" />
+    </Property>
+    <Property Id="DEVENV2013_EXE_PATH">
+      <RegistrySearch Id="RS_DEVENV2013_EXE_PATH" Root="HKLM"
+                      Key="Software\Microsoft\VisualStudio\12.0\Setup\VS"
+                      Name="EnvironmentPath" Type="raw" />
+    </Property>
+
+
+    <!--
+    Setup VS.
+     /Setup - Forces Visual Studio to merge resource metadata that describes menus,
+       toolbars, and command groups, from all VSPackages available.
+     /nosetupvstemplates - don't setup templates because it's very time consuming. Available
+       since VS 2008.
+    We set Impersonate="yes" because:
+    1. If ALLUSERS is not set (installation just for current user), it has no effect.
+    2. If ALLUSERS=1 (per machine installation), we impersonate the user who launched the setup since 
+       otherwise the commands would be removed for the LocalSystem account that MSI uses for per-machine setups.
+     -->
+    <Binary Id="HelixoftCA_dll"
+            SourceFile="$(var.WixCustomActions.TargetDir)$(var.WixCustomActions.TargetName).CA.dll" />
+
+    <!--VS 2005-->
+    <!--Set CustomActionData-->
+    <CustomAction Id="CA_SETUP_VS2005_SET_DATA"
+                  Property="CA_SETUP_VS2005"
+                  Value="120:&quot;[DEVENV2005_EXE_PATH]&quot; /setup"
+                  Execute="immediate"/>
+    <!--Custom action-->
+    <CustomAction Id="CA_SETUP_VS2005"
+                  BinaryKey="HelixoftCA_dll"
+                  DllEntry="QuietExecute"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no"/>
+
+    <!--VS 2008-->
+    <!--Set CustomActionData-->
+    <CustomAction Id="CA_SETUP_VS2008_SET_DATA"
+                  Property="CA_SETUP_VS2008"
+                  Value="120:&quot;[DEVENV2008_EXE_PATH]&quot; /setup /nosetupvstemplates"
+                  Execute="immediate"/>
+    <!--Custom action-->
+    <CustomAction Id="CA_SETUP_VS2008"
+                  BinaryKey="HelixoftCA_dll"
+                  DllEntry="QuietExecute"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no"/>
+
+    <!--VS 2010-->
+    <!--Set CustomActionData-->
+    <CustomAction Id="CA_SETUP_VS2010_SET_DATA"
+                  Property="CA_SETUP_VS2010"
+                  Value="120:&quot;[DEVENV2010_EXE_PATH]&quot; /setup /nosetupvstemplates"
+                  Execute="immediate"/>
+    <!--Custom action-->
+    <CustomAction Id="CA_SETUP_VS2010"
+                  BinaryKey="HelixoftCA_dll"
+                  DllEntry="QuietExecute"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no"/>
+
+    <!--VS 2012-->
+    <!--Set CustomActionData-->
+    <CustomAction Id="CA_SETUP_VS2012_SET_DATA"
+                  Property="CA_SETUP_VS2012"
+                  Value="120:&quot;[DEVENV2012_EXE_PATH]&quot; /setup /nosetupvstemplates"
+                  Execute="immediate"/>
+    <!--Custom action-->
+    <CustomAction Id="CA_SETUP_VS2012"
+                  BinaryKey="HelixoftCA_dll"
+                  DllEntry="QuietExecute"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no"/>
+
+    <!--VS 2013-->
+    <!--Set CustomActionData-->
+    <CustomAction Id="CA_SETUP_VS2013_SET_DATA"
+                  Property="CA_SETUP_VS2013"
+                  Value="120:&quot;[DEVENV2013_EXE_PATH]&quot; /setup /nosetupvstemplates"
+                  Execute="immediate"/>
+    <!--Custom action-->
+    <CustomAction Id="CA_SETUP_VS2013"
+                  BinaryKey="HelixoftCA_dll"
+                  DllEntry="QuietExecute"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no"/>
+
+    <!--
+    Execute the defined custom actions to update Visual Studio.
+    They must execute when all the following conditions are true:
+          - (The setup has already been run)
+          - (It is not an upgrade, not applied here)
+      - Visual Studio is installed
+    -->
+    <InstallExecuteSequence>
+
+      <Custom Action="CA_SETUP_VS2005_SET_DATA" Before="CA_SETUP_VS2005">
+        <!--Installed AND NOT UPGRADINGPRODUCTCODE AND --> DEVENV2005_EXE_PATH
+      </Custom>
+      <Custom Action="CA_SETUP_VS2005" Before="InstallFinalize">
+        DEVENV2005_EXE_PATH
+      </Custom>
+
+      <Custom Action="CA_SETUP_VS2008_SET_DATA" Before="CA_SETUP_VS2008">
+        DEVENV2008_EXE_PATH
+      </Custom>
+      <Custom Action="CA_SETUP_VS2008" Before="InstallFinalize">
+        DEVENV2008_EXE_PATH
+      </Custom>
+
+      <Custom Action="CA_SETUP_VS2010_SET_DATA" Before="CA_SETUP_VS2010">
+        DEVENV2010_EXE_PATH
+      </Custom>
+      <Custom Action="CA_SETUP_VS2010" Before="InstallFinalize">
+        DEVENV2010_EXE_PATH
+      </Custom>
+
+      <Custom Action="CA_SETUP_VS2012_SET_DATA" Before="CA_SETUP_VS2012">
+        DEVENV2012_EXE_PATH
+      </Custom>
+      <Custom Action="CA_SETUP_VS2012" Before="InstallFinalize">
+        DEVENV2012_EXE_PATH
+      </Custom>
+
+      <Custom Action="CA_SETUP_VS2013_SET_DATA" Before="CA_SETUP_VS2013">
+        DEVENV2013_EXE_PATH
+      </Custom>
+      <Custom Action="CA_SETUP_VS2013" Before="InstallFinalize">
+        DEVENV2013_EXE_PATH
+      </Custom>
+
+    </InstallExecuteSequence>
+
+
+    <!--Show a progress text for our custom actions on Progress dialog-->
+    <UI>
+      <ProgressText Action="CA_SETUP_VS2005">!(loc.ProgressUpdatingVS2005)</ProgressText>
+      <ProgressText Action="CA_SETUP_VS2008">!(loc.ProgressUpdatingVS2008)</ProgressText>
+      <ProgressText Action="CA_SETUP_VS2010">!(loc.ProgressUpdatingVS2010)</ProgressText>
+      <ProgressText Action="CA_SETUP_VS2012">!(loc.ProgressUpdatingVS2012)</ProgressText>
+      <ProgressText Action="CA_SETUP_VS2013">!(loc.ProgressUpdatingVS2013)</ProgressText>
+    </UI>
+
+  </Fragment>
+</Wix>
