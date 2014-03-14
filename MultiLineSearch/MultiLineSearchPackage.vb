@@ -39,6 +39,7 @@ Imports EnvDTE80
 ''' the package needs to have a valid load key (it can be requested at 
 ''' http://msdn.microsoft.com/vstudio/extend/). The [ProvideLoadKey attribute tells the shell that this 
 ''' package has a load key embedded in its resources.
+''' PLK MUST BE REGENERATED FOR EACH NEW PACKAGE VERSION!!! PLK IS NEEDED IN VS 2005 AND 2008.
 '''
 ''' The ProvideMenuResource attribute is needed to let the shell know that this package exposes some menus.
 '''
@@ -47,7 +48,7 @@ Imports EnvDTE80
 <PackageRegistration(UseManagedResourcesOnly:=True), _
 DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\8.0"), _
 InstalledProductRegistration(False, "#110", "#112", "1.0", IconResourceID:=400), _
-ProvideLoadKey("Standard", "1.1", "Multiline Search and Replace", "Helixoft", 1), _
+ProvideLoadKey("Standard", "1.2", "Multiline Search and Replace", "Helixoft", 1), _
 ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
 Guid(GuidList.guidMultiLineSearchPkgString)> _
