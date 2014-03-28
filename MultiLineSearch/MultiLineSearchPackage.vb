@@ -48,7 +48,7 @@ Imports EnvDTE80
 <PackageRegistration(UseManagedResourcesOnly:=True), _
 DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\8.0"), _
 InstalledProductRegistration(False, "#110", "#112", "1.0", IconResourceID:=400), _
-ProvideLoadKey("Standard", "1.2", "Multiline Search and Replace", "Helixoft", 1), _
+ProvideLoadKey("Standard", "1.3", "Multiline Search and Replace", "Helixoft", 1), _
 ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
 Guid(GuidList.guidMultiLineSearchPkgString)> _
