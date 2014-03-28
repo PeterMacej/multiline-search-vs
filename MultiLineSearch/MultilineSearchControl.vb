@@ -87,17 +87,23 @@ Public Class MultilineSearchControl
 
 
     Private m_findText As String
-    '''<summary>Gets escaped multiline text to be searched.</summary>
+    '''<summary>Gets or sets a plain multiline text to be searched.</summary>
     '''<value></value>
-    Public ReadOnly Property FindText() As String
+    Public Property FindText() As String
         Get
             Return m_findText
         End Get
+        Set(ByVal value As String)
+            If value IsNot Nothing Then
+                m_findText = value
+                Me.FindBox.Text = value
+            End If
+        End Set
     End Property
 
 
     Private m_replaceText As String
-    '''<summary>Gets escaped multiline replace text.</summary>
+    '''<summary>Gets plain multiline replace text.</summary>
     '''<value></value>
     Public ReadOnly Property ReplaceText() As String
         Get
@@ -151,33 +157,6 @@ Public Class MultilineSearchControl
 
 
 #Region "Search, replace, regex"
-    '''<summary>Transforms the text to regular expression syntax.</summary>
-    '''<param name="original">Original text.</param>
-    '''<returns>Text with escaped regex characters.</returns>
-    Private Function escapeRegEx(ByVal original As String) As String
-        Dim specialChars() As Char = "\.*+^$><[]|{}:@#()~".ToCharArray
-        Dim c As Char
-        For Each c In specialChars
-            original = original.Replace(c.ToString, "\" & c.ToString)
-        Next
-        original = original.Replace(vbCrLf, "\n")
-        Return original
-    End Function
-
-
-    '''<summary>Transforms the text to regular expression syntax in Replace field.</summary>
-    '''<param name="original">Original text.</param>
-    '''<returns>Text with some escaped regex characters.</returns>
-    Private Function escapeReplaceRegEx(ByVal original As String) As String
-        Dim specialChars() As Char = "\".ToCharArray
-        Dim c As Char
-        For Each c In specialChars
-            original = original.Replace(c.ToString, "\" & c.ToString)
-        Next
-        original = original.Replace(vbCrLf, "\n")
-        Return original
-    End Function
-
 
     ''' <summary>
     ''' Executes a search/replace and raises appropriate events.
@@ -216,8 +195,8 @@ Public Class MultilineSearchControl
 
     Private Sub FindBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FindBtn.Click
         Try
-            m_findText = escapeRegEx(Me.FindBox.Text)
-            m_replaceText = escapeReplaceRegEx(Me.ReplaceBox.Text)
+            m_findText = Me.FindBox.Text
+            m_replaceText = Me.ReplaceBox.Text
             m_SearchKind = FindReplaceKind.find
             ExecuteSearchReplace()
         Catch ex As System.Exception
@@ -227,8 +206,8 @@ Public Class MultilineSearchControl
 
     Private Sub FindInFilesBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FindInFilesBtn.Click
         Try
-            m_findText = escapeRegEx(Me.FindBox.Text)
-            m_replaceText = escapeReplaceRegEx(Me.ReplaceBox.Text)
+            m_findText = Me.FindBox.Text
+            m_replaceText = Me.ReplaceBox.Text
             m_SearchKind = FindReplaceKind.findInFiles
             ExecuteSearchReplace()
         Catch ex As System.Exception
@@ -238,8 +217,8 @@ Public Class MultilineSearchControl
 
     Private Sub ReplaceBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReplaceBtn.Click
         Try
-            m_findText = escapeRegEx(Me.FindBox.Text)
-            m_replaceText = escapeReplaceRegEx(Me.ReplaceBox.Text)
+            m_findText = Me.FindBox.Text
+            m_replaceText = Me.ReplaceBox.Text
             m_SearchKind = FindReplaceKind.replace
             ExecuteSearchReplace()
         Catch ex As System.Exception
@@ -249,8 +228,8 @@ Public Class MultilineSearchControl
 
     Private Sub ReplaceInFilesBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReplaceInFilesBtn.Click
         Try
-            m_findText = escapeRegEx(Me.FindBox.Text)
-            m_replaceText = escapeReplaceRegEx(Me.ReplaceBox.Text)
+            m_findText = Me.FindBox.Text
+            m_replaceText = Me.ReplaceBox.Text
             m_SearchKind = FindReplaceKind.replaceInFiles
             ExecuteSearchReplace()
         Catch ex As System.Exception

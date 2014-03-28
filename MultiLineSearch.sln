@@ -21,6 +21,16 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WixCustomActions", "..\Heli
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E86EBA16-32DC-4487-9677-537004D1F800}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		How to deploy new version.html = How to deploy new version.html
+		whatsnew.html = whatsnew.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

@@ -9,8 +9,8 @@ Public Interface ISearchReplaceProvider
     ''' Execute search and replace operation.
     ''' </summary>
     ''' <param name="searchKind"></param>
-    ''' <param name="findText"></param>
-    ''' <param name="replaceText"></param>
+    ''' <param name="findText">Plain text, can contain newlines.</param>
+    ''' <param name="replaceText">Plain text, can contain newlines.</param>
     ''' <remarks></remarks>
     Sub ExecSearchReplace(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String)
 End Interface

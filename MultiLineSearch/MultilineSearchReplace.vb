@@ -7,6 +7,7 @@ Imports System.Xml
 Imports System.Collections.Generic
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
+Imports Microsoft.VisualBasic
 
 
 ''' <summary>
@@ -30,8 +31,18 @@ Friend Class MultilineSearchReplace
 
 
 
+    ''' <summary>
+    ''' Execute search and replace operation.
+    ''' </summary>
+    ''' <param name="searchKind"></param>
+    ''' <param name="findText">Plain text, can contain newlines.</param>
+    ''' <param name="replaceText">Plain text, can contain newlines.</param>
     Public Sub ExecSearchReplace(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String) Implements ISearchReplaceProvider.ExecSearchReplace
         If searchKind <> FindReplaceKind.none Then
+            ' escape the texts to regex
+            findText = ConvertFindWhatToRegEx(findText)
+            replaceText = ConvertReplaceWithToRegEx(replaceText)
+
             ' temporarily disable Tools - Options -
             ' Environment - Documents - Initialize Find text from editor
             Dim oldFindInit As Boolean
@@ -44,7 +55,20 @@ Friend Class MultilineSearchReplace
                 prop.Value = False
             Catch ex2 As Exception
             End Try
+
             ' dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr   ' no effect in VS 2013
+            Select Case searchKind
+                Case FindReplaceKind.find
+                    SetRegexInFindDialog()
+                Case FindReplaceKind.findInFiles
+                    SetRegexInFindInFilesDialog()
+                Case FindReplaceKind.replace
+                    SetRegexInFindDialog()
+                Case FindReplaceKind.replaceInFiles
+                    SetRegexInFindInFilesDialog()
+                Case Else
+            End Select
+
             dte.Find.FindWhat = findText
             If replaceText.Length = 0 Then
                 'If Replace text is empty, the Find dialog automatically
@@ -59,16 +83,12 @@ Friend Class MultilineSearchReplace
 
             Select Case searchKind
                 Case FindReplaceKind.find
-                    SetRegexInFindDialog()
                     dte.ExecuteCommand("Edit.Find")
                 Case FindReplaceKind.findInFiles
-                    SetRegexInFindInFilesDialog()
                     dte.ExecuteCommand("Edit.FindinFiles")
                 Case FindReplaceKind.replace
-                    SetRegexInFindDialog()
                     dte.ExecuteCommand("Edit.Replace")
                 Case FindReplaceKind.replaceInFiles
-                    SetRegexInFindInFilesDialog()
                     dte.ExecuteCommand("Edit.ReplaceinFiles")
                 Case Else
             End Select
@@ -176,6 +196,56 @@ Friend Class MultilineSearchReplace
         End Try
     End Sub
 
+
+    Private Function GetVsVersion() As Double
+        Dim version As Double = 10 ' default is VS 2010
+        Try
+            version = Double.Parse(dte.Version, New Globalization.CultureInfo("en-US", False).NumberFormat) 'use dot as decimal separator
+        Catch ex As Exception
+        End Try
+
+        Return version
+    End Function
+
+
+    '''<summary>Transforms the 'Find what' text to regular expression syntax.</summary>
+    '''<param name="original">Original text.</param>
+    '''<returns>Text with escaped regex characters.</returns>
+    Private Function ConvertFindWhatToRegEx(ByVal original As String) As String
+        Dim specialChars() As Char = "\.*+^$><[]|{}:@#()~".ToCharArray
+        Dim c As Char
+        For Each c In specialChars
+            original = original.Replace(c.ToString, "\" & c.ToString)
+        Next
+
+        If GetVsVersion() >= 10 Then
+            original = original.Replace(vbCrLf, "((\r\n)|\n|\r)")
+        Else
+            original = original.Replace(vbCrLf, "\n")
+        End If
+
+        Return original
+    End Function
+
+
+    '''<summary>Transforms the 'Replace with' text to regular expression syntax in Replace field.</summary>
+    '''<param name="original">Original text.</param>
+    '''<returns>Text with some escaped regex characters.</returns>
+    Private Function ConvertReplaceWithToRegEx(ByVal original As String) As String
+        Dim specialChars() As Char = "\".ToCharArray
+        Dim c As Char
+        For Each c In specialChars
+            original = original.Replace(c.ToString, "\" & c.ToString)
+        Next
+
+        If GetVsVersion() >= 10 Then
+            original = original.Replace(vbCrLf, "\r\n")
+        Else
+            original = original.Replace(vbCrLf, "\n")
+        End If
+
+        Return original
+    End Function
 
 
 End Class
