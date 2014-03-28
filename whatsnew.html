@@ -5,10 +5,10 @@
 </head>
 <body>
     <ol>
-        <li>NEW: <strong>Find what</strong> is automatically populated with text from the editor,
-            if it is set in Tools - Options - Environment - Find and Replace.</li>
-        <li>FIX: Correct regex newline composition in VS 2010 and higher. Unlike in previous VS versions,
-            \n is not enough in VS 2010+. </li>
+        <li>FIX: Correct regex newline composition in VS 2010 <strong>Replace with</strong>
+            field. When <strong>Replace with</strong> field contained a newline, an extra "r"
+            character was appended at the end of line. Only VS 2010 was affected, it worked
+            fine in all other VS versions.</li>
     </ol>
 
 </body>

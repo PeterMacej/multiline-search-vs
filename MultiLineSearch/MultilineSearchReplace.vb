@@ -218,7 +218,9 @@ Friend Class MultilineSearchReplace
             original = original.Replace(c.ToString, "\" & c.ToString)
         Next
 
-        If GetVsVersion() >= 10 Then
+        ' Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
+        ' the same as .NET regex where \r is defined and needed.
+        If GetVsVersion() > 10 Then
             original = original.Replace(vbCrLf, "((\r\n)|\n|\r)")
         Else
             original = original.Replace(vbCrLf, "\n")
@@ -238,7 +240,9 @@ Friend Class MultilineSearchReplace
             original = original.Replace(c.ToString, "\" & c.ToString)
         Next
 
-        If GetVsVersion() >= 10 Then
+        ' Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
+        ' the same as .NET regex where \r is defined and needed.
+        If GetVsVersion() > 10 Then
             original = original.Replace(vbCrLf, "\r\n")
         Else
             original = original.Replace(vbCrLf, "\n")
