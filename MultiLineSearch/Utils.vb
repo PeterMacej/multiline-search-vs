@@ -12,8 +12,13 @@ Imports System.Runtime.InteropServices
 Imports System.Reflection
 
 
+''' <summary>
+''' Various functions.
+''' </summary>
+''' <remarks></remarks>
 Friend Class Utils
 
+#Region "Logging"
 
     Public Shared Sub WriteToGeneralOutputPane(ByVal message As String)
         'System.Windows.Forms.MessageBox.Show(message)
@@ -46,6 +51,7 @@ Friend Class Utils
         End If
     End Sub
 
+#End Region
 
 
 #Region "COM interfaces diagnostics"
