@@ -235,4 +235,22 @@ Public Class MultilineSearchControl
         Catch ex As System.Exception
         End Try
     End Sub
+
+
+    ''' <summary>
+    ''' Fix bottom anchoring of ReplaceBox. This didn't work at least in toolwindow in VS 2005.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub PanelTop_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles PanelTop.Resize
+        Try
+            Dim BOTTOM_OFFSET As Integer = 45
+            If Me.ReplaceBox.Bottom <> Me.PanelTop.Height - BOTTOM_OFFSET Then
+                ' anchoring failed
+                Me.ReplaceBox.Height = Me.PanelTop.Height - Me.ReplaceBox.Top - BOTTOM_OFFSET
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
