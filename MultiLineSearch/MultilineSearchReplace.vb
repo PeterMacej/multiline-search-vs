@@ -40,8 +40,7 @@ Friend Class MultilineSearchReplace
     Public Sub ExecSearchReplace(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String) Implements ISearchReplaceProvider.ExecSearchReplace
         If searchKind <> FindReplaceKind.none Then
             ' escape the texts to regex
-            findText = ConvertFindWhatToRegEx(findText)
-            replaceText = ConvertReplaceWithToRegEx(replaceText)
+            ConvertFindAndReplaceToRegEx(findText, replaceText)
 
             ' temporarily disable Tools - Options -
             ' Environment - Documents - Initialize Find text from editor
@@ -70,15 +69,6 @@ Friend Class MultilineSearchReplace
             End Select
 
             dte.Find.FindWhat = findText
-            If replaceText.Length = 0 Then
-                'If Replace text is empty, the Find dialog automatically
-                'uses the last non-empty value from history. To prevent this,
-                'we must pass some non-empty value which produces empty text.
-                'The ninth regex tagged expression seems good for this as it is very
-                'unlikely that user will add 9 tagged expressions in Find field in
-                'original VS Find dialog after it is pre-filled with this macro.
-                dte.Find.ReplaceWith = "\9"
-            End If
             dte.Find.ReplaceWith = replaceText
 
             Select Case searchKind
@@ -208,11 +198,32 @@ Friend Class MultilineSearchReplace
     End Function
 
 
+    ''' <summary>
+    ''' Transforms the 'Find what' and the 'Replace with' texts to regular expression syntax.
+    ''' </summary>
+    ''' <param name="findWhat">The text in 'Find what' field.</param>
+    ''' <param name="replaceWith">The text in 'Replace with' field.</param>
+    ''' <remarks>The method converts original strings to strings with escaped regex characters.</remarks>
+    Private Sub ConvertFindAndReplaceToRegEx(ByRef findWhat As String, ByRef replaceWith As String)
+        findWhat = ConvertFindWhatToRegEx(findWhat)
+        replaceWith = ConvertReplaceWithToRegEx(replaceWith)
+
+        ' define an empty group in Find what, if necessary
+        If GetVsVersion() > 10 Then
+            If replaceWith.IndexOf("$+") >= 0 Then
+                ' replaceWith contains the $+ which substitutes the last group
+                findWhat &= "()" ' create the last (and only) (and empty) group
+            End If
+        End If
+
+    End Sub
+
+
     '''<summary>Transforms the 'Find what' text to regular expression syntax.</summary>
     '''<param name="original">Original text.</param>
     '''<returns>Text with escaped regex characters.</returns>
     Private Function ConvertFindWhatToRegEx(ByVal original As String) As String
-        Dim specialChars() As Char = "\.*+^$><[]|{}:@#()~".ToCharArray
+        Dim specialChars() As Char = "\.*+^$><[]|{}:@#()~?!".ToCharArray
         Dim c As Char
         For Each c In specialChars
             original = original.Replace(c.ToString, "\" & c.ToString)
@@ -234,15 +245,60 @@ Friend Class MultilineSearchReplace
     '''<param name="original">Original text.</param>
     '''<returns>Text with some escaped regex characters.</returns>
     Private Function ConvertReplaceWithToRegEx(ByVal original As String) As String
-        Dim specialChars() As Char = "\".ToCharArray
-        Dim c As Char
-        For Each c In specialChars
-            original = original.Replace(c.ToString, "\" & c.ToString)
-        Next
+        ' Empty string
+        If original.Length = 0 Then
+            'If Replace text is empty, the Find dialog automatically
+            'uses the last non-empty value from history. To prevent this,
+            'we must pass some non-empty value which produces empty text.
 
-        ' Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
-        ' the same as .NET regex where \r is defined and needed.
+            If GetVsVersion() > 10 Then
+                ' Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
+                ' the same as .NET regex where $ is used for group replacement.
+                Return "$+" ' substitute the last group (which needs to be defined in 'Find what' and empty)
+            Else
+                ' In VS 2005-2010, \number is used for group replacement
+                'The ninth regex tagged expression seems good for this as it is very
+                'unlikely that user will add 9 tagged expressions in Find field in
+                'original VS Find dialog after it is pre-filled with this macro.
+                Return "\9"
+            End If
+        End If
+
+        ' Escape regex special chars used in Replace
         If GetVsVersion() > 10 Then
+            ' Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
+            ' the same as .NET regex where $ is used for group replacement.
+            original = original.Replace("$"c, "$$")
+            ' All other characters are treated as literals, except for \r \n and \t. All other
+            ' combinations are OK. For test, try to replace with the following:
+            ' \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\w\v\x\y\z\1\0\9\A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\W\V\X\Y\Z\~\!\@\#\$\%\^\&\*\(\)\-\=\+\?\<\>\:\"\'\[\]\{\}\/
+            ' The \\ doesn't work for escaping the \ character. So we cannot escape \r with \\r. We
+            ' need to use more complicated \$+r, where again, the $+ substitutes the last group
+            ' (which needs to be defined in 'Find what' and empty). This is important if we want to replace
+            ' with a text like:
+            ' C:\MyFolder\root\nextLevel\test
+            ' Without escaping we would get:
+            ' C:\MyFolder
+            ' oot
+            ' extLevel  est
+            original = original.Replace("\r", "\$+r")
+            original = original.Replace("\n", "\$+n")
+            original = original.Replace("\t", "\$+t")
+        Else
+            ' In VS 2005-2010, \number is used for group replacement
+            ' All other characters are treated as literals.
+            Dim specialChars() As Char
+            specialChars = "\".ToCharArray
+            Dim c As Char
+            For Each c In specialChars
+                original = original.Replace(c.ToString, "\" & c.ToString)
+            Next
+        End If
+
+        ' Escape newlines
+        If GetVsVersion() > 10 Then
+            ' Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
+            ' the same as .NET regex where \r is defined and needed.
             original = original.Replace(vbCrLf, "\r\n")
         Else
             original = original.Replace(vbCrLf, "\n")

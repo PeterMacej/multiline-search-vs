@@ -5,10 +5,18 @@
 </head>
 <body>
     <ol>
-        <li>FIX: Correct regex newline composition in VS 2010 <strong>Replace with</strong>
-            field. When <strong>Replace with</strong> field contained a newline, an extra "r"
-            character was appended at the end of line. Only VS 2010 was affected, it worked
-            fine in all other VS versions.</li>
+        <li>FIX: In VS 2012 and 2013, the "\"
+            character in the <strong>Replace with</strong>
+            field was incorrectly escaped to regex as "\\". That produced double backslash in
+            replaced text. So if you wanted to replace with e.g. "C:\MyFolder\root\nextLevel\test",
+            you got "C:\\MyFolder\\root\\nextLevel\\test".</li>
+        <li>FIX: In VS 2012 and 2013, if you replaced a string with an empty string (you wanted
+            to delete the string), the extension produced "\9" in <strong>Replace with</strong>
+            field.While this produces an empty text in VS 2005-2010, it doesn't work in newer
+            versions. In VS 2012 and 2013, the "$+" is used now. Unfortunatelly, it's not possible
+            to pre-populate the <strong>Replace with</strong> field directly with an empty text
+            because VS automatically inserts the last used value from the history. That's why
+            such a hack is needed.</li>
     </ol>
 
 </body>
