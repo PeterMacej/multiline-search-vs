@@ -110,6 +110,30 @@ Public Class MultilineSearchControl
             Return m_replaceText
         End Get
     End Property
+
+
+    Private m_HideCancelButton As Boolean = False
+    ''' <summary>
+    ''' Determines whether the Cancel button is hidden.
+    ''' </summary>
+    ''' <value></value>
+    ''' <remarks></remarks>
+    Public Property HideCancelButton() As Boolean
+        Get
+            Return m_HideCancelButton
+        End Get
+        Set(ByVal value As Boolean)
+            m_HideCancelButton = value
+
+            Me.PanelBottom.Visible = Not value
+            If value Then
+                Me.TableLayoutPanel1.RowStyles.Item(1).Height = 0
+            Else
+                Me.TableLayoutPanel1.RowStyles.Item(1).Height = 34
+            End If
+        End Set
+    End Property
+
 #End Region
 
 
