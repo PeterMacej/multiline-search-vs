@@ -62,6 +62,18 @@ Public NotInheritable Class MultiLineSearchPackage
 
 
     ''' <summary>
+    ''' Indicates whether the multiline search window should be modal dialog or modeless (toolwindow).
+    ''' </summary>
+    ''' <value></value>
+    ''' <remarks></remarks>
+    Private ReadOnly Property UseModalWindow() As Boolean
+        Get
+            Return True
+        End Get
+    End Property
+
+
+    ''' <summary>
     ''' Default constructor of the package.
     ''' Inside this method you can place any initialization code that does not require 
     ''' any Visual Studio service because at this point the package object is created but 
@@ -121,17 +133,19 @@ Public NotInheritable Class MultiLineSearchPackage
     ''' the OleMenuCommandService service and the MenuCommand class.
     ''' </summary>
     Private Sub MultilineFindCommandCallback(ByVal sender As Object, ByVal e As EventArgs)
-        Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
-        Dim clsid As Guid = Guid.Empty
 
-        'Dim result As Integer
-        'Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(0, clsid, "Multiline Search and Replace", String.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", Me.GetType().Name), String.Empty, 0, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, OLEMSGICON.OLEMSGICON_INFO, 0, result))
-
-        If searchForm Is Nothing Then
-            searchForm = New MultilineSearchForm(dte)
+        If Me.UseModalWindow Then
+            If searchForm Is Nothing Then
+                searchForm = New MultilineSearchForm(dte)
+            End If
+            Dim winptr As New WinWrapper(dte)
+            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(searchForm.ShowDialog(winptr))
+        Else
+            Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
+            Dim clsid As Guid = Guid.Empty
+            Dim result As Integer
+            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(0, clsid, "Multiline Search and Replace", String.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", Me.GetType().Name), String.Empty, 0, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, OLEMSGICON.OLEMSGICON_INFO, 0, result))
         End If
-        Dim winptr As New WinWrapper(dte)
-        Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(searchForm.ShowDialog(winptr))
     End Sub
 
 
