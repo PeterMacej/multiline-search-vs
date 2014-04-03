@@ -84,6 +84,7 @@
     <Compile Include="MultiLineSearchPackage.vb" />
     <Compile Include="Properties\AssemblyInfo.vb" />
     <Compile Include="PkgCmdID.vb" />
+    <Compile Include="DocumentTextSelection.vb" />
     <Compile Include="Utils.vb" />
   </ItemGroup>
   <ItemGroup>
