@@ -57,8 +57,21 @@ Public NotInheritable Class MultiLineSearchPackage
 
 
     Private dteInitializer As DteInitializer
-    Private dte As EnvDTE80.DTE2
     Private searchForm As MultilineSearchForm
+
+
+#Region "Properties"
+    Private m_Dte As EnvDTE80.DTE2
+    ''' <summary>
+    ''' Gets the DTE object.
+    ''' </summary>
+    ''' <value>Nothing if the IDE is not yet fully initialized.</value>
+    ''' <remarks></remarks>
+    Public ReadOnly Property Dte() As EnvDTE80.DTE2
+        Get
+            Return m_Dte
+        End Get
+    End Property
 
 
     ''' <summary>
@@ -68,9 +81,10 @@ Public NotInheritable Class MultiLineSearchPackage
     ''' <remarks></remarks>
     Private ReadOnly Property UseModalWindow() As Boolean
         Get
-            Return True
+            Return False
         End Get
     End Property
+#End Region
 
 
     ''' <summary>
@@ -115,9 +129,9 @@ Public NotInheritable Class MultiLineSearchPackage
     Private Sub InitializeDTE()
         Dim shellService As IVsShell
 
-        Me.dte = TryCast(Me.GetService(GetType(Microsoft.VisualStudio.Shell.Interop.SDTE)), EnvDTE80.DTE2)
+        Me.m_Dte = TryCast(Me.GetService(GetType(Microsoft.VisualStudio.Shell.Interop.SDTE)), EnvDTE80.DTE2)
 
-        If Me.dte Is Nothing Then
+        If Me.Dte Is Nothing Then
             ' The IDE is not yet fully initialized
             shellService = TryCast(Me.GetService(GetType(SVsShell)), IVsShell)
             Me.dteInitializer = New DteInitializer(shellService, AddressOf Me.InitializeDTE)
@@ -141,10 +155,11 @@ Public NotInheritable Class MultiLineSearchPackage
             Dim winptr As New WinWrapper(dte)
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(searchForm.ShowDialog(winptr))
         Else
-            Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
-            Dim clsid As Guid = Guid.Empty
-            Dim result As Integer
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(0, clsid, "Multiline Search and Replace", String.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", Me.GetType().Name), String.Empty, 0, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, OLEMSGICON.OLEMSGICON_INFO, 0, result))
+            'Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
+            'Dim clsid As Guid = Guid.Empty
+            'Dim result As Integer
+            'Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(0, clsid, "Multiline Search and Replace", String.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", Me.GetType().Name), String.Empty, 0, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, OLEMSGICON.OLEMSGICON_INFO, 0, result))
+            ShowToolWindow(sender, e)
         End If
     End Sub
 
@@ -164,8 +179,10 @@ Public NotInheritable Class MultiLineSearchPackage
         End If
 
         Dim windowFrame As IVsWindowFrame = TryCast(window.Frame, IVsWindowFrame)
+        TryCast(window, MyToolWindow).InitializeContent()
         Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show())
     End Sub
+
 
 End Class
 
