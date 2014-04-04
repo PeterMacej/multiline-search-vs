@@ -117,8 +117,10 @@
     <None Include="Resources\main_icon.xcf" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\vs_icons.htm" />
     <Content Include="Resources\main_icon.ico" />
     <Content Include="Resources\main_icon.png" />
+    <None Include="Resources\main_icon_for_toolwindow.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="System" />

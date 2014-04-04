@@ -88,7 +88,7 @@ Public Class MyToolWindow
         ' while the Index is the offset in the bitmap strip. Each image in
         ' the strip being 16x16.
         Me.BitmapResourceID = 301
-        Me.BitmapIndex = 1
+        Me.BitmapIndex = 0
 
         control = New MultilineSearchControl()
         control.HideCancelButton = True
