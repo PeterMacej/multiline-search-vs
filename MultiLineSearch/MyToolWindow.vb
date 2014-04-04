@@ -7,6 +7,7 @@ Imports System.Windows.Forms
 Imports System.Runtime.InteropServices
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
+Imports Microsoft.VisualStudio
 
 ''' <summary>
 ''' This class implements the tool window exposed by this package and hosts a user control.
@@ -141,4 +142,50 @@ Public Class MyToolWindow
         End Try
     End Sub
 
+
+    '' not used
+    'Public Overrides Sub OnToolWindowCreated()
+    '    MyBase.OnToolWindowCreated()
+
+    '    ' register window frame events
+    '    Dim windowFrameEventsHandler As New ToolWindowFrameEvents()
+    '    ErrorHandler.ThrowOnFailure( _
+    '        (DirectCast(Me.Frame, IVsWindowFrame)).SetProperty( _
+    '        CInt(__VSFPROPID.VSFPROPID_ViewHelper), _
+    '        windowFrameEventsHandler))
+    'End Sub
+
+End Class
+
+
+Friend Class ToolWindowFrameEvents
+    Implements IVsWindowFrameNotify3
+
+
+    Public Function OnClose(ByRef pgrfSaveOptions As UInteger) As Integer Implements Microsoft.VisualStudio.Shell.Interop.IVsWindowFrameNotify3.OnClose
+        Return Microsoft.VisualStudio.VSConstants.S_OK
+    End Function
+
+    Public Function OnDockableChange(ByVal fDockable As Integer, ByVal x As Integer, ByVal y As Integer, ByVal w As Integer, ByVal h As Integer) As Integer Implements Microsoft.VisualStudio.Shell.Interop.IVsWindowFrameNotify3.OnDockableChange
+        Return Microsoft.VisualStudio.VSConstants.S_OK
+    End Function
+
+    Public Function OnMove(ByVal x As Integer, ByVal y As Integer, ByVal w As Integer, ByVal h As Integer) As Integer Implements Microsoft.VisualStudio.Shell.Interop.IVsWindowFrameNotify3.OnMove
+        Return Microsoft.VisualStudio.VSConstants.S_OK
+    End Function
+
+    Public Function OnShow(ByVal fShow As Integer) As Integer Implements Microsoft.VisualStudio.Shell.Interop.IVsWindowFrameNotify3.OnShow
+        Select Case CType(fShow, __FRAMESHOW)
+            Case __FRAMESHOW.FRAMESHOW_WinShown
+                Diagnostics.Debug.WriteLine("aaa")
+            Case __FRAMESHOW.FRAMESHOW_WinRestored
+                Diagnostics.Debug.WriteLine("bbb")
+
+        End Select
+        Return Microsoft.VisualStudio.VSConstants.S_OK
+    End Function
+
+    Public Function OnSize(ByVal x As Integer, ByVal y As Integer, ByVal w As Integer, ByVal h As Integer) As Integer Implements Microsoft.VisualStudio.Shell.Interop.IVsWindowFrameNotify3.OnSize
+        Return Microsoft.VisualStudio.VSConstants.S_OK
+    End Function
 End Class
