@@ -77,5 +77,33 @@ Namespace My.Resources
                 Return ResourceManager.GetString("ToolWindowTitle", resourceCulture)
             End Get
         End Property
+        
+        Friend ReadOnly Property vs2013_find() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("vs2013_find", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property vs2013_find_in_files() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("vs2013_find_in_files", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property vs2013_replace() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("vs2013_replace", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property vs2013_replace_in_files() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("vs2013_replace_in_files", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
     End Module
 End Namespace

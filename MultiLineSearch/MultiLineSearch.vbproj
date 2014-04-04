@@ -76,10 +76,10 @@
     <Compile Include="PackageMemorySettingsReader.vb" />
     <Compile Include="PackageMemorySettingsStore.vb" />
     <Compile Include="PackageMemorySettingsWriter.vb" />
-    <Compile Include="Resources.Designer.vb">
+    <Compile Include="MainResources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>MainResources.resx</DependentUpon>
     </Compile>
     <Compile Include="MultiLineSearchPackage.vb" />
     <Compile Include="Properties\AssemblyInfo.vb" />
@@ -96,15 +96,17 @@
       <SubType>Designer</SubType>
       <DependentUpon>MultilineSearchForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
+    <EmbeddedResource Include="MainResources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <LastGenOutput>MainResources.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VSPackage.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +119,10 @@
     <None Include="Resources\main_icon.xcf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\vs2013_find.png" />
+    <None Include="Resources\vs2013_replace.png" />
+    <None Include="Resources\vs2013_find_in_files.png" />
+    <None Include="Resources\vs2013_replace_in_files.png" />
     <Content Include="Resources\vs_icons.htm" />
     <Content Include="Resources\main_icon.ico" />
     <Content Include="Resources\main_icon.png" />
