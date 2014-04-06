@@ -1,4 +1,4 @@
-﻿Imports System.Security.Permissions
+Imports System.Security.Permissions
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic
 Imports system.ComponentModel
@@ -217,25 +217,7 @@ Public Class MultilineSearchControl
     End Sub
 
 
-    ''' <summary>
-    ''' Fix bottom anchoring of ReplaceBox. This didn't work at least in toolwindow in VS 2005.
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub PanelTop_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles PanelTop.Resize
-        Try
-            Dim BOTTOM_OFFSET As Integer = 45
-            If Me.ReplaceBox.Bottom <> Me.PanelTop.Height - BOTTOM_OFFSET Then
-                ' anchoring failed
-                Me.ReplaceBox.Height = Me.PanelTop.Height - Me.ReplaceBox.Top - BOTTOM_OFFSET
-            End If
-        Catch ex As Exception
-        End Try
-    End Sub
-
-
-    Private Sub ToolStripButtonFind_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonFind.Click
+    Private Sub FindBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FindBtn.Click
         Try
             m_findText = Me.FindBox.Text
             m_replaceText = Me.ReplaceBox.Text
@@ -246,7 +228,7 @@ Public Class MultilineSearchControl
     End Sub
 
 
-    Private Sub ToolStripButtonFindInFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonFindInFiles.Click
+    Private Sub FindInFilesBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FindInFilesBtn.Click
         Try
             m_findText = Me.FindBox.Text
             m_replaceText = Me.ReplaceBox.Text
@@ -257,7 +239,7 @@ Public Class MultilineSearchControl
     End Sub
 
 
-    Private Sub ToolStripButtonReplace_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonReplace.Click
+    Private Sub ReplaceBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReplaceBtn.Click
         Try
             m_findText = Me.FindBox.Text
             m_replaceText = Me.ReplaceBox.Text
@@ -268,13 +250,31 @@ Public Class MultilineSearchControl
     End Sub
 
 
-    Private Sub ToolStripButtonReplaceInFiles_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonReplaceInFiles.Click
+    Private Sub ReplaceInFilesBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReplaceInFilesBtn.Click
         Try
             m_findText = Me.FindBox.Text
             m_replaceText = Me.ReplaceBox.Text
             m_SearchKind = FindReplaceKind.replaceInFiles
             ExecuteSearchReplace()
         Catch ex As System.Exception
+        End Try
+    End Sub
+
+
+    ''' <summary>
+    ''' Fix bottom anchoring of ReplaceBox. This didn't work at least in toolwindow in VS 2005.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub PanelTop_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles PanelTop.Resize
+        Try
+            Dim BOTTOM_OFFSET As Integer = 65
+            If Me.ReplaceBox.Bottom <> Me.PanelTop.Height - BOTTOM_OFFSET Then
+                ' anchoring failed
+                Me.ReplaceBox.Height = Me.PanelTop.Height - Me.ReplaceBox.Top - BOTTOM_OFFSET
+            End If
+        Catch ex As Exception
         End Try
     End Sub
 End Class

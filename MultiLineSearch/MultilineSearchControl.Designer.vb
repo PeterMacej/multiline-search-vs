@@ -23,20 +23,18 @@ Partial Class MultilineSearchControl
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.CancelBtn = New System.Windows.Forms.Button
+        Me.ReplaceInFilesBtn = New System.Windows.Forms.Button
+        Me.ReplaceBtn = New System.Windows.Forms.Button
+        Me.FindInFilesBtn = New System.Windows.Forms.Button
+        Me.FindBtn = New System.Windows.Forms.Button
         Me.Label2 = New System.Windows.Forms.Label
         Me.ReplaceBox = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.FindBox = New System.Windows.Forms.TextBox
         Me.PanelTop = New System.Windows.Forms.Panel
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.ToolStripButtonFind = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButtonFindInFiles = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButtonReplace = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButtonReplaceInFiles = New System.Windows.Forms.ToolStripButton
         Me.PanelBottom = New System.Windows.Forms.Panel
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
         Me.PanelTop.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
         Me.PanelBottom.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -50,6 +48,50 @@ Partial Class MultilineSearchControl
         Me.CancelBtn.Size = New System.Drawing.Size(80, 24)
         Me.CancelBtn.TabIndex = 18
         Me.CancelBtn.Text = "Cancel"
+        '
+        'ReplaceInFilesBtn
+        '
+        Me.ReplaceInFilesBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ReplaceInFilesBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_replace_in_files
+        Me.ReplaceInFilesBtn.Location = New System.Drawing.Point(282, 243)
+        Me.ReplaceInFilesBtn.Name = "ReplaceInFilesBtn"
+        Me.ReplaceInFilesBtn.Size = New System.Drawing.Size(123, 27)
+        Me.ReplaceInFilesBtn.TabIndex = 17
+        Me.ReplaceInFilesBtn.Text = "Replace in Files"
+        Me.ReplaceInFilesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        '
+        'ReplaceBtn
+        '
+        Me.ReplaceBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ReplaceBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_replace
+        Me.ReplaceBtn.Location = New System.Drawing.Point(192, 243)
+        Me.ReplaceBtn.Name = "ReplaceBtn"
+        Me.ReplaceBtn.Size = New System.Drawing.Size(84, 27)
+        Me.ReplaceBtn.TabIndex = 16
+        Me.ReplaceBtn.Text = "Replace"
+        Me.ReplaceBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        '
+        'FindInFilesBtn
+        '
+        Me.FindInFilesBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FindInFilesBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_find_in_files
+        Me.FindInFilesBtn.Location = New System.Drawing.Point(282, 213)
+        Me.FindInFilesBtn.Name = "FindInFilesBtn"
+        Me.FindInFilesBtn.Size = New System.Drawing.Size(123, 27)
+        Me.FindInFilesBtn.TabIndex = 15
+        Me.FindInFilesBtn.Text = "Find in Files"
+        Me.FindInFilesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        '
+        'FindBtn
+        '
+        Me.FindBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FindBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_find
+        Me.FindBtn.Location = New System.Drawing.Point(192, 213)
+        Me.FindBtn.Name = "FindBtn"
+        Me.FindBtn.Size = New System.Drawing.Size(84, 27)
+        Me.FindBtn.TabIndex = 14
+        Me.FindBtn.Text = "Find"
+        Me.FindBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
         'Label2
         '
@@ -68,7 +110,7 @@ Partial Class MultilineSearchControl
         Me.ReplaceBox.Multiline = True
         Me.ReplaceBox.Name = "ReplaceBox"
         Me.ReplaceBox.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.ReplaceBox.Size = New System.Drawing.Size(393, 100)
+        Me.ReplaceBox.Size = New System.Drawing.Size(393, 77)
         Me.ReplaceBox.TabIndex = 12
         '
         'Label1
@@ -95,7 +137,10 @@ Partial Class MultilineSearchControl
         Me.PanelTop.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PanelTop.Controls.Add(Me.ToolStrip1)
+        Me.PanelTop.Controls.Add(Me.ReplaceInFilesBtn)
+        Me.PanelTop.Controls.Add(Me.ReplaceBtn)
+        Me.PanelTop.Controls.Add(Me.FindInFilesBtn)
+        Me.PanelTop.Controls.Add(Me.FindBtn)
         Me.PanelTop.Controls.Add(Me.Label1)
         Me.PanelTop.Controls.Add(Me.FindBox)
         Me.PanelTop.Controls.Add(Me.ReplaceBox)
@@ -104,65 +149,6 @@ Partial Class MultilineSearchControl
         Me.PanelTop.Name = "PanelTop"
         Me.PanelTop.Size = New System.Drawing.Size(418, 273)
         Me.PanelTop.TabIndex = 0
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonFind, Me.ToolStripButtonFindInFiles, Me.ToolStripButtonReplace, Me.ToolStripButtonReplaceInFiles})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 235)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ToolStrip1.Size = New System.Drawing.Size(418, 38)
-        Me.ToolStrip1.TabIndex = 18
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'ToolStripButtonFind
-        '
-        Me.ToolStripButtonFind.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ToolStripButtonFind.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_find
-        Me.ToolStripButtonFind.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonFind.Margin = New System.Windows.Forms.Padding(12, 1, 0, 2)
-        Me.ToolStripButtonFind.Name = "ToolStripButtonFind"
-        Me.ToolStripButtonFind.Size = New System.Drawing.Size(34, 35)
-        Me.ToolStripButtonFind.Text = "Find"
-        Me.ToolStripButtonFind.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
-        Me.ToolStripButtonFind.ToolTipText = "Quick Find"
-        '
-        'ToolStripButtonFindInFiles
-        '
-        Me.ToolStripButtonFindInFiles.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ToolStripButtonFindInFiles.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_find_in_files
-        Me.ToolStripButtonFindInFiles.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonFindInFiles.Margin = New System.Windows.Forms.Padding(10, 1, 0, 2)
-        Me.ToolStripButtonFindInFiles.Name = "ToolStripButtonFindInFiles"
-        Me.ToolStripButtonFindInFiles.Size = New System.Drawing.Size(73, 35)
-        Me.ToolStripButtonFindInFiles.Text = "Find in Files"
-        Me.ToolStripButtonFindInFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
-        Me.ToolStripButtonFindInFiles.ToolTipText = "Find in Files"
-        '
-        'ToolStripButtonReplace
-        '
-        Me.ToolStripButtonReplace.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ToolStripButtonReplace.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_replace
-        Me.ToolStripButtonReplace.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonReplace.Margin = New System.Windows.Forms.Padding(10, 1, 0, 2)
-        Me.ToolStripButtonReplace.Name = "ToolStripButtonReplace"
-        Me.ToolStripButtonReplace.Size = New System.Drawing.Size(52, 35)
-        Me.ToolStripButtonReplace.Text = "Replace"
-        Me.ToolStripButtonReplace.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
-        Me.ToolStripButtonReplace.ToolTipText = "Quick Replace"
-        '
-        'ToolStripButtonReplaceInFiles
-        '
-        Me.ToolStripButtonReplaceInFiles.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.ToolStripButtonReplaceInFiles.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_replace_in_files
-        Me.ToolStripButtonReplaceInFiles.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonReplaceInFiles.Margin = New System.Windows.Forms.Padding(10, 1, 0, 2)
-        Me.ToolStripButtonReplaceInFiles.Name = "ToolStripButtonReplaceInFiles"
-        Me.ToolStripButtonReplaceInFiles.Size = New System.Drawing.Size(91, 35)
-        Me.ToolStripButtonReplaceInFiles.Text = "Replace in Files"
-        Me.ToolStripButtonReplaceInFiles.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         '
         'PanelBottom
         '
@@ -197,14 +183,16 @@ Partial Class MultilineSearchControl
         Me.Size = New System.Drawing.Size(424, 313)
         Me.PanelTop.ResumeLayout(False)
         Me.PanelTop.PerformLayout()
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
         Me.PanelBottom.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents CancelBtn As System.Windows.Forms.Button
+    Friend WithEvents ReplaceInFilesBtn As System.Windows.Forms.Button
+    Friend WithEvents ReplaceBtn As System.Windows.Forms.Button
+    Friend WithEvents FindInFilesBtn As System.Windows.Forms.Button
+    Friend WithEvents FindBtn As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents ReplaceBox As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -212,10 +200,5 @@ Partial Class MultilineSearchControl
     Friend WithEvents PanelTop As System.Windows.Forms.Panel
     Friend WithEvents PanelBottom As System.Windows.Forms.Panel
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
-    Friend WithEvents ToolStripButtonFind As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButtonFindInFiles As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButtonReplace As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButtonReplaceInFiles As System.Windows.Forms.ToolStripButton
 
 End Class
