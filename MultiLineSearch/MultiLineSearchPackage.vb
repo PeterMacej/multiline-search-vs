@@ -48,7 +48,7 @@ Imports EnvDTE80
 <PackageRegistration(UseManagedResourcesOnly:=True), _
 DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\8.0"), _
 InstalledProductRegistration(False, "#110", "#112", "1.0", IconResourceID:=400), _
-ProvideLoadKey("Standard", "1.3", "Multiline Search and Replace", "Helixoft", 1), _
+ProvideLoadKey("Standard", "1.4", "Multiline Search and Replace", "Helixoft", 1), _
 ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
 Guid(GuidList.guidMultiLineSearchPkgString)> _
@@ -150,9 +150,9 @@ Public NotInheritable Class MultiLineSearchPackage
 
         If Me.UseModalWindow Then
             If searchForm Is Nothing Then
-                searchForm = New MultilineSearchForm(dte)
+                searchForm = New MultilineSearchForm(Dte)
             End If
-            Dim winptr As New WinWrapper(dte)
+            Dim winptr As New WinWrapper(Dte)
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(searchForm.ShowDialog(winptr))
         Else
             'Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
