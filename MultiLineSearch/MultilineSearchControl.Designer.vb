@@ -34,9 +34,11 @@ Partial Class MultilineSearchControl
         Me.PanelTop = New System.Windows.Forms.Panel
         Me.PanelBottom = New System.Windows.Forms.Panel
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
+        Me.PanelButtons = New System.Windows.Forms.Panel
         Me.PanelTop.SuspendLayout()
         Me.PanelBottom.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
+        Me.PanelButtons.SuspendLayout()
         Me.SuspendLayout()
         '
         'CancelBtn
@@ -53,7 +55,7 @@ Partial Class MultilineSearchControl
         '
         Me.ReplaceInFilesBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ReplaceInFilesBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_replace_in_files
-        Me.ReplaceInFilesBtn.Location = New System.Drawing.Point(282, 243)
+        Me.ReplaceInFilesBtn.Location = New System.Drawing.Point(282, 30)
         Me.ReplaceInFilesBtn.Name = "ReplaceInFilesBtn"
         Me.ReplaceInFilesBtn.Size = New System.Drawing.Size(123, 27)
         Me.ReplaceInFilesBtn.TabIndex = 17
@@ -64,7 +66,7 @@ Partial Class MultilineSearchControl
         '
         Me.ReplaceBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ReplaceBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_replace
-        Me.ReplaceBtn.Location = New System.Drawing.Point(192, 243)
+        Me.ReplaceBtn.Location = New System.Drawing.Point(192, 30)
         Me.ReplaceBtn.Name = "ReplaceBtn"
         Me.ReplaceBtn.Size = New System.Drawing.Size(84, 27)
         Me.ReplaceBtn.TabIndex = 16
@@ -75,7 +77,7 @@ Partial Class MultilineSearchControl
         '
         Me.FindInFilesBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FindInFilesBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_find_in_files
-        Me.FindInFilesBtn.Location = New System.Drawing.Point(282, 213)
+        Me.FindInFilesBtn.Location = New System.Drawing.Point(282, 0)
         Me.FindInFilesBtn.Name = "FindInFilesBtn"
         Me.FindInFilesBtn.Size = New System.Drawing.Size(123, 27)
         Me.FindInFilesBtn.TabIndex = 15
@@ -86,7 +88,7 @@ Partial Class MultilineSearchControl
         '
         Me.FindBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FindBtn.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.vs2013_find
-        Me.FindBtn.Location = New System.Drawing.Point(192, 213)
+        Me.FindBtn.Location = New System.Drawing.Point(192, 0)
         Me.FindBtn.Name = "FindBtn"
         Me.FindBtn.Size = New System.Drawing.Size(84, 27)
         Me.FindBtn.TabIndex = 14
@@ -110,7 +112,7 @@ Partial Class MultilineSearchControl
         Me.ReplaceBox.Multiline = True
         Me.ReplaceBox.Name = "ReplaceBox"
         Me.ReplaceBox.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.ReplaceBox.Size = New System.Drawing.Size(393, 77)
+        Me.ReplaceBox.Size = New System.Drawing.Size(393, 70)
         Me.ReplaceBox.TabIndex = 12
         '
         'Label1
@@ -137,24 +139,20 @@ Partial Class MultilineSearchControl
         Me.PanelTop.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PanelTop.Controls.Add(Me.ReplaceInFilesBtn)
-        Me.PanelTop.Controls.Add(Me.ReplaceBtn)
-        Me.PanelTop.Controls.Add(Me.FindInFilesBtn)
-        Me.PanelTop.Controls.Add(Me.FindBtn)
         Me.PanelTop.Controls.Add(Me.Label1)
         Me.PanelTop.Controls.Add(Me.FindBox)
         Me.PanelTop.Controls.Add(Me.ReplaceBox)
         Me.PanelTop.Controls.Add(Me.Label2)
         Me.PanelTop.Location = New System.Drawing.Point(3, 3)
         Me.PanelTop.Name = "PanelTop"
-        Me.PanelTop.Size = New System.Drawing.Size(418, 273)
+        Me.PanelTop.Size = New System.Drawing.Size(418, 203)
         Me.PanelTop.TabIndex = 0
         '
         'PanelBottom
         '
         Me.PanelBottom.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelBottom.Controls.Add(Me.CancelBtn)
-        Me.PanelBottom.Location = New System.Drawing.Point(3, 282)
+        Me.PanelBottom.Location = New System.Drawing.Point(3, 276)
         Me.PanelBottom.Name = "PanelBottom"
         Me.PanelBottom.Size = New System.Drawing.Size(418, 28)
         Me.PanelBottom.TabIndex = 1
@@ -166,15 +164,31 @@ Partial Class MultilineSearchControl
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.PanelBottom, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.PanelBottom, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.PanelTop, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.PanelButtons, 0, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowCount = 3
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 209.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(424, 313)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(424, 307)
         Me.TableLayoutPanel1.TabIndex = 20
+        '
+        'PanelButtons
+        '
+        Me.PanelButtons.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelButtons.Controls.Add(Me.ReplaceInFilesBtn)
+        Me.PanelButtons.Controls.Add(Me.FindBtn)
+        Me.PanelButtons.Controls.Add(Me.ReplaceBtn)
+        Me.PanelButtons.Controls.Add(Me.FindInFilesBtn)
+        Me.PanelButtons.Location = New System.Drawing.Point(3, 212)
+        Me.PanelButtons.Name = "PanelButtons"
+        Me.PanelButtons.Size = New System.Drawing.Size(418, 58)
+        Me.PanelButtons.TabIndex = 2
         '
         'MultilineSearchControl
         '
@@ -185,6 +199,7 @@ Partial Class MultilineSearchControl
         Me.PanelTop.PerformLayout()
         Me.PanelBottom.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.PanelButtons.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -200,5 +215,6 @@ Partial Class MultilineSearchControl
     Friend WithEvents PanelTop As System.Windows.Forms.Panel
     Friend WithEvents PanelBottom As System.Windows.Forms.Panel
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents PanelButtons As System.Windows.Forms.Panel
 
 End Class

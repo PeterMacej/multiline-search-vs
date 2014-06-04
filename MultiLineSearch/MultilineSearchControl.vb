@@ -126,9 +126,9 @@ Public Class MultilineSearchControl
 
             Me.PanelBottom.Visible = Not value
             If value Then
-                Me.TableLayoutPanel1.RowStyles.Item(1).Height = 0
+                Me.TableLayoutPanel1.RowStyles.Item(2).Height = 0
             Else
-                Me.TableLayoutPanel1.RowStyles.Item(1).Height = 34
+                Me.TableLayoutPanel1.RowStyles.Item(2).Height = 34
             End If
         End Set
     End Property
@@ -268,7 +268,7 @@ Public Class MultilineSearchControl
     ''' <remarks></remarks>
     Private Sub PanelTop_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles PanelTop.Resize
         Try
-            Const BOTTOM_OFFSET As Integer = 65
+            Const BOTTOM_OFFSET As Integer = 3
             If Me.ReplaceBox.Bottom <> Me.PanelTop.Height - BOTTOM_OFFSET Then
                 ' anchoring failed
                 Me.ReplaceBox.Height = Me.PanelTop.Height - Me.ReplaceBox.Top - BOTTOM_OFFSET
@@ -276,4 +276,23 @@ Public Class MultilineSearchControl
         Catch ex As Exception
         End Try
     End Sub
+
+
+    Private Sub MultilineSearchControl_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
+        Try
+            Dim topRowMinSize As Integer = 100
+
+            Dim h As Integer = TableLayoutPanel1.Height
+            For i As Integer = 1 To TableLayoutPanel1.RowCount - 1
+                h -= CInt(TableLayoutPanel1.RowStyles(i).Height)
+            Next
+
+            If h < topRowMinSize Then
+                h = topRowMinSize
+            End If
+            TableLayoutPanel1.RowStyles(0).Height = h
+        Catch ex As Exception
+        End Try
+    End Sub
+
 End Class
