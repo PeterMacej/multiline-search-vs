@@ -87,6 +87,11 @@
     <Compile Include="PkgCmdID.vb" />
     <Compile Include="DocumentTextSelection.vb" />
     <Compile Include="Utils.vb" />
+    <Compile Include="VSPackage.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.resx</DependentUpon>
+    </Compile>
     <Compile Include="WinWrapper.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +112,8 @@
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VSPackage.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +130,9 @@
     <None Include="Resources\vs2013_replace.png" />
     <None Include="Resources\vs2013_find_in_files.png" />
     <None Include="Resources\vs2013_replace_in_files.png" />
+    <None Include="Resources\minus.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\help.png" />
     <Content Include="Resources\vs_icons.htm" />
     <Content Include="Resources\main_icon.ico" />
     <Content Include="Resources\main_icon.png" />
