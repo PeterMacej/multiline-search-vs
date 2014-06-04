@@ -261,23 +261,12 @@ Public Class MultilineSearchControl
 
 
     ''' <summary>
-    ''' Fix bottom anchoring of ReplaceBox. This didn't work at least in toolwindow in VS 2005.
+    ''' Resize top row of the layout.  Unlike setting its height to 100%,
+    ''' this will allow for setting the minimal height of the row.
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub PanelTop_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles PanelTop.Resize
-        Try
-            Const BOTTOM_OFFSET As Integer = 3
-            If Me.ReplaceBox.Bottom <> Me.PanelTop.Height - BOTTOM_OFFSET Then
-                ' anchoring failed
-                Me.ReplaceBox.Height = Me.PanelTop.Height - Me.ReplaceBox.Top - BOTTOM_OFFSET
-            End If
-        Catch ex As Exception
-        End Try
-    End Sub
-
-
     Private Sub MultilineSearchControl_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
         Try
             Dim topRowMinSize As Integer = 100
@@ -295,4 +284,34 @@ Public Class MultilineSearchControl
         End Try
     End Sub
 
+
+    ''' <summary>
+    ''' Draw visible splitter.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub SplitContainerFindRep_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles SplitContainerFindRep.Paint
+        Try
+            Dim top, left, bottom, right As Integer
+            Dim pen As New Drawing.Pen(Drawing.SystemColors.ActiveBorder)
+            If SplitContainerFindRep.Orientation = Orientation.Horizontal Then
+                left = 3
+                right = SplitContainerFindRep.Width - 3
+                top = SplitContainerFindRep.SplitterDistance
+                bottom = top + SplitContainerFindRep.SplitterWidth - 1
+                e.Graphics.DrawLine(pen, left, top, right, top)
+                'e.Graphics.DrawLine(pen, left, bottom, right, bottom)
+            Else
+                top = 3
+                bottom = SplitContainerFindRep.Height - 3
+                left = SplitContainerFindRep.SplitterDistance
+                right = left + SplitContainerFindRep.SplitterWidth - 1
+                e.Graphics.DrawLine(pen, left, top, left, bottom)
+                'e.Graphics.DrawLine(pen, right, top, right, bottom)
+            End If
+            pen.Dispose()
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
