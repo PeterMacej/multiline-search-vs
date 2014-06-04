@@ -1,18 +1,13 @@
 ﻿' Implementation of MultiLineSearch
 '
 
-Imports Microsoft.VisualBasic
 Imports System
 Imports System.Diagnostics
 Imports System.Globalization
 Imports System.Runtime.InteropServices
 Imports System.ComponentModel.Design
-Imports Microsoft.Win32
 Imports Microsoft.VisualStudio.Shell.Interop
-Imports Microsoft.VisualStudio.OLE.Interop
 Imports Microsoft.VisualStudio.Shell
-Imports EnvDTE80
-
 ''' <summary>
 ''' This is the class that implements the package exposed by this assembly.
 '''
@@ -51,7 +46,7 @@ InstalledProductRegistration(False, "#110", "#112", "1.0", IconResourceID:=400),
 ProvideLoadKey("Standard", "1.4", "Multiline Search and Replace", "Helixoft", 1), _
 ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
-Guid(GuidList.guidMultiLineSearchPkgString)> _
+Guid(GuidList.GUID_MULTI_LINE_SEARCH_PKG_STRING)> _
 Public NotInheritable Class MultiLineSearchPackage
     Inherits Package
 
@@ -61,7 +56,7 @@ Public NotInheritable Class MultiLineSearchPackage
 
 
 #Region "Properties"
-    Private m_Dte As EnvDTE80.DTE2
+    Private mDte As EnvDTE80.DTE2
     ''' <summary>
     ''' Gets the DTE object.
     ''' </summary>
@@ -69,7 +64,7 @@ Public NotInheritable Class MultiLineSearchPackage
     ''' <remarks></remarks>
     Public ReadOnly Property Dte() As EnvDTE80.DTE2
         Get
-            Return m_Dte
+            Return mDte
         End Get
     End Property
 
@@ -112,13 +107,13 @@ Public NotInheritable Class MultiLineSearchPackage
         Trace.WriteLine(String.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", Me.GetType().Name))
         MyBase.Initialize()
 
-        InitializeDTE()
+        InitializeDte()
 
         ' Add our command handlers for menu (commands must exist in the .vsct file)
         Dim mcs As OleMenuCommandService = TryCast(GetService(GetType(IMenuCommandService)), OleMenuCommandService)
         If Not mcs Is Nothing Then
             ' Create the command for the menu item.
-            Dim menuCommandID As New CommandID(GuidList.guidMultiLineSearchCmdSet, CInt(PkgCmdIDList.cmdidMultilineFind))
+            Dim menuCommandID As New CommandID(GuidList.GuidMultiLineSearchCmdSet, CInt(PkgCmdIDList.CMDID_MULTILINE_FIND))
             Dim menuItem As New MenuCommand(New EventHandler(AddressOf MultilineFindCommandCallback), menuCommandID)
             mcs.AddCommand(menuItem)
         End If
@@ -126,15 +121,15 @@ Public NotInheritable Class MultiLineSearchPackage
 #End Region
 
 
-    Private Sub InitializeDTE()
+    Private Sub InitializeDte()
         Dim shellService As IVsShell
 
-        Me.m_Dte = TryCast(Me.GetService(GetType(Microsoft.VisualStudio.Shell.Interop.SDTE)), EnvDTE80.DTE2)
+        Me.mDte = TryCast(Me.GetService(GetType(Microsoft.VisualStudio.Shell.Interop.SDTE)), EnvDTE80.DTE2)
 
         If Me.Dte Is Nothing Then
             ' The IDE is not yet fully initialized
             shellService = TryCast(Me.GetService(GetType(SVsShell)), IVsShell)
-            Me.dteInitializer = New DteInitializer(shellService, AddressOf Me.InitializeDTE)
+            Me.dteInitializer = New DteInitializer(shellService, AddressOf Me.InitializeDte)
         Else
             Me.dteInitializer = Nothing
         End If
@@ -187,23 +182,3 @@ Public NotInheritable Class MultiLineSearchPackage
 End Class
 
 
-''' <summary>
-''' Helper class for passing parent window argument to ShowDialog method.
-''' </summary>
-''' <remarks>See http://support.microsoft.com/kb/312877 for details.</remarks>
-Friend Class WinWrapper
-    Implements System.Windows.Forms.IWin32Window
-
-    Private vsinstance As DTE2
-
-    Sub New(ByVal dte As DTE2)
-        vsinstance = dte
-    End Sub
-
-    Overridable ReadOnly Property Handle() As System.IntPtr Implements System.Windows.Forms.IWin32Window.Handle
-        Get
-            Dim iptr As New System.IntPtr(vsinstance.MainWindow.HWnd)
-            Return iptr
-        End Get
-    End Property
-End Class

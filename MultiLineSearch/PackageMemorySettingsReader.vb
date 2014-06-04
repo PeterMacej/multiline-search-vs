@@ -1,15 +1,7 @@
-Imports Microsoft.VisualBasic
 Imports System
-Imports System.Diagnostics
-Imports System.Globalization
 Imports System.Runtime.InteropServices
-Imports System.ComponentModel.Design
-Imports Microsoft.Win32
 Imports Microsoft.VisualStudio.Shell.Interop
-Imports Microsoft.VisualStudio.OLE.Interop
-Imports Microsoft.VisualStudio.Shell
 Imports Microsoft.VisualStudio
-Imports EnvDTE80
 
 
 ''' <summary>
@@ -20,10 +12,11 @@ Friend Class PackageMemorySettingsReader
     Implements IVsSettingsReader
 
 
-    Private m_SettingsStore As New PackageMemorySettingsStore
+    Private ReadOnly mSettingsStore As PackageMemorySettingsStore = New PackageMemorySettingsStore
+
     Public ReadOnly Property SettingsStore() As PackageMemorySettingsStore
         Get
-            Return m_SettingsStore
+            Return mSettingsStore
         End Get
     End Property
 
@@ -32,7 +25,7 @@ Friend Class PackageMemorySettingsReader
         If settingsStore Is Nothing Then
             Throw New ArgumentNullException("settingsStore")
         End If
-        Me.m_SettingsStore = settingsStore
+        Me.mSettingsStore = settingsStore
     End Sub
 
 

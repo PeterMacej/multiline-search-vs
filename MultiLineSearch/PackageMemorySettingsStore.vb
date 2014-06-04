@@ -1,14 +1,3 @@
-Imports Microsoft.VisualBasic
-Imports System
-Imports System.Diagnostics
-Imports System.Globalization
-Imports System.Runtime.InteropServices
-Imports System.ComponentModel.Design
-Imports Microsoft.Win32
-Imports Microsoft.VisualStudio.Shell.Interop
-Imports Microsoft.VisualStudio.OLE.Interop
-Imports Microsoft.VisualStudio.Shell
-Imports EnvDTE80
 Imports System.Collections.Generic
 Imports System.Text
 
@@ -20,10 +9,10 @@ Imports System.Text
 ''' <remarks></remarks>
 Friend Class PackageMemorySettingsStore
 
-    Private m_Settings As New Dictionary(Of String, Setting)
+    Private ReadOnly mSettings As Dictionary(Of String, Setting) = New Dictionary(Of String, Setting)
     Public ReadOnly Property Settings() As Dictionary(Of String, Setting)
         Get
-            Return m_Settings
+            Return mSettings
         End Get
     End Property
 
@@ -87,11 +76,11 @@ Friend Class PackageMemorySettingsStore
     Friend Class Setting
 
         Public Sub New(ByVal name As String)
-            m_Name = name
+            mName = name
         End Sub
 
 
-        Private m_Name As String
+        Private ReadOnly mName As String
         ''' <summary>
         ''' Gets or sets the setting name.
         ''' </summary>
@@ -99,12 +88,12 @@ Friend Class PackageMemorySettingsStore
         ''' <remarks></remarks>
         Public ReadOnly Property Name() As String
             Get
-                Return m_Name
+                Return mName
             End Get
         End Property
 
 
-        Private m_Value As Object = Nothing
+        Private mValue As Object = Nothing
         ''' <summary>
         ''' Gets or sets the setting value.
         ''' </summary>
@@ -112,19 +101,19 @@ Friend Class PackageMemorySettingsStore
         ''' <remarks></remarks>
         Public Property Value() As Object
             Get
-                Return m_Value
+                Return mValue
             End Get
             Set(ByVal value As Object)
-                m_Value = value
+                mValue = value
             End Set
         End Property
 
 
 
-        Private m_attributes As New Dictionary(Of String, String)
+        Private ReadOnly mAttributes As Dictionary(Of String, String) = New Dictionary(Of String, String)
         Public ReadOnly Property Attributes() As Dictionary(Of String, String)
             Get
-                Return m_attributes
+                Return mAttributes
             End Get
         End Property
 

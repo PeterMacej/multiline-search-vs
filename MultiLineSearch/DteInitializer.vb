@@ -1,8 +1,5 @@
 Imports Microsoft.VisualStudio
-Imports System.Runtime.InteropServices
 Imports Microsoft.VisualStudio.Shell.Interop
-Imports Microsoft.VisualStudio.OLE.Interop
-Imports Microsoft.VisualStudio.Shell
 
 
 Friend Delegate Sub Action()
@@ -14,9 +11,9 @@ Friend Delegate Sub Action()
 ''' <remarks></remarks>
 Friend Class DteInitializer
     Implements IVsShellPropertyEvents
-    Private shellService As IVsShell
+    Private ReadOnly shellService As IVsShell
     Private cookie As UInteger
-    Private callback As Action
+    Private ReadOnly callback As Action
 
 
     Friend Sub New(ByVal shellService As IVsShell, ByVal callback As Action)

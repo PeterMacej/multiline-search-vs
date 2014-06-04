@@ -11,7 +11,7 @@ Public Class BeforeSearchEventArgs
 
 #Region "Properties"
 
-    Private m_SearchKind As FindReplaceKind = FindReplaceKind.none
+    Private m_SearchKind As FindReplaceKind = FindReplaceKind.None
     '''<summary>Gets or sets a search operation kind.</summary>
     '''<value>The value specifying which search button was pressed.</value>
     Public Property SearchKind() As FindReplaceKind

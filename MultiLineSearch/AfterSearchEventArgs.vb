@@ -11,41 +11,41 @@ Public Class AfterSearchEventArgs
 
 #Region "Properties"
 
-    Private m_SearchKind As FindReplaceKind = FindReplaceKind.none
+    Private ReadOnly mSearchKind As FindReplaceKind = FindReplaceKind.None
     '''<summary>Gets a search operation kind.</summary>
     '''<value>The value specifying which search button was pressed.</value>
     Public ReadOnly Property SearchKind() As FindReplaceKind
         Get
-            Return m_SearchKind
+            Return mSearchKind
         End Get
     End Property
 
 
-    Private m_findText As String
+    Private ReadOnly mFindText As String
     '''<summary>Gets escaped multiline text to be searched.</summary>
     '''<value></value>
     Public ReadOnly Property FindText() As String
         Get
-            Return m_findText
+            Return mFindText
         End Get
     End Property
 
 
-    Private m_replaceText As String
+    Private ReadOnly mReplaceText As String
     '''<summary>Gets escaped multiline replace text.</summary>
     '''<value></value>
     Public ReadOnly Property ReplaceText() As String
         Get
-            Return m_replaceText
+            Return mReplaceText
         End Get
     End Property
 #End Region
 
 
     Sub New(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String)
-        Me.m_SearchKind = searchKind
-        Me.m_findText = findText
-        Me.m_replaceText = replaceText
+        Me.mSearchKind = searchKind
+        Me.mFindText = findText
+        Me.mReplaceText = replaceText
     End Sub
 
 End Class

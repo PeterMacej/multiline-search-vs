@@ -1,13 +1,8 @@
 Imports System
-Imports EnvDTE
-Imports EnvDTE80
-Imports System.Diagnostics
 Imports Microsoft.VisualStudio
-Imports System.Xml
 Imports System.Collections.Generic
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
-Imports System.Collections
 Imports System.Runtime.InteropServices
 Imports System.Reflection
 

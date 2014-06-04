@@ -1,13 +1,9 @@
 ﻿Imports System
-Imports System.Collections
-Imports System.ComponentModel
-Imports System.Drawing
-Imports System.Data
 Imports System.Windows.Forms
 Imports System.Runtime.InteropServices
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
-Imports Microsoft.VisualStudio
+
 
 ''' <summary>
 ''' This class implements the tool window exposed by this package and hosts a user control.
@@ -21,6 +17,7 @@ Imports Microsoft.VisualStudio
 <Guid("5c82a791-7c9f-441e-952b-8848655dd85e")> _
 Public Class MyToolWindow
     Inherits ToolWindowPane
+
     ' This is the user control hosted by the tool window; it is exposed to the base class 
     ' using the Window property. Note that, even if this class implements IDispose, we are
     ' not calling Dispose on this object. This is because ToolWindowPane calls Dispose on 
@@ -45,7 +42,7 @@ Public Class MyToolWindow
     End Property
 
 
-    Private m_SearchProvider As ISearchReplaceProvider = Nothing
+    Private mSearchProvider As ISearchReplaceProvider = Nothing
     ''' <summary>
     ''' Gets the ISearchReplaceProvider to be used.
     ''' </summary>
@@ -53,12 +50,12 @@ Public Class MyToolWindow
     ''' <remarks></remarks>
     Private ReadOnly Property SearchProvider() As ISearchReplaceProvider
         Get
-            If m_SearchProvider Is Nothing Then
+            If mSearchProvider Is Nothing Then
                 If Me.Dte IsNot Nothing Then
-                    m_SearchProvider = New MultilineSearchReplace(Me.Dte)
+                    mSearchProvider = New MultilineSearchReplace(Me.Dte)
                 End If
             End If
-            Return m_SearchProvider
+            Return mSearchProvider
         End Get
     End Property
 

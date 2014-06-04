@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -55,6 +55,7 @@
     <Compile Include="AfterSearchEventArgs.vb" />
     <Compile Include="BeforeSearchEventArgs.vb" />
     <Compile Include="DteInitializer.vb" />
+    <Compile Include="FindReplaceKind.vb" />
     <Compile Include="IdeSettings.vb" />
     <Compile Include="ISearchReplaceProvider.vb" />
     <Compile Include="IVsUserSettings2.vb" />
@@ -86,6 +87,7 @@
     <Compile Include="PkgCmdID.vb" />
     <Compile Include="DocumentTextSelection.vb" />
     <Compile Include="Utils.vb" />
+    <Compile Include="WinWrapper.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MultilineSearchControl.resx">

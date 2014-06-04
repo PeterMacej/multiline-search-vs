@@ -1,15 +1,6 @@
 Imports System
-Imports EnvDTE
-Imports EnvDTE80
-Imports System.Diagnostics
-Imports Microsoft.VisualStudio
-Imports System.Xml
-Imports System.Collections.Generic
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
-Imports System.Collections
-Imports System.Runtime.InteropServices
-Imports System.Reflection
 
 
 ''' <summary>
@@ -35,7 +26,7 @@ Imports System.Reflection
 ''' </remarks>
 Friend Class IdeSettings
 
-    Private shellService As IVsShell
+    Private ReadOnly shellService As IVsShell
 
 
     Public Sub New()
@@ -115,7 +106,6 @@ Friend Class IdeSettings
                     pkgSettings.ImportSettings(categoryGuid, setReader, CUInt(__UserSettingsFlags.USF_None), restartRequired)
                 ElseIf pkgSettings2 IsNot Nothing Then
                     Dim setReader As New PackageMemorySettingsReader(settings)
-                    Dim restartRequired As Integer = 0
                     Dim catGuid As New Guid(categoryGuid)
                     pkgSettings2.ImportSettings(catGuid, setReader, CUInt(__UserSettingsFlags.USF_None), Nothing)
                 End If

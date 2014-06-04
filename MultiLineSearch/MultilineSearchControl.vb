@@ -1,6 +1,5 @@
 Imports System.Security.Permissions
 Imports System.Windows.Forms
-Imports Microsoft.VisualBasic
 Imports system.ComponentModel
 
 '''<summary>
@@ -61,58 +60,58 @@ Public Class MultilineSearchControl
     End Property
 
 
-    Private m_SearchProvider As ISearchReplaceProvider
+    Private mSearchProvider As ISearchReplaceProvider
     ''' <summary>
     ''' Gets or sets a search provider.
     ''' </summary>
     ''' <value>If set to null, the search replace operations will not be performed.</value>
     Public Property SearchProvider() As ISearchReplaceProvider
         Get
-            Return m_SearchProvider
+            Return mSearchProvider
         End Get
         Set(ByVal value As ISearchReplaceProvider)
-            m_SearchProvider = value
+            mSearchProvider = value
         End Set
     End Property
 
 
-    Private m_SearchKind As FindReplaceKind = FindReplaceKind.none
+    Private mSearchKind As FindReplaceKind = FindReplaceKind.None
     '''<summary>Gets result button from this dialog.</summary>
     '''<value>The value specifying which button was pressed.</value>
     Public ReadOnly Property SearchKind() As FindReplaceKind
         Get
-            Return m_SearchKind
+            Return mSearchKind
         End Get
     End Property
 
 
-    Private m_findText As String
+    Private mFindText As String
     '''<summary>Gets or sets a plain multiline text to be searched.</summary>
     '''<value></value>
     Public Property FindText() As String
         Get
-            Return m_findText
+            Return mFindText
         End Get
         Set(ByVal value As String)
             If value IsNot Nothing Then
-                m_findText = value
+                mFindText = value
                 Me.FindBox.Text = value
             End If
         End Set
     End Property
 
 
-    Private m_replaceText As String
+    Private mReplaceText As String
     '''<summary>Gets plain multiline replace text.</summary>
     '''<value></value>
     Public ReadOnly Property ReplaceText() As String
         Get
-            Return m_replaceText
+            Return mReplaceText
         End Get
     End Property
 
 
-    Private m_HideCancelButton As Boolean = False
+    Private mHideCancelButton As Boolean = False
     ''' <summary>
     ''' Determines whether the Cancel button is hidden.
     ''' </summary>
@@ -120,10 +119,10 @@ Public Class MultilineSearchControl
     ''' <remarks></remarks>
     Public Property HideCancelButton() As Boolean
         Get
-            Return m_HideCancelButton
+            Return mHideCancelButton
         End Get
         Set(ByVal value As Boolean)
-            m_HideCancelButton = value
+            mHideCancelButton = value
 
             Me.PanelBottom.Visible = Not value
             If value Then
@@ -209,7 +208,7 @@ Public Class MultilineSearchControl
             Dim args As New CancelEventArgs()
             Me.OnCanceling(args)
             If Not args.Cancel Then
-                m_SearchKind = FindReplaceKind.none
+                mSearchKind = FindReplaceKind.None
                 Me.FindForm.Close()
             End If
         Catch ex As System.Exception
@@ -219,9 +218,9 @@ Public Class MultilineSearchControl
 
     Private Sub FindBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FindBtn.Click
         Try
-            m_findText = Me.FindBox.Text
-            m_replaceText = Me.ReplaceBox.Text
-            m_SearchKind = FindReplaceKind.find
+            mFindText = Me.FindBox.Text
+            mReplaceText = Me.ReplaceBox.Text
+            mSearchKind = FindReplaceKind.Find
             ExecuteSearchReplace()
         Catch ex As System.Exception
         End Try
@@ -230,9 +229,9 @@ Public Class MultilineSearchControl
 
     Private Sub FindInFilesBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FindInFilesBtn.Click
         Try
-            m_findText = Me.FindBox.Text
-            m_replaceText = Me.ReplaceBox.Text
-            m_SearchKind = FindReplaceKind.findInFiles
+            mFindText = Me.FindBox.Text
+            mReplaceText = Me.ReplaceBox.Text
+            mSearchKind = FindReplaceKind.FindInFiles
             ExecuteSearchReplace()
         Catch ex As System.Exception
         End Try
@@ -241,9 +240,9 @@ Public Class MultilineSearchControl
 
     Private Sub ReplaceBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReplaceBtn.Click
         Try
-            m_findText = Me.FindBox.Text
-            m_replaceText = Me.ReplaceBox.Text
-            m_SearchKind = FindReplaceKind.replace
+            mFindText = Me.FindBox.Text
+            mReplaceText = Me.ReplaceBox.Text
+            mSearchKind = FindReplaceKind.Replace
             ExecuteSearchReplace()
         Catch ex As System.Exception
         End Try
@@ -252,9 +251,9 @@ Public Class MultilineSearchControl
 
     Private Sub ReplaceInFilesBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReplaceInFilesBtn.Click
         Try
-            m_findText = Me.FindBox.Text
-            m_replaceText = Me.ReplaceBox.Text
-            m_SearchKind = FindReplaceKind.replaceInFiles
+            mFindText = Me.FindBox.Text
+            mReplaceText = Me.ReplaceBox.Text
+            mSearchKind = FindReplaceKind.ReplaceInFiles
             ExecuteSearchReplace()
         Catch ex As System.Exception
         End Try
@@ -269,7 +268,7 @@ Public Class MultilineSearchControl
     ''' <remarks></remarks>
     Private Sub PanelTop_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles PanelTop.Resize
         Try
-            Dim BOTTOM_OFFSET As Integer = 65
+            Const BOTTOM_OFFSET As Integer = 65
             If Me.ReplaceBox.Bottom <> Me.PanelTop.Height - BOTTOM_OFFSET Then
                 ' anchoring failed
                 Me.ReplaceBox.Height = Me.PanelTop.Height - Me.ReplaceBox.Top - BOTTOM_OFFSET

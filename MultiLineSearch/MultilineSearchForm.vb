@@ -1,6 +1,3 @@
-Imports EnvDTE
-Imports EnvDTE80
-
 
 ''' <summary>
 ''' The main search window.

@@ -38,7 +38,7 @@ Friend Class MultilineSearchReplace
     ''' <param name="findText">Plain text, can contain newlines.</param>
     ''' <param name="replaceText">Plain text, can contain newlines.</param>
     Public Sub ExecSearchReplace(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String) Implements ISearchReplaceProvider.ExecSearchReplace
-        If searchKind <> FindReplaceKind.none Then
+        If searchKind <> FindReplaceKind.None Then
             ' escape the texts to regex
             ConvertFindAndReplaceToRegEx(findText, replaceText)
 
@@ -57,13 +57,13 @@ Friend Class MultilineSearchReplace
 
             ' dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr   ' no effect in VS 2013
             Select Case searchKind
-                Case FindReplaceKind.find
+                Case FindReplaceKind.Find
                     SetRegexInFindDialog()
-                Case FindReplaceKind.findInFiles
+                Case FindReplaceKind.FindInFiles
                     SetRegexInFindInFilesDialog()
-                Case FindReplaceKind.replace
+                Case FindReplaceKind.Replace
                     SetRegexInFindDialog()
-                Case FindReplaceKind.replaceInFiles
+                Case FindReplaceKind.ReplaceInFiles
                     SetRegexInFindInFilesDialog()
                 Case Else
             End Select
@@ -72,13 +72,13 @@ Friend Class MultilineSearchReplace
             dte.Find.ReplaceWith = replaceText
 
             Select Case searchKind
-                Case FindReplaceKind.find
+                Case FindReplaceKind.Find
                     dte.ExecuteCommand("Edit.Find")
-                Case FindReplaceKind.findInFiles
+                Case FindReplaceKind.FindInFiles
                     dte.ExecuteCommand("Edit.FindinFiles")
-                Case FindReplaceKind.replace
+                Case FindReplaceKind.Replace
                     dte.ExecuteCommand("Edit.Replace")
-                Case FindReplaceKind.replaceInFiles
+                Case FindReplaceKind.ReplaceInFiles
                     dte.ExecuteCommand("Edit.ReplaceinFiles")
                 Case Else
             End Select
@@ -311,16 +311,3 @@ Friend Class MultilineSearchReplace
 End Class
 
 
-'''<summary>Types of find/replace operations.</summary>
-Public Enum FindReplaceKind
-    '''<summary>Find</summary>
-    find
-    '''<summary>Find In Files</summary>
-    findInFiles
-    '''<summary>Replace</summary>
-    replace
-    '''<summary>Replace in Files</summary>
-    replaceInFiles
-    '''<summary>None. Cancel was pressed.</summary>
-    none
-End Enum
