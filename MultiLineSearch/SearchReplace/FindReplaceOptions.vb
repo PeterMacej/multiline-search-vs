@@ -75,6 +75,16 @@ Namespace SearchReplace
         End Property
 
 
+        Public Function Clone() As FindReplaceOptions
+            Dim res As New FindReplaceOptions
+            res.SearchKind = Me.SearchKind
+            res.IgnoreLeadingWhitespaces = Me.IgnoreLeadingWhitespaces
+            res.IgnoreTrailingWhitespaces = Me.IgnoreTrailingWhitespaces
+            res.IgnoreAllWhitespaces = Me.IgnoreAllWhitespaces
+
+            Return res
+        End Function
+
     End Class
 
 End Namespace

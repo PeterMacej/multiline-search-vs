@@ -41,12 +41,12 @@ Namespace Gui
             Me.Label3 = New System.Windows.Forms.Label
             Me.ButtonFindOptionsCollapse = New System.Windows.Forms.Button
             Me.GroupBoxFindOptions = New System.Windows.Forms.GroupBox
+            Me.HelpIgnoreAllWs = New System.Windows.Forms.Label
+            Me.HelpIgnoreTraiWs = New System.Windows.Forms.Label
+            Me.HelpIgnoreLeadWs = New System.Windows.Forms.Label
             Me.CheckBoxIgnoreAllWs = New System.Windows.Forms.CheckBox
             Me.CheckBoxIgnoreTrailWs = New System.Windows.Forms.CheckBox
             Me.CheckBoxIgnoreLeadWs = New System.Windows.Forms.CheckBox
-            Me.HelpIgnoreLeadWs = New System.Windows.Forms.Label
-            Me.HelpIgnoreTraiWs = New System.Windows.Forms.Label
-            Me.HelpIgnoreAllWs = New System.Windows.Forms.Label
             Me.PanelTop.SuspendLayout()
             Me.SplitContainerFindRep.Panel1.SuspendLayout()
             Me.SplitContainerFindRep.Panel2.SuspendLayout()
@@ -122,8 +122,8 @@ Namespace Gui
             'ReplaceBox
             '
             Me.ReplaceBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                                           Or System.Windows.Forms.AnchorStyles.Left) _
-                                          Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                        Or System.Windows.Forms.AnchorStyles.Left) _
+                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
             Me.ReplaceBox.Location = New System.Drawing.Point(3, 28)
             Me.ReplaceBox.Multiline = True
             Me.ReplaceBox.Name = "ReplaceBox"
@@ -142,8 +142,8 @@ Namespace Gui
             'FindBox
             '
             Me.FindBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                                        Or System.Windows.Forms.AnchorStyles.Left) _
-                                       Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                        Or System.Windows.Forms.AnchorStyles.Left) _
+                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
             Me.FindBox.Location = New System.Drawing.Point(3, 19)
             Me.FindBox.Multiline = True
             Me.FindBox.Name = "FindBox"
@@ -154,8 +154,8 @@ Namespace Gui
             'PanelTop
             '
             Me.PanelTop.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                                         Or System.Windows.Forms.AnchorStyles.Left) _
-                                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                        Or System.Windows.Forms.AnchorStyles.Left) _
+                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
             Me.PanelTop.Controls.Add(Me.SplitContainerFindRep)
             Me.PanelTop.Location = New System.Drawing.Point(3, 3)
             Me.PanelTop.Name = "PanelTop"
@@ -165,8 +165,8 @@ Namespace Gui
             'SplitContainerFindRep
             '
             Me.SplitContainerFindRep.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                                                      Or System.Windows.Forms.AnchorStyles.Left) _
-                                                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                        Or System.Windows.Forms.AnchorStyles.Left) _
+                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
             Me.SplitContainerFindRep.Location = New System.Drawing.Point(0, 0)
             Me.SplitContainerFindRep.Name = "SplitContainerFindRep"
             Me.SplitContainerFindRep.Orientation = System.Windows.Forms.Orientation.Horizontal
@@ -198,8 +198,8 @@ Namespace Gui
             'TableLayoutPanel1
             '
             Me.TableLayoutPanel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                                                  Or System.Windows.Forms.AnchorStyles.Left) _
-                                                 Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                        Or System.Windows.Forms.AnchorStyles.Left) _
+                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
             Me.TableLayoutPanel1.ColumnCount = 1
             Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
             Me.TableLayoutPanel1.Controls.Add(Me.PanelBottom, 0, 2)
@@ -217,8 +217,8 @@ Namespace Gui
             'PanelButtons
             '
             Me.PanelButtons.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                                             Or System.Windows.Forms.AnchorStyles.Left) _
-                                            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                        Or System.Windows.Forms.AnchorStyles.Left) _
+                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
             Me.PanelButtons.Controls.Add(Me.Label3)
             Me.PanelButtons.Controls.Add(Me.ButtonFindOptionsCollapse)
             Me.PanelButtons.Controls.Add(Me.GroupBoxFindOptions)
@@ -252,7 +252,7 @@ Namespace Gui
             'GroupBoxFindOptions
             '
             Me.GroupBoxFindOptions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                                                   Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                        Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
             Me.GroupBoxFindOptions.Controls.Add(Me.HelpIgnoreAllWs)
             Me.GroupBoxFindOptions.Controls.Add(Me.HelpIgnoreTraiWs)
             Me.GroupBoxFindOptions.Controls.Add(Me.HelpIgnoreLeadWs)
@@ -265,6 +265,33 @@ Namespace Gui
             Me.GroupBoxFindOptions.Size = New System.Drawing.Size(409, 84)
             Me.GroupBoxFindOptions.TabIndex = 18
             Me.GroupBoxFindOptions.TabStop = False
+            '
+            'HelpIgnoreAllWs
+            '
+            Me.HelpIgnoreAllWs.Cursor = System.Windows.Forms.Cursors.Help
+            Me.HelpIgnoreAllWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
+            Me.HelpIgnoreAllWs.Location = New System.Drawing.Point(193, 63)
+            Me.HelpIgnoreAllWs.Name = "HelpIgnoreAllWs"
+            Me.HelpIgnoreAllWs.Size = New System.Drawing.Size(16, 16)
+            Me.HelpIgnoreAllWs.TabIndex = 5
+            '
+            'HelpIgnoreTraiWs
+            '
+            Me.HelpIgnoreTraiWs.Cursor = System.Windows.Forms.Cursors.Help
+            Me.HelpIgnoreTraiWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
+            Me.HelpIgnoreTraiWs.Location = New System.Drawing.Point(193, 43)
+            Me.HelpIgnoreTraiWs.Name = "HelpIgnoreTraiWs"
+            Me.HelpIgnoreTraiWs.Size = New System.Drawing.Size(16, 16)
+            Me.HelpIgnoreTraiWs.TabIndex = 4
+            '
+            'HelpIgnoreLeadWs
+            '
+            Me.HelpIgnoreLeadWs.Cursor = System.Windows.Forms.Cursors.Help
+            Me.HelpIgnoreLeadWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
+            Me.HelpIgnoreLeadWs.Location = New System.Drawing.Point(193, 23)
+            Me.HelpIgnoreLeadWs.Name = "HelpIgnoreLeadWs"
+            Me.HelpIgnoreLeadWs.Size = New System.Drawing.Size(16, 16)
+            Me.HelpIgnoreLeadWs.TabIndex = 3
             '
             'CheckBoxIgnoreAllWs
             '
@@ -295,33 +322,6 @@ Namespace Gui
             Me.CheckBoxIgnoreLeadWs.TabIndex = 0
             Me.CheckBoxIgnoreLeadWs.Text = "Ignore leading whitespaces"
             Me.CheckBoxIgnoreLeadWs.UseVisualStyleBackColor = True
-            '
-            'HelpIgnoreLeadWs
-            '
-            Me.HelpIgnoreLeadWs.Cursor = System.Windows.Forms.Cursors.Help
-            Me.HelpIgnoreLeadWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
-            Me.HelpIgnoreLeadWs.Location = New System.Drawing.Point(193, 23)
-            Me.HelpIgnoreLeadWs.Name = "HelpIgnoreLeadWs"
-            Me.HelpIgnoreLeadWs.Size = New System.Drawing.Size(16, 16)
-            Me.HelpIgnoreLeadWs.TabIndex = 3
-            '
-            'HelpIgnoreTraiWs
-            '
-            Me.HelpIgnoreTraiWs.Cursor = System.Windows.Forms.Cursors.Help
-            Me.HelpIgnoreTraiWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
-            Me.HelpIgnoreTraiWs.Location = New System.Drawing.Point(193, 43)
-            Me.HelpIgnoreTraiWs.Name = "HelpIgnoreTraiWs"
-            Me.HelpIgnoreTraiWs.Size = New System.Drawing.Size(16, 16)
-            Me.HelpIgnoreTraiWs.TabIndex = 4
-            '
-            'HelpIgnoreAllWs
-            '
-            Me.HelpIgnoreAllWs.Cursor = System.Windows.Forms.Cursors.Help
-            Me.HelpIgnoreAllWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
-            Me.HelpIgnoreAllWs.Location = New System.Drawing.Point(193, 63)
-            Me.HelpIgnoreAllWs.Name = "HelpIgnoreAllWs"
-            Me.HelpIgnoreAllWs.Size = New System.Drawing.Size(16, 16)
-            Me.HelpIgnoreAllWs.TabIndex = 5
             '
             'MultilineSearchControl
             '

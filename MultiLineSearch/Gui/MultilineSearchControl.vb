@@ -83,12 +83,27 @@ Namespace Gui
 
 
         Private mSearchOptions As FindReplaceOptions = New FindReplaceOptions
-        '''<summary>Gets search and replace options from this dialog.</summary>
-        '''<value>The value also specifies which button was pressed.</value>
-        Public ReadOnly Property SearchOptions() As FindReplaceOptions
-            Get
+        ''' <summary>Sets search and replace options for this dialog.</summary>
+        ''' <value>The value also specifies which button was pressed.</value>
+        ''' <remarks>Setting this value creates a copy of the supplied value
+        ''' so that it couldn't be modified from outside.</remarks>
+        Public Property SearchOptions() As FindReplaceOptions
+            Private Get
                 Return mSearchOptions
             End Get
+            Set(ByVal value As FindReplaceOptions)
+                If value Is Nothing Then
+                    Throw New NullReferenceException("value")
+                End If
+
+                mSearchOptions = value.Clone
+                ' update GUI
+                Me.CheckBoxIgnoreLeadWs.Checked = SearchOptions.IgnoreLeadingWhitespaces
+                Me.CheckBoxIgnoreTrailWs.Checked = SearchOptions.IgnoreTrailingWhitespaces
+                Me.CheckBoxIgnoreAllWs.Checked = SearchOptions.IgnoreAllWhitespaces
+                Me.CheckBoxIgnoreLeadWs.Enabled = Not Me.CheckBoxIgnoreAllWs.Checked
+                Me.CheckBoxIgnoreTrailWs.Enabled = Not Me.CheckBoxIgnoreAllWs.Checked
+            End Set
         End Property
 
 
@@ -120,7 +135,6 @@ Namespace Gui
 
 
         Private mHideCancelButton As Boolean = False
-
         ''' <summary>
         ''' Determines whether the Cancel button is hidden.
         ''' </summary>
@@ -371,6 +385,30 @@ Namespace Gui
         End Sub
 
 
+        Private Sub CheckBoxIgnoreLeadWs_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBoxIgnoreLeadWs.CheckedChanged
+            Try
+                Me.SearchOptions.IgnoreLeadingWhitespaces = Me.CheckBoxIgnoreLeadWs.Checked
+            Catch ex As Exception
+            End Try
+        End Sub
+
+
+        Private Sub CheckBoxIgnoreTrailWs_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBoxIgnoreTrailWs.CheckedChanged
+            Try
+                Me.SearchOptions.IgnoreTrailingWhitespaces = Me.CheckBoxIgnoreTrailWs.Checked
+            Catch ex As Exception
+            End Try
+        End Sub
+
+
+        Private Sub CheckBoxIgnoreAllWs_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBoxIgnoreAllWs.CheckedChanged
+            Try
+                Me.SearchOptions.IgnoreAllWhitespaces = Me.CheckBoxIgnoreAllWs.Checked
+                Me.CheckBoxIgnoreLeadWs.Enabled = Not Me.CheckBoxIgnoreAllWs.Checked
+                Me.CheckBoxIgnoreTrailWs.Enabled = Not Me.CheckBoxIgnoreAllWs.Checked
+            Catch ex As Exception
+            End Try
+        End Sub
     End Class
 
 End Namespace
