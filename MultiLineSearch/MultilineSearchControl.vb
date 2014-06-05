@@ -9,6 +9,8 @@ Public Class MultilineSearchControl
     Inherits UserControl
 
 
+#Region "Events"
+
     ''' <summary>
     ''' Occurs before the control is canceled.
     ''' </summary>
@@ -45,7 +47,7 @@ Public Class MultilineSearchControl
     ''' </remarks>
     Public Event AfterSearch(ByVal sender As Object, ByVal args As AfterSearchEventArgs)
 
-
+#End Region
 
 
 #Region "Properties"
@@ -202,6 +204,87 @@ Public Class MultilineSearchControl
 #End Region
 
 
+#Region "GUI manipulation"
+
+    ''' <summary>
+    ''' Draw visible splitter.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub SplitContainerFindRep_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles SplitContainerFindRep.Paint
+        Try
+            Dim top, left, bottom, right As Integer
+            Dim pen As New Drawing.Pen(Drawing.SystemColors.ActiveBorder)
+            If SplitContainerFindRep.Orientation = Orientation.Horizontal Then
+                left = 3
+                right = SplitContainerFindRep.Width - 3
+                top = SplitContainerFindRep.SplitterDistance
+                bottom = top + SplitContainerFindRep.SplitterWidth - 1
+                e.Graphics.DrawLine(pen, left, top, right, top)
+                'e.Graphics.DrawLine(pen, left, bottom, right, bottom)
+            Else
+                top = 3
+                bottom = SplitContainerFindRep.Height - 3
+                left = SplitContainerFindRep.SplitterDistance
+                right = left + SplitContainerFindRep.SplitterWidth - 1
+                e.Graphics.DrawLine(pen, left, top, left, bottom)
+                'e.Graphics.DrawLine(pen, right, top, right, bottom)
+            End If
+            pen.Dispose()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+
+    ''' <summary>
+    ''' Collapse or expand the Find options.
+    ''' </summary>
+    ''' <param name="collapsed"></param>
+    ''' <remarks></remarks>
+    Private Sub SetFindOptionsCollapsed(ByVal collapsed As Boolean)
+        Dim rowFullHeight As Integer = 164
+        Dim groupBoxFullHeight As Integer = Me.GroupBoxFindOptions.Height
+        Dim groupBoxCollapsedHeight As Integer = 18
+
+        If collapsed Then
+            Me.ButtonFindOptionsCollapse.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.plus
+            Me.GroupBoxFindOptions.Visible = False
+            Me.TableLayoutPanel1.RowStyles(1).Height = rowFullHeight - (groupBoxFullHeight - groupBoxCollapsedHeight)
+        Else
+            Me.ButtonFindOptionsCollapse.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.minus
+            Me.GroupBoxFindOptions.Visible = True
+            Me.TableLayoutPanel1.RowStyles(1).Height = rowFullHeight
+        End If
+
+        ResizeTableLayoutRows()
+    End Sub
+
+
+    ''' <summary>
+    ''' Resize top row of the layout.  Unlike setting its height to 100%,
+    ''' this will allow for setting the minimal height of the row.
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub ResizeTableLayoutRows()
+        Try
+            Dim topRowMinSize As Integer = 100
+
+            Dim h As Integer = TableLayoutPanel1.Height
+            For i As Integer = 1 To TableLayoutPanel1.RowCount - 1
+                h -= CInt(TableLayoutPanel1.RowStyles(i).Height)
+            Next
+
+            If h < topRowMinSize Then
+                h = topRowMinSize
+            End If
+            TableLayoutPanel1.RowStyles(0).Height = h
+        Catch ex As Exception
+        End Try
+    End Sub
+
+#End Region
+
 
     Private Sub CancelBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CancelBtn.Click
         Try
@@ -268,37 +351,6 @@ Public Class MultilineSearchControl
     End Sub
 
 
-    ''' <summary>
-    ''' Draw visible splitter.
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub SplitContainerFindRep_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles SplitContainerFindRep.Paint
-        Try
-            Dim top, left, bottom, right As Integer
-            Dim pen As New Drawing.Pen(Drawing.SystemColors.ActiveBorder)
-            If SplitContainerFindRep.Orientation = Orientation.Horizontal Then
-                left = 3
-                right = SplitContainerFindRep.Width - 3
-                top = SplitContainerFindRep.SplitterDistance
-                bottom = top + SplitContainerFindRep.SplitterWidth - 1
-                e.Graphics.DrawLine(pen, left, top, right, top)
-                'e.Graphics.DrawLine(pen, left, bottom, right, bottom)
-            Else
-                top = 3
-                bottom = SplitContainerFindRep.Height - 3
-                left = SplitContainerFindRep.SplitterDistance
-                right = left + SplitContainerFindRep.SplitterWidth - 1
-                e.Graphics.DrawLine(pen, left, top, left, bottom)
-                'e.Graphics.DrawLine(pen, right, top, right, bottom)
-            End If
-            pen.Dispose()
-        Catch ex As Exception
-        End Try
-    End Sub
-
-
     Private Sub ButtonFindOptionsCollapse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonFindOptionsCollapse.Click, Label3.Click
         Try
             If Not Me.GroupBoxFindOptions.Visible Then
@@ -311,45 +363,5 @@ Public Class MultilineSearchControl
     End Sub
 
 
-    Private Sub SetFindOptionsCollapsed(ByVal collapsed As Boolean)
-        Dim rowFullHeight As Integer = 164
-        Dim groupBoxFullHeight As Integer = Me.GroupBoxFindOptions.Height
-        Dim groupBoxCollapsedHeight As Integer = 18
-
-        If collapsed Then
-            Me.ButtonFindOptionsCollapse.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.plus
-            Me.GroupBoxFindOptions.Visible = False
-            Me.TableLayoutPanel1.RowStyles(1).Height = rowFullHeight - (groupBoxFullHeight - groupBoxCollapsedHeight)
-        Else
-            Me.ButtonFindOptionsCollapse.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.minus
-            Me.GroupBoxFindOptions.Visible = True
-            Me.TableLayoutPanel1.RowStyles(1).Height = rowFullHeight
-        End If
-
-        ResizeTableLayoutRows()
-    End Sub
-
-
-    ''' <summary>
-    ''' Resize top row of the layout.  Unlike setting its height to 100%,
-    ''' this will allow for setting the minimal height of the row.
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub ResizeTableLayoutRows()
-        Try
-            Dim topRowMinSize As Integer = 100
-
-            Dim h As Integer = TableLayoutPanel1.Height
-            For i As Integer = 1 To TableLayoutPanel1.RowCount - 1
-                h -= CInt(TableLayoutPanel1.RowStyles(i).Height)
-            Next
-
-            If h < topRowMinSize Then
-                h = topRowMinSize
-            End If
-            TableLayoutPanel1.RowStyles(0).Height = h
-        Catch ex As Exception
-        End Try
-    End Sub
 
 End Class
