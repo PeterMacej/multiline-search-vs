@@ -55,9 +55,9 @@
     <Compile Include="Gui\AfterSearchEventArgs.vb" />
     <Compile Include="Gui\BeforeSearchEventArgs.vb" />
     <Compile Include="DteInitializer.vb" />
-    <Compile Include="FindReplaceKind.vb" />
+    <Compile Include="SearchReplace\FindReplaceKind.vb" />
     <Compile Include="Settings\IdeSettings.vb" />
-    <Compile Include="ISearchReplaceProvider.vb" />
+    <Compile Include="SearchReplace\ISearchReplaceProvider.vb" />
     <Compile Include="Settings\IVsUserSettings2.vb" />
     <Compile Include="Gui\MultilineSearchForm.Designer.vb">
       <DependentUpon>MultilineSearchForm.vb</DependentUpon>
@@ -65,7 +65,7 @@
     <Compile Include="Gui\MultilineSearchForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MultilineSearchReplace.vb" />
+    <Compile Include="SearchReplace\MultilineSearchReplace.vb" />
     <Compile Include="Gui\MultilineSearchControl.vb">
       <SubType>UserControl</SubType>
     </Compile>

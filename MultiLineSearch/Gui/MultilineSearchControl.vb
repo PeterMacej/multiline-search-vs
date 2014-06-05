@@ -1,6 +1,7 @@
 Imports System.Security.Permissions
 Imports System.Windows.Forms
 Imports system.ComponentModel
+Imports Helixoft.MultiLineSearch.SearchReplace
 
 
 Namespace Gui

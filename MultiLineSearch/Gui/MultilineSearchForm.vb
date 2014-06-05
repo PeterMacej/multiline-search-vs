@@ -1,4 +1,5 @@
-
+Imports Helixoft.MultiLineSearch.SearchReplace
+  
 Namespace Gui
 
     ''' <summary>

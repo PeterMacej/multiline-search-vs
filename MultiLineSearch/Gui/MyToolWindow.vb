@@ -1,6 +1,7 @@
 ﻿Imports System
 Imports System.Windows.Forms
 Imports System.Runtime.InteropServices
+Imports Helixoft.MultiLineSearch.SearchReplace
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
 

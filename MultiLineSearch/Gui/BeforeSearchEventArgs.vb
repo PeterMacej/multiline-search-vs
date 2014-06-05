@@ -1,4 +1,5 @@
 Imports system.ComponentModel
+Imports Helixoft.MultiLineSearch.SearchReplace
 
 Namespace Gui
 
