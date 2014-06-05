@@ -13,7 +13,7 @@ Namespace Gui
     Inherits UserControl
 
 
-        #Region "Events"
+#Region "Events"
 
         ''' <summary>
         ''' Occurs before the control is canceled.
@@ -51,10 +51,10 @@ Namespace Gui
         ''' </remarks>
         Public Event AfterSearch(ByVal sender As Object, ByVal args As AfterSearchEventArgs)
 
-        #End Region
+#End Region
 
 
-        #Region "Properties"
+#Region "Properties"
 
         '''<summary>
         ''' Enable the IME status handling for this control.
@@ -82,19 +82,17 @@ Namespace Gui
         End Property
 
 
-        Private mSearchKind As FindReplaceKind = FindReplaceKind.None
-
-        '''<summary>Gets result button from this dialog.</summary>
-        '''<value>The value specifying which button was pressed.</value>
-        Public ReadOnly Property SearchKind() As FindReplaceKind
+        Private mSearchOptions As FindReplaceOptions = New FindReplaceOptions
+        '''<summary>Gets search and replace options from this dialog.</summary>
+        '''<value>The value also specifies which button was pressed.</value>
+        Public ReadOnly Property SearchOptions() As FindReplaceOptions
             Get
-                Return mSearchKind
+                Return mSearchOptions
             End Get
         End Property
 
 
         Private mFindText As String
-
         '''<summary>Gets or sets a plain multiline text to be searched.</summary>
         '''<value></value>
         Public Property FindText() As String
@@ -144,7 +142,7 @@ Namespace Gui
             End Set
         End Property
 
-        #End Region
+#End Region
 
 
         '''<summary> 
@@ -190,28 +188,28 @@ Namespace Gui
         End Sub
 
 
-        #Region "Search, replace, regex"
+#Region "Search, replace, regex"
 
         ''' <summary>
         ''' Executes a search/replace and raises appropriate events.
         ''' </summary>
         ''' <remarks></remarks>
         Private Sub ExecuteSearchReplace()
-            Dim args1 As New BeforeSearchEventArgs(Me.SearchKind, Me.FindText, Me.ReplaceText)
+            Dim args1 As New BeforeSearchEventArgs(Me.SearchOptions, Me.FindText, Me.ReplaceText)
             OnBeforeSearch(args1)
 
             If Me.SearchProvider Is Nothing Then
                 args1.Cancel = True
             End If
             If Not args1.Cancel Then
-                Me.SearchProvider.ExecSearchReplace(Me.SearchKind, Me.FindText, Me.ReplaceText)
+                Me.SearchProvider.ExecSearchReplace(Me.SearchOptions, Me.FindText, Me.ReplaceText)
 
-                Dim args2 As New AfterSearchEventArgs(Me.SearchKind, Me.FindText, Me.ReplaceText)
+                Dim args2 As New AfterSearchEventArgs(Me.SearchOptions, Me.FindText, Me.ReplaceText)
                 OnAfterSearch(args2)
             End If
         End Sub
 
-        #End Region
+#End Region
 
 
         #Region "GUI manipulation"
@@ -301,7 +299,7 @@ Namespace Gui
                 Dim args As New CancelEventArgs()
                 Me.OnCanceling(args)
                 If Not args.Cancel Then
-                    mSearchKind = FindReplaceKind.None
+                    mSearchOptions.SearchKind = FindReplaceKind.None
                     Me.FindForm.Close()
                 End If
             Catch ex As System.Exception
@@ -313,7 +311,7 @@ Namespace Gui
             Try
                 mFindText = Me.FindBox.Text
                 mReplaceText = Me.ReplaceBox.Text
-                mSearchKind = FindReplaceKind.Find
+                mSearchOptions.SearchKind = FindReplaceKind.Find
                 ExecuteSearchReplace()
             Catch ex As System.Exception
             End Try
@@ -324,7 +322,7 @@ Namespace Gui
             Try
                 mFindText = Me.FindBox.Text
                 mReplaceText = Me.ReplaceBox.Text
-                mSearchKind = FindReplaceKind.FindInFiles
+                mSearchOptions.SearchKind = FindReplaceKind.FindInFiles
                 ExecuteSearchReplace()
             Catch ex As System.Exception
             End Try
@@ -335,7 +333,7 @@ Namespace Gui
             Try
                 mFindText = Me.FindBox.Text
                 mReplaceText = Me.ReplaceBox.Text
-                mSearchKind = FindReplaceKind.Replace
+                mSearchOptions.SearchKind = FindReplaceKind.Replace
                 ExecuteSearchReplace()
             Catch ex As System.Exception
             End Try
@@ -346,7 +344,7 @@ Namespace Gui
             Try
                 mFindText = Me.FindBox.Text
                 mReplaceText = Me.ReplaceBox.Text
-                mSearchKind = FindReplaceKind.ReplaceInFiles
+                mSearchOptions.SearchKind = FindReplaceKind.ReplaceInFiles
                 ExecuteSearchReplace()
             Catch ex As System.Exception
             End Try

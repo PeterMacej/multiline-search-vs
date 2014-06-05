@@ -29,11 +29,11 @@ Namespace SearchReplace
         ''' <summary>
         ''' Execute search and replace operation.
         ''' </summary>
-        ''' <param name="searchKind"></param>
+        ''' <param name="searchOptions"></param>
         ''' <param name="findText">Plain text, can contain newlines.</param>
         ''' <param name="replaceText">Plain text, can contain newlines.</param>
-        Public Sub ExecSearchReplace(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String) Implements ISearchReplaceProvider.ExecSearchReplace
-            If searchKind <> FindReplaceKind.None Then
+        Public Sub ExecSearchReplace(ByVal searchOptions As FindReplaceOptions, ByVal findText As String, ByVal replaceText As String) Implements ISearchReplaceProvider.ExecSearchReplace
+            If searchOptions.SearchKind <> FindReplaceKind.None Then
                 ' escape the texts to regex
                 ConvertFindAndReplaceToRegEx(findText, replaceText)
 
@@ -51,7 +51,7 @@ Namespace SearchReplace
                 End Try
 
                 ' dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr   ' no effect in VS 2013
-                Select Case searchKind
+                Select Case searchOptions.SearchKind
                     Case FindReplaceKind.Find
                         SetRegexInFindDialog()
                     Case FindReplaceKind.FindInFiles
@@ -66,7 +66,7 @@ Namespace SearchReplace
                 dte.Find.FindWhat = findText
                 dte.Find.ReplaceWith = replaceText
 
-                Select Case searchKind
+                Select Case searchOptions.SearchKind
                     Case FindReplaceKind.Find
                         dte.ExecuteCommand("Edit.Find")
                     Case FindReplaceKind.FindInFiles

@@ -11,15 +11,14 @@ Namespace Gui
     Inherits EventArgs
 
 
-        #Region "Properties"
+#Region "Properties"
 
-        Private ReadOnly mSearchKind As FindReplaceKind = FindReplaceKind.None
-
+        Private ReadOnly mSearchOptions As FindReplaceOptions = Nothing
         '''<summary>Gets a search operation kind.</summary>
         '''<value>The value specifying which search button was pressed.</value>
-        Public ReadOnly Property SearchKind() As FindReplaceKind
+        Public ReadOnly Property SearchOptions() As FindReplaceOptions
             Get
-                Return mSearchKind
+                Return mSearchOptions
             End Get
         End Property
 
@@ -45,11 +44,11 @@ Namespace Gui
             End Get
         End Property
 
-        #End Region
+#End Region
 
 
-        Sub New(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String)
-            Me.mSearchKind = searchKind
+        Sub New(ByVal searchOptions As FindReplaceOptions, ByVal findText As String, ByVal replaceText As String)
+            Me.mSearchOptions = searchOptions
             Me.mFindText = findText
             Me.mReplaceText = replaceText
         End Sub

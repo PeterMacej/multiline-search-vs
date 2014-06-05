@@ -56,6 +56,7 @@
     <Compile Include="Gui\BeforeSearchEventArgs.vb" />
     <Compile Include="DteInitializer.vb" />
     <Compile Include="SearchReplace\FindReplaceKind.vb" />
+    <Compile Include="SearchReplace\FindReplaceOptions.vb" />
     <Compile Include="Settings\IdeSettings.vb" />
     <Compile Include="SearchReplace\ISearchReplaceProvider.vb" />
     <Compile Include="Settings\IVsUserSettings2.vb" />

@@ -13,15 +13,15 @@ Namespace Gui
 
 #Region "Properties"
 
-        Private mSearchKind As FindReplaceKind = FindReplaceKind.None
+        Private mSearchOptions As FindReplaceOptions = Nothing
         '''<summary>Gets or sets a search operation kind.</summary>
         '''<value>The value specifying which search button was pressed.</value>
-        Public Property SearchKind() As FindReplaceKind
+        Public Property SearchOptions() As FindReplaceOptions
             Get
-                Return mSearchKind
+                Return mSearchOptions
             End Get
-            Set(ByVal value As FindReplaceKind)
-                mSearchKind = value
+            Set(ByVal value As FindReplaceOptions)
+                mSearchOptions = value
             End Set
         End Property
 
@@ -54,10 +54,10 @@ Namespace Gui
 #End Region
 
 
-        Sub New(ByVal searchKind As FindReplaceKind, ByVal findText As String, ByVal replaceText As String)
-            Me.SearchKind = searchKind
-            Me.FindText = findText
-            Me.ReplaceText = replaceText
+        Sub New(ByVal searchOptions As FindReplaceOptions, ByVal findText As String, ByVal replaceText As String)
+            Me.SearchOptions = searchOptions
+            Me.FindText = FindText
+            Me.ReplaceText = ReplaceText
         End Sub
 
     End Class
