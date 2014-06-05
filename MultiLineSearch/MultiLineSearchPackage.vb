@@ -6,6 +6,7 @@ Imports System.Diagnostics
 Imports System.Globalization
 Imports System.Runtime.InteropServices
 Imports System.ComponentModel.Design
+Imports Helixoft.MultiLineSearch.Gui
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
 ''' <summary>

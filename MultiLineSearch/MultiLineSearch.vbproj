@@ -52,27 +52,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AfterSearchEventArgs.vb" />
-    <Compile Include="BeforeSearchEventArgs.vb" />
+    <Compile Include="Gui\AfterSearchEventArgs.vb" />
+    <Compile Include="Gui\BeforeSearchEventArgs.vb" />
     <Compile Include="DteInitializer.vb" />
     <Compile Include="FindReplaceKind.vb" />
     <Compile Include="IdeSettings.vb" />
     <Compile Include="ISearchReplaceProvider.vb" />
     <Compile Include="IVsUserSettings2.vb" />
-    <Compile Include="MultilineSearchForm.Designer.vb">
+    <Compile Include="Gui\MultilineSearchForm.Designer.vb">
       <DependentUpon>MultilineSearchForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="MultilineSearchForm.vb">
+    <Compile Include="Gui\MultilineSearchForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MultilineSearchReplace.vb" />
-    <Compile Include="MultilineSearchControl.vb">
+    <Compile Include="Gui\MultilineSearchControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MultilineSearchControl.Designer.vb">
+    <Compile Include="Gui\MultilineSearchControl.Designer.vb">
       <DependentUpon>MultilineSearchControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="MyToolWindow.vb" />
+    <Compile Include="Gui\MyToolWindow.vb" />
     <Compile Include="Guids.vb" />
     <Compile Include="PackageMemorySettingsReader.vb" />
     <Compile Include="PackageMemorySettingsStore.vb" />
@@ -85,21 +85,21 @@
     <Compile Include="MultiLineSearchPackage.vb" />
     <Compile Include="Properties\AssemblyInfo.vb" />
     <Compile Include="PkgCmdID.vb" />
-    <Compile Include="DocumentTextSelection.vb" />
+    <Compile Include="Gui\DocumentTextSelection.vb" />
     <Compile Include="Utils.vb" />
     <Compile Include="VSPackage.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSPackage.resx</DependentUpon>
     </Compile>
-    <Compile Include="WinWrapper.vb" />
+    <Compile Include="Gui\WinWrapper.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MultilineSearchControl.resx">
+    <EmbeddedResource Include="Gui\MultilineSearchControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MultilineSearchControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultilineSearchForm.resx">
+    <EmbeddedResource Include="Gui\MultilineSearchForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MultilineSearchForm.vb</DependentUpon>
     </EmbeddedResource>
