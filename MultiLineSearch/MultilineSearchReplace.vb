@@ -1,12 +1,6 @@
 Imports System
-Imports EnvDTE
 Imports EnvDTE80
-Imports System.Diagnostics
-Imports Microsoft.VisualStudio
-Imports System.Xml
-Imports System.Collections.Generic
-Imports Microsoft.VisualStudio.Shell.Interop
-Imports Microsoft.VisualStudio.Shell
+Imports Helixoft.MultiLineSearch.Settings
 Imports Microsoft.VisualBasic
 
 
@@ -18,7 +12,7 @@ Friend Class MultilineSearchReplace
     Implements ISearchReplaceProvider
 
 
-    Private dte As DTE2
+    Private ReadOnly dte As DTE2
 
 
     Public Sub New(ByVal dte As DTE2)

@@ -56,9 +56,9 @@
     <Compile Include="Gui\BeforeSearchEventArgs.vb" />
     <Compile Include="DteInitializer.vb" />
     <Compile Include="FindReplaceKind.vb" />
-    <Compile Include="IdeSettings.vb" />
+    <Compile Include="Settings\IdeSettings.vb" />
     <Compile Include="ISearchReplaceProvider.vb" />
-    <Compile Include="IVsUserSettings2.vb" />
+    <Compile Include="Settings\IVsUserSettings2.vb" />
     <Compile Include="Gui\MultilineSearchForm.Designer.vb">
       <DependentUpon>MultilineSearchForm.vb</DependentUpon>
     </Compile>
@@ -74,9 +74,9 @@
     </Compile>
     <Compile Include="Gui\MyToolWindow.vb" />
     <Compile Include="Guids.vb" />
-    <Compile Include="PackageMemorySettingsReader.vb" />
-    <Compile Include="PackageMemorySettingsStore.vb" />
-    <Compile Include="PackageMemorySettingsWriter.vb" />
+    <Compile Include="Settings\PackageMemorySettingsReader.vb" />
+    <Compile Include="Settings\PackageMemorySettingsStore.vb" />
+    <Compile Include="Settings\PackageMemorySettingsWriter.vb" />
     <Compile Include="MainResources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
