@@ -9,7 +9,7 @@
             <task-config-group name="settings">
               <task-config-value name="outputfile">MultilineSearch.chm</task-config-value>
               <task-config-value name="skin">..\..\..\..\Program Files (x86)\EC Software\HelpAndManual6\Templates\HTML Skins\HM6-OnlineHelp-Webhelp+CHM.hmskin</task-config-value>
-              <task-config-value name="deletetemp">0</task-config-value>
+              <task-config-value name="deletetemp">1</task-config-value>
               <task-config-value name="make0include">CHM</task-config-value>
               <task-config-value name="make0status">*</task-config-value>
             </task-config-group>
@@ -104,7 +104,7 @@
     <config-group name="chm">
       <config-value name="outputfile">MultilineSearch.chm</config-value>
       <config-value name="skin">..\..\..\..\Program Files (x86)\EC Software\HelpAndManual6\Templates\HTML Skins\HM6-OnlineHelp-Webhelp+CHM.hmskin</config-value>
-      <config-value name="deletetemp">0</config-value>
+      <config-value name="deletetemp">1</config-value>
     </config-group>
     <variables/>
     <helpcontext-numbers/>
