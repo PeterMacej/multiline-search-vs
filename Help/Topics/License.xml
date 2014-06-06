@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
 <topic template="Default" lasteditedby="cimpo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
-  <title translate="true">Find Options</title>
+  <title translate="true">License</title>
   <body>
     <header>
-      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Find Options</text></para>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">License</text></para>
     </header>
     <para styleclass="Normal"><text styleclass="Normal" translate="true">Enter topic text here.</text></para>
   </body>

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
 <topic template="Default" status="" lasteditedby="cimpo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
-  <title>New topic</title>
+  <title>How Regex is Used</title>
   <body>
-    <header><para styleclass="Heading1">New topic</para></header>
+    <header><para styleclass="Heading1">How Regex is Used</para></header>
     <para styleclass="Normal">Enter topic text here.</para>
   </body>
 </topic>
