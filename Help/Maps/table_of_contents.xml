@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map xmlns:xsi="http://www.w3.org/2001/XInclude">
+  <topicref type="topic" id="417965371541641" build="ALL" modified="2014-06-06T10:49:22.316Z" icon="0" href="Introduction">
+    <caption translate="true">Introduction</caption>
+    <topicref type="topic" id="417964739264296" build="ALL" modified="2014-06-06T10:49:22.381Z" icon="0" href="Welcome_topic">
+      <caption translate="true">Welcome topic</caption>
+    </topicref>
+    <topicref type="topic" id="417964613927335" build="ALL" modified="2014-06-06T10:49:22.399Z" icon="0" href="Second_topic">
+      <caption translate="true">Second topic</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="417966033642386" build="ALL" modified="2014-06-06T10:49:22.416Z" icon="0" href="Chapter_2">
+    <caption translate="true">Chapter 2</caption>
+    <topicref type="topic" id="417963602708844" build="ALL" modified="2014-06-06T10:49:22.433Z" icon="0" href="Overview">
+      <caption translate="true">Overview</caption>
+    </topicref>
+    <topicref type="topic" id="41795761775337" build="ALL" modified="2014-06-06T10:49:22.451Z" icon="0" href="Sub_chapter_2.1">
+      <caption translate="true">Sub chapter 2.1</caption>
+      <topicref type="topic" id="417965936153163" build="ALL" modified="2014-06-06T10:49:22.469Z" icon="0" href="New_topic">
+        <caption translate="true">New topic</caption>
+      </topicref>
+    </topicref>
+  </topicref>
+</map>
