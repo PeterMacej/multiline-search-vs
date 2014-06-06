@@ -4,8 +4,21 @@
   <title translate="true">About</title>
   <body>
     <header>
-      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">About</text></para>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Multiline Search and Replace</text></para>
     </header>
-    <para styleclass="Normal"><text styleclass="Normal" translate="true">Enter topic text here.</text></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; page-break-after:auto;"><text styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Copyright © 2013-</text><var styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; font-weight:bold; vertical-align:baseline; color:#000000;">&lt;%YEAR%&gt;</var><text styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true"> Helixoft</text></para>
+    <para styleclass="Normal" style="margin-top:14px; margin-left:35px; line-height:1.0; page-break-after:auto;"><text styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Home page:</text><text styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; vertical-align:baseline; color:#000000;" translate="true">&#32;</text><link displaytype="text" defaultstyle="true" type="weblink" href="http://visualstudiogallery.msdn.microsoft.com/699CE302-B0D4-4083-BE0E-1682E873CEBF" target="_blank" styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; vertical-align:baseline; color:#000000;" translate="true">Visual Studio Gallery</link></para>
+    <para styleclass="Normal" style="margin-top:14px; margin-left:35px; line-height:1.0; page-break-after:auto;"><image src="helix80.gif" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" translate="true">&#32;</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-weight:bold;" translate="true">Our other products</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-weight:bold;" translate="true">VSdocman</text><text styleclass="Normal" translate="true"> - Visual Studio documentation generator and .NET code commenter. It is an ultimate, fast and easy to use .NET documenting tool for every Visual Studio C# and VB developer.</text></para>
+    <para styleclass="Heading2" style="text-align:left; text-indent:0px; margin-top:10px; margin-right:0px; margin-bottom:5px; margin-left:0px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="Normal"></para>
+    <para><link displaytype="image" src="logo_vsdocman.gif" type="weblink" href="http://www.helixoft.com/vsdocman/overview.html" target="_blank"></link></para>
+    <para></para>
+    <para><text styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Home page:</text><text styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; vertical-align:baseline; color:#000000;" translate="true">&#32;</text><link displaytype="text" defaultstyle="true" type="weblink" href="http://www.helixoft.com/vsdocman/overview.html" target="_blank" styleclass="Normal" style="font-family:&apos;Times New Roman&apos;; font-size:8pt; vertical-align:baseline; color:#000000;" translate="true">http://www.helixoft.com/</link></para>
   </body>
 </topic>

@@ -6,6 +6,97 @@
     <header>
       <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Find Options</text></para>
     </header>
-    <para styleclass="Normal"><text styleclass="Normal" translate="true">Enter topic text here.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">By default, there are no extra find options selected. The search is executed with exact match. For example, if the </text><text styleclass="Normal" style="font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> field contains:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">then only exactly same text will be found:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Sometimes it&apos;s however useful to find the text that is indented or otherwise auto-formatted.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-weight:bold;" translate="true">Ignore leading whitespaces</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If this option is selected, then all leading whitespaces on each line, except the first one, are ignored. This applies to both, </text><text styleclass="Normal" style="font-weight:normal; font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> text and a searched text. Whitespace is defined as </text><text styleclass="Normal" style="font-weight:bold;" translate="true">a space or a tab</text><text styleclass="Normal" translate="true"> here.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">For example, if the </text><text styleclass="Normal" style="font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> field contains:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">or</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true"> line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">then the following texts will be found in either case:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">and</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true"> &#160; &#160; &#160; line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">As you can see, the search is executed as if all leading whitespaces in </text><text styleclass="Normal" style="font-weight:normal; font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> text and in the searched text were normalized (removed).</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-weight:bold;" translate="true">Ignore trailing whitespaces</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If this option is selected, then all trailing whitespaces on each line, except the last one, are ignored. This applies to both, </text><text styleclass="Normal" style="font-weight:normal; font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> text and a searched text. Whitespace is defined as </text><text styleclass="Normal" style="font-weight:bold;" translate="true">a space or a tab</text><text styleclass="Normal" translate="true"> here.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">For example, if the </text><text styleclass="Normal" style="font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> field contains:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">or</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line one &#160;</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">then the following texts will be found in either case:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">and</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one &#160; &#160; &#160; &#160; </text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">As you can see, the search is executed as if all trailing whitespaces in </text><text styleclass="Normal" style="font-weight:normal; font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> text and in the searched text were normalized (removed).</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-weight:bold;" translate="true">Ignore all whitespaces</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If this option is selected, then all whitespaces on each line are ignored. This applies to both, </text><text styleclass="Normal" style="font-weight:normal; font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> text and a searched text. Whitespace is defined as </text><text styleclass="Normal" style="font-weight:bold;" translate="true">a space, a tab or a newline</text><text styleclass="Normal" translate="true"> here. This way you can completely ignore spaces and newlines and search only for relevant text. Use this option with caution. If the option is selected, the two previous options are ignored.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">For example, if the </text><text styleclass="Normal" style="font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> field contains:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#ffff80;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">then the following texts will be found:</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">and</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one line two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">and</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line &#160; &#160;</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">one</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line</text></para>
+    <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">two</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">As you can see, the search is executed as if all whitespaces and newlines in </text><text styleclass="Normal" style="font-weight:normal; font-style:italic;" translate="true">Find what</text><text styleclass="Normal" translate="true"> text and in the searched text were normalized.</text></para>
+    <para styleclass="Normal"></para>
   </body>
 </topic>
