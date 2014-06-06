@@ -1,0 +1,315 @@
+/* Footer defined in HM_TOPICFOOTER.html */
+div.topicfooter {
+   width: 100%;   
+   margin: 20px auto 0 auto;
+   padding: 0 0 10px 0;    
+   border-style: solid;
+   border-width: 1px 0 0 0;
+   border-color: silver;
+}
+p.topicfooter {
+	font-family: Verdana, Tahoma, Helvetica, Sans-Serif;        
+	font-size: 0.7em;
+	color: #737373;
+	text-align: center;
+	width: 100%;
+	padding-top: 5px;
+}
+p.topicfooter a {
+   color: #737373;
+   border-bottom: 1px dotted #666;    
+   text-decoration: none;
+}
+p.topicfooter a:visited {
+   color: #737373;
+}
+p.topicfooter a:hover {
+   text-decoration: underline;    
+   color: #262626; border-color: #262626;   
+   text-decoration: none;
+}
+
+/* Hyperlink colors and behaviors */
+a.topiclink {color: blue; text-decoration: underline;}
+a.topiclink:visited {color: blue;}
+a.topiclink:hover {color: blue; }
+a.weblink {color: blue; text-decoration: underline;}
+a.weblink:visited {color: blue;}
+a.weblink:hover {color: blue; }
+a.popuplink {color: blue; text-decoration: underline;}
+a.popuplink:visited {color: blue;}
+a.popuplink:hover {color: blue; }
+a.filelink {color: blue; text-decoration: underline;}
+a.filelink:visited {color: blue;}
+a.filelink:hover {color: blue; }
+a.scriptlink{color: blue; text-decoration: underline;}
+a.scriptlink:visited {color: blue;}
+a.scriptlink:hover {color: blue;}
+a.inline-toggle {color: blue; text-decoration: underline;}
+a.inline-toggle:visited {color: blue;}
+a.inline-toggle:hover {color: blue; }
+a.dropdown-toggle {color: blue; text-decoration: underline;}
+a.dropdown-toggle:visited {color: blue;}
+a.dropdown-toggle:hover {color: blue; }
+
+/* Menu buttons text ON */
+div.navdivs span.navOn {
+	color: #000000;
+	font-weight: bold;
+	} 
+/* Menu buttons text OFF */
+div.navdivs span.navOff {
+	color: #999999;
+	font-weight: bold;
+	}
+	
+/* Highlighted icons */
+img.navicon, img.naviconoff {
+	border-color: transparent;
+	border-width: 1px;
+	border-style: solid;
+	}
+img.naviconH {
+	border-color: #777;
+	background-color: #abdef7;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#abdef7);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#abdef7)";
+	cursor: pointer;
+	}
+
+/* Header background image position and repeat */
+div#hmheadercontents {
+	background-position: top left;
+	background-repeat: repeat-x;
+}
+
+/**************** Abandon hope all ye who edit below this line ****************/
+/* General Background */
+	body, html  {
+	background-color: transparent;
+	overflow: hidden;
+	}
+	html { 
+	overflow-y: scroll;
+	overflow-x: auto;
+	}
+
+/* Header Components */	
+	
+div#hmheader {
+   top: 0; left: 0; right: 0;
+   background-color: #fff;
+   background-image: url('background_header.jpg');
+   background-repeat: repeat-x;
+   padding: 0;
+   width: 100%;
+   min-height: 53px;
+   overflow-y: hidden;
+   overflow-x: hidden;
+   z-index: 100;
+   border-bottom: 1px solid #999; 
+   margin: 0;
+   }
+
+/* Table conteiner for logo and topic header text */
+table#topicHeaderTable {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	min-height: 53px;
+	} 
+td#headerLogoCell {
+	padding: 4px 0 2px 4px;
+	vertical-align: middle;
+	}
+td#headerContentsCell {
+	padding: 4px 0 4px 4px;
+	vertical-align: middle;
+	}	
+
+/* Navigation and menu control buttons */   
+
+div.navdivs, div.navdivs span {
+font-family: Tahoma, Verdana;
+	font-size: 9px;
+	font-weight: normal;
+	padding: 0; margin: 0;
+	text-align: center;
+	line-height: 90%;
+}
+div.navdivs, div.navdivs span, div.navdivs img {
+	z-index: 999;
+}
+div#atocIcon {
+	position: absolute; 
+	bottom: 5px; 
+	right: 41px;
+	display: block;
+}
+div#menuIcon {
+	position: absolute; 
+	bottom: 5px; 
+	right: 7px;
+	display: block;
+}
+div#prevIcon, div#homeIcon, div#nextIcon {
+    position: absolute;
+	bottom: 33px;
+	display: block;
+}
+div#prevIcon {
+	right: 55px;
+}
+div#homeIcon {
+	right: 30px;
+}
+div#nextIcon {
+	right: 5px;
+}
+img.menuicon {
+	display: inline-block;
+	vertical-align: sub;
+	padding: 0; margin: 0;
+	margin-bottom: -1px;
+}
+img.navicon, img.naviconoff {
+	margin: 0;
+	padding: 1px 1px 0 2px;
+	border-width: 1px;
+	border-style: solid;
+}
+	
+/* Topic page contents containers */	
+div#idcontent {
+    padding: 0px;
+	top: 53px; right: 0; bottom: 0; left: 0;
+	 overflow: hidden;
+	 z-index: 99;
+      }
+
+div#innerdiv {    
+	padding: 10px 15px 5px 10px;
+	margin: 0px;
+   }
+   
+ /* Components of the topic autoTOC menu */ 
+ /* Actual colors are set from configuration variables */  
+.topicmenu {
+	display: none; 
+	z-index: 1000;
+	background-color: #999999;
+	border-width: 0px 1px 0px 1px;
+	border-style: solid;
+	border-color: silver;
+	white-space: nowrap;
+	padding: 0;
+	margin: 0;
+	width: auto;
+	position: absolute;
+	top: 35px;
+	right: 25px;
+}
+       
+.tmenumiddle, .tmenuinner {
+   padding: 0;
+   margin: 0;
+   }
+   
+.topicmenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	text-indent: 0;
+}
+
+.topicmenu ul li {
+	border-bottom: 1px solid silver;
+	background-color: #f6f6f6;
+	padding: 3px;
+	cursor: pointer;
+}
+
+p.autoTOC, p.autoTOCoff {
+	font-size: 13px;
+	color: #444;
+	font-weight: bold;
+	margin:0; padding:0;
+	line-height: 100%;
+}
+
+p.autoTOCoff {
+	color: #aaa;
+	}
+
+/* Invisible "click element" placed over topic for disabling menus */
+
+div#unclicker {
+	position: fixed;
+	top: 0; left: 0; right: 0; bottom: 0;
+	display: none;
+	background: transparent;
+	background-image: url('spacer.gif');
+	z-index: 998;
+}
+
+/* Sortable tables styles */
+    table a.sortheader img {
+    border: 0;
+	outline: none;
+    }
+    a.sortheader {
+	color: black;
+	text-decoration: none;
+	white-space: nowrap;
+	}
+    a.sortheader:visited {
+	color: black;
+	text-decoration: none;
+	}	
+    a.sortheader:hover {
+	color: black;
+	text-decoration: none;
+	}	
+	a.sortheader {
+	outline: none;
+	}
+
+/* Button for resetting print preview page */
+
+form#resetPrintPage {
+	position: absolute;
+	top: 5px; right: 5px;
+}
+input#reloadPage {
+	cursor: pointer;
+}
+
+/* Header container when javascript is off */
+div#nojsheadercontents {
+	margin-top: -10px;
+	padding-bottom: 12px;
+	display: none;
+}
+
+/* Styles for printouts */
+@media print {
+ 
+body,html {overflow: visible !important; height: auto !important;}
+#idcontent,#innerdiv {position: static !important; overflow: visible !important; height: auto !important;}
+form#resetPrintPage, p#breadcrumbs, div.navdivs, div.topicfooter, td#headerLogoCell {
+	display: none !important;
+	}
+span.f_Heading1 {
+	color: #000 !important;
+	}
+ h1.p_Heading1 {
+       padding-left: 10px;
+       }
+div#hmheader, div#idcontent {
+	position: static !important;
+	overflow: hidden !important;
+	height: auto !important;
+	border-width: 0px !important;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" lasteditedby="cimpo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">How to Start</title>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">How to Start</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">After installing, a new </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Multiline Find/Replace</text><text styleclass="Normal" translate="true"> menu item is created under Edit - Find and Replace.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><image src="multiline_search_menu.png" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">When you invoke the command, you can insert multiline text in both </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Find what</text><text styleclass="Normal" translate="true"> and </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Replace with</text><text styleclass="Normal" translate="true"> fields.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><image src="multiline_search_dialog.png" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">According to which find or replace button you press, the standard VS find/replace dialog appears. All required fields are correctly prepopulated. That means Find what and Replace with fields contain the regular expressions for newlines. Moreover, the </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Use Regular Expressions</text><text styleclass="Normal" translate="true"> option is automatically selected.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><image src="multiline_search_standard_dialog.png" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Now you know it. You can search and replace as usual.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Predefined keyboard shortcut for the multiline search command is </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Ctrl + &#160;Alt + F</text><text styleclass="Normal" translate="true">. If you want to change it (for example because the shortcut is already used) you can do it in </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Tools - Options...</text><text styleclass="Normal" translate="true"> menu. Navigate to </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Environment - Keyboard</text><text styleclass="Normal" translate="true">. Type &quot;multiline&quot; in </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Show commands containing</text><text styleclass="Normal" translate="true"> field. You should see </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Edit.MultilineFindReplace</text><text styleclass="Normal" translate="true"> command for which you can change the shortcut.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To add the command to your toolbar, right click on the toolbar and select </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Customize</text><text styleclass="Normal" translate="true">. Switch to </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Commands</text><text styleclass="Normal" translate="true"> tab. Select Toolbar: Standard and press </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Add command</text><text styleclass="Normal" translate="true">. Select </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Edit</text><text styleclass="Normal" translate="true"> category and </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Multiline Find/Replace</text><text styleclass="Normal" translate="true"> command.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><image src="multiline_search_customize.png" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">And now it&apos;s always at your hand.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><image src="multiline_search_toolbar.png" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"></para>
+  </body>
+</topic>
