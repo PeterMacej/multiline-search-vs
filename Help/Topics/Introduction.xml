@@ -6,6 +6,6 @@
     <header>
       <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Introduction</text></para>
     </header>
-    <para styleclass="Normal"><text styleclass="Normal" style="font-weight:bold;" translate="true">Multiline Search and Replace</text><text styleclass="Normal" translate="true"> is a VS extension allows multiline search and replace in Visual Studio. This is a user-friendly GUI wrapper over standard VS &quot;Find&quot; and &quot;Find in Files&quot; dialog. You don&apos;t have to use the regex syntax, the extension takes care of it.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-weight:bold;" translate="true">Multiline Search and Replace</text><text styleclass="Normal" translate="true"> is a VS extension that allows multiline search and replace in Visual Studio. This is a user-friendly GUI wrapper over standard VS &quot;Find&quot; and &quot;Find in Files&quot; dialog. You don&apos;t have to use the regex syntax, the extension takes care of it.</text></para>
   </body>
 </topic>

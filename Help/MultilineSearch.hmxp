@@ -33,22 +33,22 @@
     </helpwindows>
     <styleclasses>
       <styleclass name="Code Example" shortcut="0">
-        <style-set media="screen" type="para">white-space:nowrap; page-break-inside:avoid; </style-set>
-        <style-set media="screen" type="text">font-family:'Courier New'; font-size:10pt; color:#003366; </style-set>
+        <style-set media="screen" type="para">white-space:nowrap; page-break-inside:avoid;</style-set>
+        <style-set media="screen" type="text">font-family:'Courier New'; font-size:10pt; color:#003366;</style-set>
       </styleclass>
       <styleclass name="Normal" shortcut="0">
-        <style-set media="screen" type="text">font-family:Arial; font-size:10pt; </style-set>
+        <style-set media="screen" type="text">font-family:Arial; font-size:10pt;</style-set>
       </styleclass>
       <styleclass name="Comment" parentclass="Normal" shortcut="0"/>
       <styleclass name="Heading1" parentclass="Normal" shortcut="0">
-        <style-set media="screen" type="text">font-size:16pt; font-weight:bold; </style-set>
+        <style-set media="screen" type="text">font-size:16pt; font-weight:bold;</style-set>
       </styleclass>
       <styleclass name="Image Caption" parentclass="Normal" shortcut="0">
-        <style-set media="screen" type="text">font-size:8pt; font-weight:bold; </style-set>
+        <style-set media="screen" type="text">font-size:8pt; font-weight:bold;</style-set>
       </styleclass>
       <styleclass name="Notes" parentclass="Normal" shortcut="0"/>
       <tablestyleclass name="Default">
-        <style-set media="screen">width:auto; cell-padding:0px; cell-spacing:0px; page-break-inside:auto; border-width:0px; border-spacing:0px; cell-border-width:0px; border-style:none; background-color:none; head-row-background-color:none; alt-row-background-color:none; </style-set>
+        <style-set media="screen">width:auto; cell-padding:0px; cell-spacing:0px; page-break-inside:auto; border-width:0px; border-spacing:0px; cell-border-width:0px; border-style:none; background-color:none; head-row-background-color:none; alt-row-background-color:none;</style-set>
       </tablestyleclass>
     </styleclasses>
     <config-group name="project">
