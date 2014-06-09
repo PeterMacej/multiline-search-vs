@@ -474,6 +474,38 @@ Namespace Gui
             Catch ex As Exception
             End Try
         End Sub
+
+
+        ''' <summary>
+        ''' Handle CTRL+A which doesn't work by default for multiline text boxes.
+        ''' </summary>
+        ''' <param name="sender"></param>
+        ''' <param name="e"></param>
+        ''' <remarks></remarks>
+        Private Sub TextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles FindBox.KeyDown, ReplaceBox.KeyDown
+            Try
+                If e.Control AndAlso e.KeyCode = Keys.A Then
+                    SelectAllInTextBox(sender)
+                    e.Handled = True
+                End If
+            Catch ex As Exception
+            End Try
+        End Sub
+
+
+        ''' <summary>
+        ''' Select all text in a text box.
+        ''' </summary>
+        ''' <param name="textBox"></param>
+        ''' <remarks></remarks>
+        Private Sub SelectAllInTextBox(ByVal textBox As Object)
+            Dim tb As TextBox = Nothing
+            tb = TryCast(textBox, TextBox)
+            If tb IsNot Nothing Then
+                tb.SelectAll()
+            End If
+        End Sub
+
     End Class
 
 End Namespace
