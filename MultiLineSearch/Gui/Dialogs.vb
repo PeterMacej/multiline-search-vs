@@ -13,6 +13,31 @@ Namespace Gui
 
 
         ''' <summary>
+        ''' Determines whether Visual Studio is in a state that allows to show any GUI, e.g.
+        ''' dialogs.
+        ''' </summary>
+        ''' <returns>
+        ''' <see langword="false"/> if GUI is not allowed.
+        ''' </returns>
+        Public Shared Function IsGuiInVsAllowed() As Boolean
+            Dim res As Boolean = False
+
+            Dim dte As EnvDTE80.DTE2 = MultiLineSearchPackage.Dte
+            If dte IsNot Nothing Then
+                ' the IDE is fully initialized
+                If Not dte.UserControl OrElse Not dte.MainWindow.Visible Then
+                    ' dte.SuppressUI should be theoretically checked too, but it is always set to true (at least in VS 2005)
+                    res = False
+                Else
+                    res = True
+                End If
+            End If
+
+            Return res
+        End Function
+
+
+        ''' <summary>
         ''' Shows a dialog as modal and determine the owner window automatically.
         ''' </summary>
         ''' <param name="dlg"></param>
@@ -21,9 +46,15 @@ Namespace Gui
         ''' As an owner window, this method uses the environment's main application window
         ''' unless another modal dialog box is already open. In this case, the top-most 
         ''' modal dialog is used.
+        ''' If GUI is not allowed in VS, then the dialog will not show and method returns
+        ''' DialogResult.None.
         ''' </remarks>
         ''' <seealso href="http://msdn.microsoft.com/en-us/library/ee943166.aspx"/>
         Public Shared Function ShowAsModal(ByVal dlg As Form) As DialogResult
+            If Not IsGuiInVsAllowed() Then
+                Return DialogResult.None
+            End If
+
             Dim uiShell As IVsUIShell = TryCast(Package.GetGlobalService(GetType(SVsUIShell)), IVsUIShell)
 
             Dim hwnd As IntPtr = Nothing
@@ -56,7 +87,13 @@ Namespace Gui
         ''' <param name="helpFilePath"></param>
         ''' <param name="keyword"></param>
         ''' <returns></returns>
-        ''' <remarks></remarks>
+        ''' <remarks>
+        ''' As an owner window, this method uses the environment's main application window
+        ''' unless another modal dialog box is already open. In this case, the top-most 
+        ''' modal dialog is used.
+        ''' If GUI is not allowed in VS, then the dialog will not show and method returns
+        ''' DialogResult.None.
+        ''' </remarks>
         Public Shared Function ShowMessageBox(ByVal text As String, _
         ByVal caption As String, _
         ByVal buttons As System.Windows.Forms.MessageBoxButtons, _
@@ -65,6 +102,10 @@ Namespace Gui
         ByVal options As System.Windows.Forms.MessageBoxOptions, _
         ByVal helpFilePath As String, _
         ByVal keyword As String) As [DialogResult]
+
+            If Not IsGuiInVsAllowed() Then
+                Return DialogResult.None
+            End If
 
             Dim uiShell As IVsUIShell = TryCast(Package.GetGlobalService(GetType(SVsUIShell)), IVsUIShell)
 
@@ -94,12 +135,22 @@ Namespace Gui
         ''' <param name="buttons"></param>
         ''' <param name="icon"></param>
         ''' <returns></returns>
-        ''' <remarks></remarks>
+        ''' <remarks>
+        ''' As an owner window, this method uses the environment's main application window
+        ''' unless another modal dialog box is already open. In this case, the top-most 
+        ''' modal dialog is used.
+        ''' If GUI is not allowed in VS, then the dialog will not show and method returns
+        ''' DialogResult.None.
+        ''' </remarks>
         Public Shared Function ShowMessageBox(ByVal text As String, _
         ByVal caption As String, _
         ByVal buttons As System.Windows.Forms.MessageBoxButtons, _
         ByVal icon As System.Windows.Forms.MessageBoxIcon _
         ) As [DialogResult]
+
+            If Not IsGuiInVsAllowed() Then
+                Return DialogResult.None
+            End If
 
             Dim uiShell As IVsUIShell = TryCast(Package.GetGlobalService(GetType(SVsUIShell)), IVsUIShell)
 
@@ -132,13 +183,20 @@ Namespace Gui
         ''' <param name="msgicon"></param>
         ''' <returns></returns>
         ''' <remarks>It is similar to standard message box but for example, you
-        ''' cannot change the title.</remarks>
+        ''' cannot change the title.
+        ''' If GUI is not allowed in VS, then the dialog will not show and method returns
+        ''' -1.
+        ''' </remarks>
         Public Shared Function ShowVsMessageBox(ByVal title As String, _
         ByVal text As String, _
         ByVal helpFile As String, _
         ByVal msgbtn As Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON, _
         ByVal msgdefbtn As Microsoft.VisualStudio.Shell.Interop.OLEMSGDEFBUTTON, _
         ByVal msgicon As Microsoft.VisualStudio.Shell.Interop.OLEMSGICON) As Integer
+
+            If Not IsGuiInVsAllowed() Then
+                Return -1
+            End If
 
             Dim uiShell As IVsUIShell = TryCast(Package.GetGlobalService(GetType(SVsUIShell)), IVsUIShell)
             Dim clsid As Guid = Guid.Empty
