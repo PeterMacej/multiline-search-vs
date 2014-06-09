@@ -61,7 +61,7 @@ Namespace Update
             Try
                 Dim updDlg As New CheckUpdatesDlg()
                 updDlg.UpdateInf = ReadInfoFromXml(LoadXml)
-                updDlg.ShowDialog()
+                Gui.Dialogs.ShowAsModal(updDlg)
             Catch ex As Exception
                 ShowUpdateError(ex)
             End Try
@@ -71,7 +71,12 @@ Namespace Update
         Private Sub ShowUpdateError(ByVal ex As Exception)
             Dim msg As String = "Couldn't check for Multiline Search and Replace updates. The following error occured:"
             msg &= vbCrLf & ex.Message
-            MessageBox.Show(msg, "Check for update error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Gui.Dialogs.ShowMessageBox("Check for update error", _
+                msg, _
+                "", _
+                Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, _
+                Microsoft.VisualStudio.Shell.Interop.OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, _
+                 Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_CRITICAL)
         End Sub
 
 

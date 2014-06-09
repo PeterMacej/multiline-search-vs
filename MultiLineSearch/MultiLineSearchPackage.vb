@@ -148,8 +148,7 @@ Public NotInheritable Class MultiLineSearchPackage
             If searchForm Is Nothing Then
                 searchForm = New MultilineSearchForm(Dte)
             End If
-            Dim winptr As New WinWrapper(Dte)
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(searchForm.ShowDialog(winptr))
+            Dialogs.ShowAsModal(searchForm)
         Else
             'Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
             'Dim clsid As Guid = Guid.Empty
