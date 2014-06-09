@@ -486,7 +486,7 @@ Namespace Gui
             Try
                 If e.Control AndAlso e.KeyCode = Keys.A Then
                     SelectAllInTextBox(sender)
-                    e.Handled = True
+                    e.SuppressKeyPress = True ' avoid the beep
                 End If
             Catch ex As Exception
             End Try
