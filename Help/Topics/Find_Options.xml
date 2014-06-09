@@ -16,7 +16,7 @@
     <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line one</text></para>
     <para styleclass="Code Example"><text styleclass="Code Example" style="background-color:#dce6f2;" translate="true">line two</text></para>
     <para styleclass="Normal"></para>
-    <para styleclass="Normal"><text styleclass="Normal" translate="true">Sometimes it&apos;s however useful to find the text that is indented or otherwise auto-formatted.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Sometimes it&apos;s however useful to find the text that is indented or otherwise auto-formatted. The exact match wouldn&apos;t find all possible combinations of text and whitespaces. Therefore, you can control the search more precisely with find options.</text></para>
     <para styleclass="Normal"></para>
     <para styleclass="Normal" style="text-indent:-18px; margin-left:18px;"><image src="hmtoggle_plus0.gif" scale="100.00%" styleclass="Normal" style="font-weight:bold;"></image><tab /><toggle type="dropdown" print-expanded="true" help-expanded="true" defaultstyle="false" translate="true" src-collapsed="hmtoggle_plus0.gif" src-expanded="hmtoggle_plus1.gif" styleclass="Normal" style="font-weight:bold;"><caption translate="true"><![CDATA[Ignore leading whitespaces]]></caption></toggle></para>
     <para styleclass="Normal" style="text-indent:-18px; margin-left:18px;"><table styleclass="Default" rowcount="1" colcount="1">
