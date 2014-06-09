@@ -2,6 +2,7 @@ Imports System
 Imports EnvDTE80
 Imports Helixoft.MultiLineSearch.Settings
 Imports Microsoft.VisualBasic
+Imports System.text.RegularExpressions
 
 
 Namespace SearchReplace
@@ -35,7 +36,7 @@ Namespace SearchReplace
         Public Sub ExecSearchReplace(ByVal searchOptions As FindReplaceOptions, ByVal findText As String, ByVal replaceText As String) Implements ISearchReplaceProvider.ExecSearchReplace
             If searchOptions.SearchKind <> FindReplaceKind.None Then
                 ' escape the texts to regex
-                ConvertFindAndReplaceToRegEx(findText, replaceText)
+                ConvertFindAndReplaceToRegEx(findText, replaceText, searchOptions)
 
                 ' temporarily disable Tools - Options -
                 ' Environment - Documents - Initialize Find text from editor
@@ -198,9 +199,10 @@ Namespace SearchReplace
         ''' </summary>
         ''' <param name="findWhat">The text in 'Find what' field.</param>
         ''' <param name="replaceWith">The text in 'Replace with' field.</param>
+        ''' <param name="searchOptions">Search and replace options.</param>
         ''' <remarks>The method converts original strings to strings with escaped regex characters.</remarks>
-        Private Sub ConvertFindAndReplaceToRegEx(ByRef findWhat As String, ByRef replaceWith As String)
-            findWhat = ConvertFindWhatToRegEx(findWhat)
+        Private Sub ConvertFindAndReplaceToRegEx(ByRef findWhat As String, ByRef replaceWith As String, ByVal searchOptions As FindReplaceOptions)
+            findWhat = ConvertFindWhatToRegEx(findWhat, searchOptions)
             replaceWith = ConvertReplaceWithToRegEx(replaceWith)
 
             ' define an empty group in Find what, if necessary
@@ -214,15 +216,30 @@ Namespace SearchReplace
         End Sub
 
 
-        '''<summary>Transforms the 'Find what' text to regular expression syntax.</summary>
-        '''<param name="original">Original text.</param>
-        '''<returns>Text with escaped regex characters.</returns>
-        Private Function ConvertFindWhatToRegEx(ByVal original As String) As String
+        ''' <summary>Transforms the 'Find what' text to regular expression syntax.</summary>
+        ''' <param name="original">Original text.</param>
+        ''' <param name="searchOptions">Search and replace options.</param>
+        ''' <returns>Text with escaped regex characters.</returns>
+        Private Function ConvertFindWhatToRegEx(ByVal original As String, ByVal searchOptions As FindReplaceOptions) As String
             Dim specialChars() As Char = "\.*+^$><[]|{}:@#()~?!".ToCharArray
             Dim c As Char
             For Each c In specialChars
                 original = original.Replace(c.ToString, "\" & c.ToString)
             Next
+
+            ' normalize whitespaces
+            If searchOptions.IgnoreAllWhitespaces Then
+                ' normalize all whitespaces (including newlines)
+                original = Regex.Replace(original, "(\r|\n| |\t)+", "(\r|\n| |\t)+") ' RegexOptions.Singleline)' Singleline option will allow to match multi-line comments
+            Else
+                If searchOptions.IgnoreLeadingWhitespaces Then
+                    original = Regex.Replace(original, "((\r\n)|\n|\r)( |\t)*", vbCrLf & "( |\t)*")
+                End If
+                If searchOptions.IgnoreTrailingWhitespaces Then
+                    original = Regex.Replace(original, "( |\t)*((\r\n)|\n|\r)", "( |\t)*" & vbCrLf)
+                End If
+            End If
+
 
             ' Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
             ' the same as .NET regex where \r is defined and needed.
