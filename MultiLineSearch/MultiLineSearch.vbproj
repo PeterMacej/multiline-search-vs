@@ -55,6 +55,7 @@
     <Compile Include="Gui\AfterSearchEventArgs.vb" />
     <Compile Include="Gui\BeforeSearchEventArgs.vb" />
     <Compile Include="DteInitializer.vb" />
+    <Compile Include="Gui\FormFontAndScaleFixer.vb" />
     <Compile Include="SearchReplace\FindReplaceKind.vb" />
     <Compile Include="SearchReplace\FindReplaceOptions.vb" />
     <Compile Include="Settings\IdeSettings.vb" />
@@ -87,6 +88,14 @@
     <Compile Include="Properties\AssemblyInfo.vb" />
     <Compile Include="PkgCmdID.vb" />
     <Compile Include="Gui\DocumentTextSelection.vb" />
+    <Compile Include="Update\CheckUpdatesDlg.Designer.vb">
+      <DependentUpon>CheckUpdatesDlg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Update\CheckUpdatesDlg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Update\UpdateChecker.vb" />
+    <Compile Include="Update\UpdateInfo.vb" />
     <Compile Include="Utils.vb" />
     <Compile Include="VSPackage.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -109,6 +118,10 @@
       <LastGenOutput>MainResources.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Update\CheckUpdatesDlg.resx">
+      <DependentUpon>CheckUpdatesDlg.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
@@ -137,6 +150,7 @@
     <Content Include="Resources\vs_icons.htm" />
     <Content Include="Resources\main_icon.ico" />
     <Content Include="Resources\main_icon.png" />
+    <Content Include="update.xml" />
     <None Include="Resources\main_icon_for_toolwindow.bmp" />
   </ItemGroup>
   <ItemGroup>
