@@ -13,6 +13,9 @@
       <Component Id="C_license.txt_BDBA778005934d078DD0C06712C6C6EB" Guid="{BDBA7780-0593-4d07-8DD0-C06712C6C6EB}">
         <File Id="F_license.txt_BDBA778005934d078DD0C06712C6C6EB" Name="license.txt" KeyPath="yes" DiskId="1" Source="Files\license.txt" />
       </Component>
+      <Component Id="C_MultilineSearch.chm_D90C1642929D4c7c91BE3FCF9E390BD7" Guid="{D90C1642-929D-4c7c-91BE-3FCF9E390BD7}">
+        <File Id="F_MultilineSearch.chm_D90C1642929D4c7c91BE3FCF9E390BD7" Name="MultilineSearch.chm" KeyPath="yes" DiskId="1" Source="..\Help\MultilineSearch.chm" />
+      </Component>
 
       <Component Id="C_MultiLineSearch.dll_075BD0E6B19241bf8A75AA8A68102F83" Guid="{075BD0E6-B192-41bf-8A75-AA8A68102F83}">
         <File Id="F_MultiLineSearch.dll_075BD0E6B19241bf8A75AA8A68102F83" 
@@ -25,6 +28,7 @@
       <ComponentRef Id="C_license.rtf_5F2BBD6A42BC42cc8BDFAF01C8403F5B" />
       <ComponentRef Id="C_readme.txt_132FC07380CD42829C59F058EFF82F33" />
       <ComponentRef Id="C_license.txt_BDBA778005934d078DD0C06712C6C6EB" />
+      <ComponentRef Id="C_MultilineSearch.chm_D90C1642929D4c7c91BE3FCF9E390BD7" />
       <ComponentRef Id="C_MultiLineSearch.dll_075BD0E6B19241bf8A75AA8A68102F83" />
     </ComponentGroup>
     

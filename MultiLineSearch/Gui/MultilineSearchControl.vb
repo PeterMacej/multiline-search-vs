@@ -159,6 +159,63 @@ Namespace Gui
 #End Region
 
 
+        ''' <summary>
+        ''' Initialize the control.
+        ''' </summary>
+        ''' <remarks></remarks>
+        Protected Overrides Sub OnCreateControl()
+            MyBase.OnCreateControl()
+
+            ' set a help file
+            Try
+                Dim path As String = System.Reflection.Assembly.GetExecutingAssembly.Location
+                path = IO.Path.Combine(IO.Path.GetDirectoryName(path), "MultiLineSearch.chm")
+                Me.HelpProvider1.HelpNamespace = path
+            Catch ex As Exception
+            End Try
+        End Sub
+
+
+        ''' <summary>
+        ''' Let the control process F1 and ESC.
+        ''' </summary>
+        ''' <param name="msg"></param>
+        ''' <param name="keyData"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, ByVal keyData As System.Windows.Forms.Keys) As Boolean
+            Try
+                Dim result As Boolean = False
+                Select Case keyData
+                    'Case Keys.Escape
+                    '    ' TODO: close the toolwindow
+                    '    ' (the usercontrol must have a reference to the EnvDTE.Window of its hosting toolwindow and call the Close method)
+                    '    result = True
+                    Case Keys.F1
+                        ShowF1Help(Me.ActiveControl)
+                        result = True
+                    Case Else
+                        result = MyBase.ProcessCmdKey(msg, keyData)
+                End Select
+
+                Return result
+            Catch ex As Exception
+            End Try
+        End Function
+
+
+        ''' <summary>
+        ''' Shows the F1 help for a specified control.
+        ''' </summary>
+        ''' <param name="control"></param>
+        ''' <remarks></remarks>
+        Private Sub ShowF1Help(ByVal control As Control)
+            If Not String.IsNullOrEmpty(Me.HelpProvider1.HelpNamespace) Then
+                Help.ShowHelp(Me, HelpProvider1.HelpNamespace, HelpProvider1.GetHelpKeyword(control))
+            End If
+        End Sub
+
+
         '''<summary> 
         '''  Let this control process the mnemonics.
         '''</summary>
@@ -226,7 +283,7 @@ Namespace Gui
 #End Region
 
 
-        #Region "GUI manipulation"
+#Region "GUI manipulation"
 
         ''' <summary>
         ''' Draw visible splitter.
@@ -251,7 +308,7 @@ Namespace Gui
                     left = SplitContainerFindRep.SplitterDistance
                     right = left + SplitContainerFindRep.SplitterWidth - 1
                     e.Graphics.DrawLine(pen, left, top, left, bottom)
-                'e.Graphics.DrawLine(pen, right, top, right, bottom)
+                    'e.Graphics.DrawLine(pen, right, top, right, bottom)
                 End If
                 pen.Dispose()
             Catch ex As Exception
@@ -305,7 +362,7 @@ Namespace Gui
             End Try
         End Sub
 
-        #End Region
+#End Region
 
 
         Private Sub CancelBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CancelBtn.Click
@@ -406,6 +463,14 @@ Namespace Gui
                 Me.SearchOptions.IgnoreAllWhitespaces = Me.CheckBoxIgnoreAllWs.Checked
                 Me.CheckBoxIgnoreLeadWs.Enabled = Not Me.CheckBoxIgnoreAllWs.Checked
                 Me.CheckBoxIgnoreTrailWs.Enabled = Not Me.CheckBoxIgnoreAllWs.Checked
+            Catch ex As Exception
+            End Try
+        End Sub
+
+
+        Private Sub HelpIgnoreWs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpIgnoreWs.Click
+            Try
+                ShowF1Help(HelpIgnoreWs)
             Catch ex As Exception
             End Try
         End Sub

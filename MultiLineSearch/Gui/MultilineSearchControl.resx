@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="HelpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>146, 17</value>
+  </metadata>
+  <data name="CheckBoxIgnoreTrailWs.ToolTip" xml:space="preserve">
+    <value>If this option is selected, then all trailing whitespaces on each line, except the last one, are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space or a tab here.</value>
+  </data>
+  <data name="CheckBoxIgnoreLeadWs.ToolTip" xml:space="preserve">
+    <value>If this option is selected, then all leading whitespaces on each line, except the first one, are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space or a tab here.</value>
+  </data>
 </root>

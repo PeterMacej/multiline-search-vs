@@ -24,6 +24,8 @@ Namespace Gui
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
+            Me.components = New System.ComponentModel.Container
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MultilineSearchControl))
             Me.CancelBtn = New System.Windows.Forms.Button
             Me.ReplaceInFilesBtn = New System.Windows.Forms.Button
             Me.ReplaceBtn = New System.Windows.Forms.Button
@@ -41,12 +43,12 @@ Namespace Gui
             Me.Label3 = New System.Windows.Forms.Label
             Me.ButtonFindOptionsCollapse = New System.Windows.Forms.Button
             Me.GroupBoxFindOptions = New System.Windows.Forms.GroupBox
-            Me.HelpIgnoreAllWs = New System.Windows.Forms.Label
-            Me.HelpIgnoreTraiWs = New System.Windows.Forms.Label
-            Me.HelpIgnoreLeadWs = New System.Windows.Forms.Label
+            Me.HelpIgnoreWs = New System.Windows.Forms.Label
             Me.CheckBoxIgnoreAllWs = New System.Windows.Forms.CheckBox
             Me.CheckBoxIgnoreTrailWs = New System.Windows.Forms.CheckBox
             Me.CheckBoxIgnoreLeadWs = New System.Windows.Forms.CheckBox
+            Me.HelpProvider1 = New System.Windows.Forms.HelpProvider
+            Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
             Me.PanelTop.SuspendLayout()
             Me.SplitContainerFindRep.Panel1.SuspendLayout()
             Me.SplitContainerFindRep.Panel2.SuspendLayout()
@@ -253,9 +255,7 @@ Namespace Gui
             '
             Me.GroupBoxFindOptions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                         Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-            Me.GroupBoxFindOptions.Controls.Add(Me.HelpIgnoreAllWs)
-            Me.GroupBoxFindOptions.Controls.Add(Me.HelpIgnoreTraiWs)
-            Me.GroupBoxFindOptions.Controls.Add(Me.HelpIgnoreLeadWs)
+            Me.GroupBoxFindOptions.Controls.Add(Me.HelpIgnoreWs)
             Me.GroupBoxFindOptions.Controls.Add(Me.CheckBoxIgnoreAllWs)
             Me.GroupBoxFindOptions.Controls.Add(Me.CheckBoxIgnoreTrailWs)
             Me.GroupBoxFindOptions.Controls.Add(Me.CheckBoxIgnoreLeadWs)
@@ -266,61 +266,60 @@ Namespace Gui
             Me.GroupBoxFindOptions.TabIndex = 18
             Me.GroupBoxFindOptions.TabStop = False
             '
-            'HelpIgnoreAllWs
+            'HelpIgnoreWs
             '
-            Me.HelpIgnoreAllWs.Cursor = System.Windows.Forms.Cursors.Help
-            Me.HelpIgnoreAllWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
-            Me.HelpIgnoreAllWs.Location = New System.Drawing.Point(193, 63)
-            Me.HelpIgnoreAllWs.Name = "HelpIgnoreAllWs"
-            Me.HelpIgnoreAllWs.Size = New System.Drawing.Size(16, 16)
-            Me.HelpIgnoreAllWs.TabIndex = 5
-            '
-            'HelpIgnoreTraiWs
-            '
-            Me.HelpIgnoreTraiWs.Cursor = System.Windows.Forms.Cursors.Help
-            Me.HelpIgnoreTraiWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
-            Me.HelpIgnoreTraiWs.Location = New System.Drawing.Point(193, 43)
-            Me.HelpIgnoreTraiWs.Name = "HelpIgnoreTraiWs"
-            Me.HelpIgnoreTraiWs.Size = New System.Drawing.Size(16, 16)
-            Me.HelpIgnoreTraiWs.TabIndex = 4
-            '
-            'HelpIgnoreLeadWs
-            '
-            Me.HelpIgnoreLeadWs.Cursor = System.Windows.Forms.Cursors.Help
-            Me.HelpIgnoreLeadWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
-            Me.HelpIgnoreLeadWs.Location = New System.Drawing.Point(193, 23)
-            Me.HelpIgnoreLeadWs.Name = "HelpIgnoreLeadWs"
-            Me.HelpIgnoreLeadWs.Size = New System.Drawing.Size(16, 16)
-            Me.HelpIgnoreLeadWs.TabIndex = 3
+            Me.HelpIgnoreWs.Cursor = System.Windows.Forms.Cursors.Help
+            Me.HelpProvider1.SetHelpKeyword(Me.HelpIgnoreWs, "find_options.htm")
+            Me.HelpProvider1.SetHelpNavigator(Me.HelpIgnoreWs, System.Windows.Forms.HelpNavigator.Topic)
+            Me.HelpIgnoreWs.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.help
+            Me.HelpIgnoreWs.Location = New System.Drawing.Point(193, 23)
+            Me.HelpIgnoreWs.Name = "HelpIgnoreWs"
+            Me.HelpProvider1.SetShowHelp(Me.HelpIgnoreWs, True)
+            Me.HelpIgnoreWs.Size = New System.Drawing.Size(16, 16)
+            Me.HelpIgnoreWs.TabIndex = 3
             '
             'CheckBoxIgnoreAllWs
             '
             Me.CheckBoxIgnoreAllWs.AutoSize = True
+            Me.HelpProvider1.SetHelpKeyword(Me.CheckBoxIgnoreAllWs, "find_options.htm")
+            Me.HelpProvider1.SetHelpNavigator(Me.CheckBoxIgnoreAllWs, System.Windows.Forms.HelpNavigator.Topic)
             Me.CheckBoxIgnoreAllWs.Location = New System.Drawing.Point(17, 63)
             Me.CheckBoxIgnoreAllWs.Name = "CheckBoxIgnoreAllWs"
+            Me.HelpProvider1.SetShowHelp(Me.CheckBoxIgnoreAllWs, True)
             Me.CheckBoxIgnoreAllWs.Size = New System.Drawing.Size(131, 17)
             Me.CheckBoxIgnoreAllWs.TabIndex = 2
             Me.CheckBoxIgnoreAllWs.Text = "Ignore all whitespaces"
+            Me.ToolTip1.SetToolTip(Me.CheckBoxIgnoreAllWs, "If this option is selected, then all whitespaces on each line are ignored. This a" & _
+                    "pplies to both, Find what text and a searched text. Whitespace is defined as a s" & _
+                    "pace, a tab or a newline here.")
             Me.CheckBoxIgnoreAllWs.UseVisualStyleBackColor = True
             '
             'CheckBoxIgnoreTrailWs
             '
             Me.CheckBoxIgnoreTrailWs.AutoSize = True
+            Me.HelpProvider1.SetHelpKeyword(Me.CheckBoxIgnoreTrailWs, "find_options.htm")
+            Me.HelpProvider1.SetHelpNavigator(Me.CheckBoxIgnoreTrailWs, System.Windows.Forms.HelpNavigator.Topic)
             Me.CheckBoxIgnoreTrailWs.Location = New System.Drawing.Point(17, 43)
             Me.CheckBoxIgnoreTrailWs.Name = "CheckBoxIgnoreTrailWs"
+            Me.HelpProvider1.SetShowHelp(Me.CheckBoxIgnoreTrailWs, True)
             Me.CheckBoxIgnoreTrailWs.Size = New System.Drawing.Size(151, 17)
             Me.CheckBoxIgnoreTrailWs.TabIndex = 1
             Me.CheckBoxIgnoreTrailWs.Text = "Ignore trailing whitespaces"
+            Me.ToolTip1.SetToolTip(Me.CheckBoxIgnoreTrailWs, resources.GetString("CheckBoxIgnoreTrailWs.ToolTip"))
             Me.CheckBoxIgnoreTrailWs.UseVisualStyleBackColor = True
             '
             'CheckBoxIgnoreLeadWs
             '
             Me.CheckBoxIgnoreLeadWs.AutoSize = True
+            Me.HelpProvider1.SetHelpKeyword(Me.CheckBoxIgnoreLeadWs, "find_options.htm")
+            Me.HelpProvider1.SetHelpNavigator(Me.CheckBoxIgnoreLeadWs, System.Windows.Forms.HelpNavigator.Topic)
             Me.CheckBoxIgnoreLeadWs.Location = New System.Drawing.Point(17, 23)
             Me.CheckBoxIgnoreLeadWs.Name = "CheckBoxIgnoreLeadWs"
+            Me.HelpProvider1.SetShowHelp(Me.CheckBoxIgnoreLeadWs, True)
             Me.CheckBoxIgnoreLeadWs.Size = New System.Drawing.Size(155, 17)
             Me.CheckBoxIgnoreLeadWs.TabIndex = 0
             Me.CheckBoxIgnoreLeadWs.Text = "Ignore leading whitespaces"
+            Me.ToolTip1.SetToolTip(Me.CheckBoxIgnoreLeadWs, resources.GetString("CheckBoxIgnoreLeadWs.ToolTip"))
             Me.CheckBoxIgnoreLeadWs.UseVisualStyleBackColor = True
             '
             'MultilineSearchControl
@@ -384,11 +383,11 @@ Namespace Gui
 
         Friend WithEvents Label3 As System.Windows.Forms.Label
 
-        Friend WithEvents HelpIgnoreLeadWs As System.Windows.Forms.Label
+        Friend WithEvents HelpIgnoreWs As System.Windows.Forms.Label
+        Friend WithEvents HelpProvider1 As System.Windows.Forms.HelpProvider
+        Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
-        Friend WithEvents HelpIgnoreAllWs As System.Windows.Forms.Label
 
-        Friend WithEvents HelpIgnoreTraiWs As System.Windows.Forms.Label
 
     End Class
 
