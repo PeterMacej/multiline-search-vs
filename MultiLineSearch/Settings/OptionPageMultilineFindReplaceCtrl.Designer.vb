@@ -41,8 +41,8 @@ Namespace Settings
             Me.Label9.Name = "Label9"
             Me.Label9.Size = New System.Drawing.Size(360, 48)
             Me.Label9.TabIndex = 13
-            Me.Label9.Text = "You will be only notified if the newer version is found. No message will be shown" & _
-                " during checking for update or if there is no update available."
+            Me.Label9.Text = "You will be only notified if a newer version is found. No message box will be sho" & _
+                "wn during checking for an update or if there is no update available."
             '
             'Label18
             '
@@ -58,8 +58,7 @@ Namespace Settings
             Me.Label17.Name = "Label17"
             Me.Label17.Size = New System.Drawing.Size(360, 56)
             Me.Label17.TabIndex = 17
-            Me.Label17.Text = "No personal information will be sent to us. VSdocman will only read update inform" & _
-                "ation from our site."
+            Me.Label17.Text = "No personal information will be sent."
             '
             'Label14
             '
