@@ -11,7 +11,7 @@ Namespace Settings
     ''' </summary>
     ''' <remarks></remarks>
     <ClassInterface(ClassInterfaceType.AutoDual), _
-    Guid("42C7F4D9-200D-4fe2-A093-49AFA2DDE7F8")> _
+    Guid("E0B68D27-9489-4053-AB39-6701AC637C30")> _
     Public Class OptionPageMultilineFindReplace
         Inherits DialogPage
 
@@ -38,7 +38,7 @@ Namespace Settings
         ''' </summary>
         ''' <value>-1 if check is disabled.</value>
         ''' <remarks></remarks>
-        <Category("Environment")> _
+        <Category("Update")> _
         <DisplayName("Automatically check for updates")> _
         <Description("Interval of automatic check for updates in days.")> _
         Public Property CheckForUpdatesInterval() As Integer
