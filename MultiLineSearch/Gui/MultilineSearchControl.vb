@@ -344,6 +344,7 @@ Namespace Gui
             Try
                 Dim top, left, bottom, right As Integer
                 Dim pen As New Drawing.Pen(Drawing.SystemColors.ActiveBorder)
+                Dim brush As Drawing.Brush = New Drawing.SolidBrush(Drawing.SystemColors.ActiveBorder)
                 If SplitContainerFindRep.Orientation = Orientation.Horizontal Then
                     left = 3
                     right = SplitContainerFindRep.Width - 3
@@ -351,6 +352,10 @@ Namespace Gui
                     bottom = top + SplitContainerFindRep.SplitterWidth - 1
                     e.Graphics.DrawLine(pen, left, top, right, top)
                     'e.Graphics.DrawLine(pen, left, bottom, right, bottom)
+                    Dim leftP As Integer = CInt((right - left) / 2)
+                    e.Graphics.FillRectangle(brush, leftP, bottom - 1, 2, 2)
+                    e.Graphics.FillRectangle(brush, leftP - 10, bottom - 1, 2, 2)
+                    e.Graphics.FillRectangle(brush, leftP + 10, bottom - 1, 2, 2)
                 Else
                     top = 3
                     bottom = SplitContainerFindRep.Height - 3
