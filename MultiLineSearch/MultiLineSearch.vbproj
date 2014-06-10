@@ -57,6 +57,7 @@
     <Compile Include="DteInitializer.vb" />
     <Compile Include="Gui\Dialogs.vb" />
     <Compile Include="Gui\FormFontAndScaleFixer.vb" />
+    <Compile Include="Gui\MultilineSearchControlOptions.vb" />
     <Compile Include="SearchReplace\FindReplaceKind.vb" />
     <Compile Include="SearchReplace\FindReplaceOptions.vb" />
     <Compile Include="Settings\IdeSettings.vb" />

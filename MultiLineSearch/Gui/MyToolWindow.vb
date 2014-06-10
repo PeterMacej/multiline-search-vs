@@ -96,7 +96,6 @@ Namespace Gui
             Me.BitmapIndex = 0
 
             control = New MultilineSearchControl()
-            control.HideCancelButton = True
         End Sub
 
 
@@ -140,7 +139,6 @@ Namespace Gui
                     End If
                 End If
 
-                ' 
             Catch ex As Exception
             End Try
         End Sub
@@ -180,7 +178,56 @@ Namespace Gui
 
 
         Protected Overrides Sub OnClose()
+            ' save options
+            Dim ctrlOptions As MultilineSearchControlOptions
+            ctrlOptions = control.GetOptions
+            Try
+                Dim pkg As MultiLineSearchPackage = TryCast(Me.Package, MultiLineSearchPackage)
+                If pkg IsNot Nothing Then
+                    Dim options As OptionPageMultilineFindReplace = pkg.PackageOptions
+                    If options IsNot Nothing Then
+                        options.IgnoreLeadingWs = ctrlOptions.IgnoreLeadingWhitespaces
+                        options.IgnoreTrailingWs = ctrlOptions.IgnoreTrailingWhitespaces
+                        options.IgnoreAllWs = ctrlOptions.IgnoreAllWhitespaces
+                        options.IsFindOptionsCollapsed = ctrlOptions.IsFindOptionsCollapsed
+                        options.SaveSettingsToStorage()
+                    End If
+                End If
+            Catch ex As Exception
+            End Try
+
             MyBase.OnClose()
+        End Sub
+
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <remarks>
+        ''' Unlike in constructor, when this method is called, the package is already created and we
+        ''' can use it for retrieving the settings.
+        ''' </remarks>
+        Public Overrides Sub OnToolWindowCreated()
+            MyBase.OnToolWindowCreated()
+
+            ' load options
+            Dim ctrlOptions As New MultilineSearchControlOptions
+            ctrlOptions.HideCancelButton = True
+            Try
+                ' load options
+                Dim pkg As MultiLineSearchPackage = TryCast(Me.Package, MultiLineSearchPackage)
+                If pkg IsNot Nothing Then
+                    Dim options As OptionPageMultilineFindReplace = pkg.PackageOptions
+                    If options IsNot Nothing Then
+                        ctrlOptions.IgnoreLeadingWhitespaces = options.IgnoreLeadingWs
+                        ctrlOptions.IgnoreTrailingWhitespaces = options.IgnoreTrailingWs
+                        ctrlOptions.IgnoreAllWhitespaces = options.IgnoreAllWs
+                        ctrlOptions.IsFindOptionsCollapsed = options.IsFindOptionsCollapsed
+                    End If
+                End If
+            Catch ex As Exception
+            End Try
+            control.SetOptions(ctrlOptions)
         End Sub
     End Class
 

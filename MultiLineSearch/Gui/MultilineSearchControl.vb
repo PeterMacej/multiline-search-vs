@@ -140,7 +140,7 @@ Namespace Gui
         ''' </summary>
         ''' <value></value>
         ''' <remarks></remarks>
-        Public Property HideCancelButton() As Boolean
+        Private Property HideCancelButton() As Boolean
             Get
                 Return mHideCancelButton
             End Get
@@ -157,6 +157,43 @@ Namespace Gui
         End Property
 
 #End Region
+
+
+        ''' <summary>
+        ''' Initializes the control with specified options.
+        ''' </summary>
+        ''' <param name="options"></param>
+        ''' <remarks></remarks>
+        Public Sub SetOptions(ByVal options As MultilineSearchControlOptions)
+            Me.HideCancelButton = options.HideCancelButton
+
+            Me.CheckBoxIgnoreLeadWs.Checked = options.IgnoreLeadingWhitespaces
+            Me.CheckBoxIgnoreTrailWs.Checked = options.IgnoreTrailingWhitespaces
+            Me.CheckBoxIgnoreAllWs.Checked = options.IgnoreAllWhitespaces
+
+            SetFindOptionsCollapsed(options.IsFindOptionsCollapsed)
+        End Sub
+
+
+        ''' <summary>
+        ''' Gets control options.
+        ''' </summary>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Function GetOptions() As MultilineSearchControlOptions
+            Dim options As New MultilineSearchControlOptions
+
+            options.HideCancelButton = Me.HideCancelButton
+
+            options.IgnoreLeadingWhitespaces = Me.CheckBoxIgnoreLeadWs.Checked
+            options.IgnoreTrailingWhitespaces = Me.CheckBoxIgnoreTrailWs.Checked
+            options.IgnoreAllWhitespaces = Me.CheckBoxIgnoreAllWs.Checked
+
+            options.IsFindOptionsCollapsed = Not Me.GroupBoxFindOptions.Visible
+
+            Return options
+        End Function
+
 
 
         ''' <summary>
