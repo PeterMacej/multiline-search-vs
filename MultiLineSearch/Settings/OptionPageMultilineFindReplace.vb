@@ -18,6 +18,12 @@ Namespace Settings
 
         Private pageCtrl As OptionPageMultilineFindReplaceCtrl = Nothing
 
+
+        Public Sub New()
+            SetDefaultValues()
+        End Sub
+
+
         <Browsable(False)> _
         <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)> _
         Protected Overrides ReadOnly Property Window() As IWin32Window
@@ -56,14 +62,22 @@ Namespace Settings
         ''' </summary>
         ''' <remarks></remarks>
         Public Overrides Sub ResetSettings()
+            SetDefaultValues()
+            MyBase.ResetSettings()
+        End Sub
+
+
+        ''' <summary>
+        ''' Set default values.
+        ''' </summary>
+        ''' <remarks></remarks>
+        Private Sub SetDefaultValues()
             Me.CheckForUpdatesInterval = 7
             Me.LastCheckForUpdatesDate = DateTime.Today
             Me.IsFindOptionsCollapsed = False
             Me.IgnoreLeadingWs = False
             Me.IgnoreTrailingWs = False
             Me.IgnoreAllWs = False
-
-            MyBase.ResetSettings()
         End Sub
 
 
