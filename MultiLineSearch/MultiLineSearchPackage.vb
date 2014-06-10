@@ -40,6 +40,12 @@ Imports Microsoft.VisualStudio.Shell
 ''' The ProvideMenuResource attribute is needed to let the shell know that this package exposes some menus.
 '''
 ''' The ProvideToolWindow attribute registers a tool window exposed by this package.
+''' 
+''' The ProvideProfile attribute registers settings category in Import/Export Settings. Note,
+''' ProvideProfileAttribute is designed to write resource IDs for unmanaged resources
+''' to the system registry. The Visual Studio resource loader expects unmanaged resource IDs 
+''' to have numeric values preceded by "#", and managed resources to have numeric values with
+''' no preceding "#". Therefore, we have to delete the "#" for managed resource IDs in registry manually.
 ''' </remarks>
 <PackageRegistration(UseManagedResourcesOnly:=True), _
 DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\8.0"), _
@@ -49,6 +55,8 @@ ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
 ProvideOptionPage(GetType(Settings.OptionPageMultilineFindReplace), _
     "Environment", "Multiline Find and Replace", 0, 120, True), _
+ProvideProfile(GetType(Settings.OptionPageMultilineFindReplace), _
+    "Environment", "MultilineFindandReplace", 122, 123, True, DescriptionResourceID:=124), _
 Guid(GuidList.GUID_MULTI_LINE_SEARCH_PKG_STRING)> _
 Public NotInheritable Class MultiLineSearchPackage
     Inherits Package

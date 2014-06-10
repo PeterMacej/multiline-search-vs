@@ -99,6 +99,33 @@ Friend Class VSPackage
         End Get
     End Property
     
+    '''<summary>
+    '''  Looks up a localized string similar to Environment.
+    '''</summary>
+    Friend Shared ReadOnly Property _122() As String
+        Get
+            Return ResourceManager.GetString("122", resourceCulture)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Looks up a localized string similar to Multiline Find and Replace.
+    '''</summary>
+    Friend Shared ReadOnly Property _123() As String
+        Get
+            Return ResourceManager.GetString("123", resourceCulture)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Looks up a localized string similar to Multiline Find and Replace settings found under the Multiline Find and Replace node in the Tools/Options dialog box.
+    '''</summary>
+    Friend Shared ReadOnly Property _124() As String
+        Get
+            Return ResourceManager.GetString("124", resourceCulture)
+        End Get
+    End Property
+    
     Friend Shared ReadOnly Property _301() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("301", resourceCulture)
