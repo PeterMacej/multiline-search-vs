@@ -77,6 +77,15 @@
     </Compile>
     <Compile Include="Gui\MyToolWindow.vb" />
     <Compile Include="Guids.vb" />
+    <Compile Include="Settings\OptionPageMultilineFindReplace.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\OptionPageMultilineFindReplaceCtrl.Designer.vb">
+      <DependentUpon>OptionPageMultilineFindReplaceCtrl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\OptionPageMultilineFindReplaceCtrl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Settings\PackageMemorySettingsReader.vb" />
     <Compile Include="Settings\PackageMemorySettingsStore.vb" />
     <Compile Include="Settings\PackageMemorySettingsWriter.vb" />
@@ -120,6 +129,10 @@
       <SubType>Designer</SubType>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings\OptionPageMultilineFindReplaceCtrl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OptionPageMultilineFindReplaceCtrl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Update\CheckUpdatesDlg.resx">
       <DependentUpon>CheckUpdatesDlg.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -156,6 +169,9 @@
   </ItemGroup>
   <ItemGroup>
     <Import Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graphics\" />
