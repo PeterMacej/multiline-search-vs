@@ -15,19 +15,33 @@ Namespace Update
     ''' <remarks></remarks>
     Friend Class UpdateChecker
 
+
+        ''' <summary>
+        ''' Results from the update check.
+        ''' </summary>
+        ''' <remarks></remarks>
+        Friend Enum CheckStatus
+            CheckNotPerformed
+            UpdateFound
+            UpdateNotFound
+            CheckError
+        End Enum
+
+
         ''' <summary>
         ''' Checks for update if specified interval is over and shows the window with
         ''' results if update is found.
         ''' </summary>
         ''' <remarks></remarks>
-        Friend Sub CheckForUpdatesAutomatically(ByVal checkForUpdatesInterval As Integer, ByVal lastCheckForUpdatesDate As DateTime)
+        Friend Function CheckForUpdatesAutomatically(ByVal checkForUpdatesInterval As Integer, ByVal lastCheckForUpdatesDate As DateTime) As CheckStatus
+            Dim res As CheckStatus
             Try
                 'test interval
                 If checkForUpdatesInterval <= 0 Then
-                    Return
+                    Return CheckStatus.CheckNotPerformed
                 End If
                 If Date.Today.Subtract(lastCheckForUpdatesDate).Days < checkForUpdatesInterval Then
-                    Return
+                    Return CheckStatus.CheckNotPerformed
                 End If
 
                 'can check update
@@ -39,13 +53,18 @@ Namespace Update
                     updDlg.UpdateInf = updInfo
                     Gui.Dialogs.ShowAsModal(updDlg)
                     Dialogs.GetVsStatusBar.SetText("")
+                    res = CheckStatus.UpdateFound
                 Else
                     Dialogs.GetVsStatusBar.SetText("Multiline Search and Replace - no updates available")
+                    res = CheckStatus.UpdateNotFound
                 End If
             Catch ex As Exception
                 Dialogs.GetVsStatusBar.SetText("Multiline Search and Replace - error when checking for updates")
+                res = CheckStatus.CheckError
             End Try
-        End Sub
+
+            Return res
+        End Function
 
 
         ''' <summary>

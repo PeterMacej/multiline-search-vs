@@ -112,9 +112,14 @@ Namespace Gui
                     Dim options As OptionPageMultilineFindReplace = pkg.PackageOptions
                     If options IsNot Nothing Then
                         Dim updCheck As New Update.UpdateChecker
-                        updCheck.CheckForUpdatesAutomatically(options.CheckForUpdatesInterval, options.LastCheckForUpdatesDate)
-                        options.LastCheckForUpdatesDate = DateTime.Today
-                        options.SaveSettingsToStorage()
+                        Dim checkStatus As Update.UpdateChecker.CheckStatus
+                        checkStatus = updCheck.CheckForUpdatesAutomatically(options.CheckForUpdatesInterval, options.LastCheckForUpdatesDate)
+                        Select Case checkStatus
+                            Case Update.UpdateChecker.CheckStatus.CheckNotPerformed
+                            Case Else
+                                options.LastCheckForUpdatesDate = DateTime.Today
+                                options.SaveSettingsToStorage()
+                        End Select
                     End If
                 End If
 
