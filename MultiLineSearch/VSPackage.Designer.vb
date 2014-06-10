@@ -90,6 +90,15 @@ Friend Class VSPackage
         End Get
     End Property
     
+    '''<summary>
+    '''  Looks up a localized string similar to Multiline Find and Replace.
+    '''</summary>
+    Friend Shared ReadOnly Property _120() As String
+        Get
+            Return ResourceManager.GetString("120", resourceCulture)
+        End Get
+    End Property
+    
     Friend Shared ReadOnly Property _301() As System.Drawing.Bitmap
         Get
             Dim obj As Object = ResourceManager.GetObject("301", resourceCulture)

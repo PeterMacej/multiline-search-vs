@@ -48,7 +48,7 @@ ProvideLoadKey("Standard", "1.4", "Multiline Search and Replace", "Helixoft", 1)
 ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
 ProvideOptionPage(GetType(Settings.OptionPageMultilineFindReplace), _
-    "Environment", "Multiline Find and Replace", 0, 0, True), _
+    "Environment", "Multiline Find and Replace", 0, 120, True), _
 Guid(GuidList.GUID_MULTI_LINE_SEARCH_PKG_STRING)> _
 Public NotInheritable Class MultiLineSearchPackage
     Inherits Package
