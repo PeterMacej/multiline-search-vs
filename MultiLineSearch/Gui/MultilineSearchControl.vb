@@ -172,6 +172,17 @@ Namespace Gui
             Me.CheckBoxIgnoreAllWs.Checked = options.IgnoreAllWhitespaces
 
             SetFindOptionsCollapsed(options.IsFindOptionsCollapsed)
+
+            ' This control need not to be in final size now.
+            ' It can be quite small and setting the splitter position may fail
+            ' because of minimal size of panel1 and panel2. So let's
+            ' temporarily set the height to a sufficient size. It will be then
+            ' correctly resized by window frame later.
+            If Me.Height < 400 Then
+                Me.Height = 400
+            End If
+            Dim dist As Integer = CInt(Me.SplitContainerFindRep.Height * (options.SplitterPosition / 100))
+            Me.SplitContainerFindRep.SplitterDistance = dist
         End Sub
 
 
@@ -191,9 +202,10 @@ Namespace Gui
 
             options.IsFindOptionsCollapsed = Not Me.GroupBoxFindOptions.Visible
 
+            options.SplitterPosition = CInt(Me.SplitContainerFindRep.SplitterDistance / Me.SplitContainerFindRep.Height * 100)
+
             Return options
         End Function
-
 
 
         ''' <summary>

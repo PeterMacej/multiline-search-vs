@@ -190,6 +190,7 @@ Namespace Gui
                         options.IgnoreTrailingWs = ctrlOptions.IgnoreTrailingWhitespaces
                         options.IgnoreAllWs = ctrlOptions.IgnoreAllWhitespaces
                         options.IsFindOptionsCollapsed = ctrlOptions.IsFindOptionsCollapsed
+                        options.SplitterPosition = ctrlOptions.SplitterPosition
                         options.SaveSettingsToStorage()
                     End If
                 End If
@@ -223,6 +224,7 @@ Namespace Gui
                         ctrlOptions.IgnoreTrailingWhitespaces = options.IgnoreTrailingWs
                         ctrlOptions.IgnoreAllWhitespaces = options.IgnoreAllWs
                         ctrlOptions.IsFindOptionsCollapsed = options.IsFindOptionsCollapsed
+                        ctrlOptions.SplitterPosition = options.SplitterPosition
                     End If
                 End If
             Catch ex As Exception

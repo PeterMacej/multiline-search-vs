@@ -78,6 +78,7 @@ Namespace Settings
             Me.IgnoreLeadingWs = False
             Me.IgnoreTrailingWs = False
             Me.IgnoreAllWs = False
+            Me.SplitterPosition = 100
         End Sub
 
 
@@ -183,6 +184,21 @@ Namespace Settings
             End Set
         End Property
 
+
+        Private mSplitterPosition As Integer
+        ''' <summary>
+        ''' Gets or sets a position (in percents) of splitter between 'Find what' and 'Replace with' text boxes.
+        ''' </summary>
+        ''' <value></value>
+        ''' <remarks></remarks>
+        Public Property SplitterPosition() As Integer
+            Get
+                Return mSplitterPosition
+            End Get
+            Set(ByVal value As Integer)
+                mSplitterPosition = value
+            End Set
+        End Property
 
 #End Region
 
