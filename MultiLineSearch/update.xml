@@ -39,46 +39,4 @@
   </release>
 
 
-  <release latest="no">
-    <version>
-      <major>6</major>
-      <minor>7</minor>
-      <build></build>
-      <revision></revision>
-    </version>
-    <date>
-      <day>14</day>
-      <month>03</month>
-      <year>2014</year>
-    </date>
-    <whats-new>
-      <![CDATA[
-       1. NEW: Added additional keyboard shortcuts for cut, copy and paste - Shift+Del, Ctrl+Ins and Shift+Ins in WYSIWYG comment editor.
-       2. CHANGE: Improved Help&Manual output for the latest H&M versions (show TOC when particular topic is loaded with direct URL, fixed newlines in code examples).
-       3. CHANGE: Improved performance of comment editing in some projects that reference many third-party assemblies.
-       4. FIX: Sometimes, a missing comment was not inherited from overridden/implemented member in a referenced third-party assembly.
-       5. FIX: When IE 10 or higher was installed, double/triple-click didn't select whole word/sentence in WYSIWYG comment editor. Moreover, the word selection is improved now, it works as in VS editor. A word can contain an underscore '_' character and it doesn't contain a trailing space.
-       6. FIX: In very rare cases, when you clicked inside WYSIWYG comment editor, the caret was set to a wrong position.
-       7. FIX: In WYSIWYG comment editor, when a text selection contained a text of various colors, it was impossible to change its properties, e.g. change it to a bulleted list.
-       8. FIX: Application could crash when pasting a text copied from MS Word (and maybe some other applications too) into WYSIWYG comment editor.
-       9. FIX: The language selected by a user in local HTML documentation was not retained in Chrome browser. Moreover, the default selected language is C# and not VB now. This can be changed in a generated config file.
-      10. FIX: In docx  output, multiple sub-classes were indented incorrectly in the Inheritance Hierarchy.
-      11. FIX: The Inheritance Hierarchy was not generated for some classes in some cases.
-]]>
-    </whats-new>
-    <download-url>
-      http://www.helixoft.com/common/product-downloads.html
-    </download-url>
-    <home-url>
-      http://www.helixoft.com/vsdocman/overview.html
-    </home-url>
-    <buy-url>
-      http://www.helixoft.com/common/buy-helixoft-products.html
-    </buy-url>
-    <release-notes-url>
-      http://www.helixoft.com/vsdocman/release-notes.html
-    </release-notes-url>
-  </release>
-
-
   </application-update>

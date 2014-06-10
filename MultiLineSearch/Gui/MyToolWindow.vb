@@ -4,6 +4,7 @@ Imports System.Runtime.InteropServices
 Imports Helixoft.MultiLineSearch.SearchReplace
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
+Imports Helixoft.MultiLineSearch.Settings
 
 
 Namespace Gui
@@ -27,7 +28,9 @@ Namespace Gui
         ' the object returned by the Window property.
         Private WithEvents control As MultilineSearchControl
 
-        #Region "Properties"
+
+#Region "Properties"
+
         ''' <summary>
         ''' Gets the DTE object.
         ''' </summary>
@@ -74,7 +77,7 @@ Namespace Gui
             End Get
         End Property
 
-        #End Region
+#End Region
 
 
         ''' <summary>
@@ -103,6 +106,18 @@ Namespace Gui
         ''' <remarks>This method should be called before Show call.</remarks>
         Public Sub InitializeContent()
             Try
+                ' check for updates
+                Dim pkg As MultiLineSearchPackage = TryCast(Me.Package, MultiLineSearchPackage)
+                If pkg IsNot Nothing Then
+                    Dim options As OptionPageMultilineFindReplace = pkg.PackageOptions
+                    If options IsNot Nothing Then
+                        Dim updCheck As New Update.UpdateChecker
+                        updCheck.CheckForUpdatesAutomatically(options.CheckForUpdatesInterval, options.LastCheckForUpdatesDate)
+                        options.LastCheckForUpdatesDate = DateTime.Today
+                        options.SaveSettingsToStorage()
+                    End If
+                End If
+
                 ' prepopulate Find What field, if needed
                 Dim findInit As Boolean = False
                 Try
@@ -119,6 +134,8 @@ Namespace Gui
                         Me.control.FindText = initText
                     End If
                 End If
+
+                ' 
             Catch ex As Exception
             End Try
         End Sub
@@ -156,6 +173,10 @@ Namespace Gui
         '        windowFrameEventsHandler))
         'End Sub
 
+
+        Protected Overrides Sub OnClose()
+            MyBase.OnClose()
+        End Sub
     End Class
 
 End Namespace

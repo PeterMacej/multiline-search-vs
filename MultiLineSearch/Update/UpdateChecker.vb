@@ -2,9 +2,9 @@ Option Explicit On
 Option Strict On
 
 Imports System.Xml
-Imports System.Reflection
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic
+Imports Helixoft.MultiLineSearch.Gui
 
 
 Namespace Update
@@ -20,36 +20,32 @@ Namespace Update
         ''' results if update is found.
         ''' </summary>
         ''' <remarks></remarks>
-        'Friend Sub CheckForUpdatesAutomatically(ByVal dte As EnvDTE80.DTE2, ByVal preferences As Preferences)
-        '    Try
-        '        'test interval
-        '        Dim interval As Integer = preferences.checkForUpdatesInterval
-        '        If interval <= 0 Then
-        '            Return
-        '        End If
-        '        Dim lastCheck As Date = AppSettings.LoadLastUpdateCheckDate(dte)
-        '        If Date.Today.Subtract(lastCheck).Days < interval Then
-        '            Return
-        '        End If
+        Friend Sub CheckForUpdatesAutomatically(ByVal checkForUpdatesInterval As Integer, ByVal lastCheckForUpdatesDate As DateTime)
+            Try
+                'test interval
+                If checkForUpdatesInterval <= 0 Then
+                    Return
+                End If
+                If Date.Today.Subtract(lastCheckForUpdatesDate).Days < checkForUpdatesInterval Then
+                    Return
+                End If
 
-        '        'can check update
-        '        AppSettings.SaveLastUpdateCheckDate(dte, Date.Today)
-        '        dte.StatusBar.Text = "Multiline Search and Replace - checking for updates"
-        '        Dim updInfo As UpdateInfo = ReadInfoFromXml(LoadXml)
-        '        If updInfo.IsLatestNewer Then
-        '            dte.StatusBar.Text = "Multiline Search and Replace - updates found"
-        '            Dim updDlg As New CheckUpdates()
-        '            updDlg.UpdateInf = updInfo
-        '            Dim winptr As New Gui.WinWrapper(dte)
-        '            updDlg.ShowDialog(winptr)
-        '            dte.StatusBar.Text = ""
-        '        Else
-        '            dte.StatusBar.Text = "Multiline Search and Replace - no updates available"
-        '        End If
-        '    Catch ex As Exception
-        '        dte.StatusBar.Text = "Multiline Search and Replace - error when checking for updates"
-        '    End Try
-        'End Sub
+                'can check update
+                Dialogs.GetVsStatusBar.SetText("Multiline Search and Replace - checking for updates")
+                Dim updInfo As UpdateInfo = ReadInfoFromXml(LoadXml)
+                If updInfo.IsLatestNewer Then
+                    Dialogs.GetVsStatusBar.SetText("Multiline Search and Replace - updates found")
+                    Dim updDlg As New CheckUpdatesDlg()
+                    updDlg.UpdateInf = updInfo
+                    Gui.Dialogs.ShowAsModal(updDlg)
+                    Dialogs.GetVsStatusBar.SetText("")
+                Else
+                    Dialogs.GetVsStatusBar.SetText("Multiline Search and Replace - no updates available")
+                End If
+            Catch ex As Exception
+                Dialogs.GetVsStatusBar.SetText("Multiline Search and Replace - error when checking for updates")
+            End Try
+        End Sub
 
 
         ''' <summary>

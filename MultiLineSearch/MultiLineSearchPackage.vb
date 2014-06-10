@@ -9,6 +9,9 @@ Imports System.ComponentModel.Design
 Imports Helixoft.MultiLineSearch.Gui
 Imports Microsoft.VisualStudio.Shell.Interop
 Imports Microsoft.VisualStudio.Shell
+Imports Helixoft.MultiLineSearch.Settings
+
+
 ''' <summary>
 ''' This is the class that implements the package exposed by this assembly.
 '''
@@ -53,9 +56,9 @@ InstalledProductRegistration(False, "#110", "#112", "1.0", IconResourceID:=400),
 ProvideLoadKey("Standard", "1.4", "Multiline Search and Replace", "Helixoft", 1), _
 ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
-ProvideOptionPage(GetType(Settings.OptionPageMultilineFindReplace), _
+ProvideOptionPage(GetType(OptionPageMultilineFindReplace), _
     "Environment", "Multiline Find and Replace", 0, 120, True), _
-ProvideProfile(GetType(Settings.OptionPageMultilineFindReplace), _
+ProvideProfile(GetType(OptionPageMultilineFindReplace), _
     "Environment", "MultilineFindandReplace", 122, 123, True, DescriptionResourceID:=124), _
 Guid(GuidList.GUID_MULTI_LINE_SEARCH_PKG_STRING)> _
 Public NotInheritable Class MultiLineSearchPackage
@@ -90,6 +93,19 @@ Public NotInheritable Class MultiLineSearchPackage
             Return False
         End Get
     End Property
+
+
+    ''' <summary>
+    ''' Gets package main options.
+    ''' </summary>
+    ''' <value></value>
+    ''' <remarks></remarks>
+    Public ReadOnly Property PackageOptions() As OptionPageMultilineFindReplace
+        Get
+            Return TryCast(Me.GetDialogPage(GetType(OptionPageMultilineFindReplace)), OptionPageMultilineFindReplace)
+        End Get
+    End Property
+
 #End Region
 
 

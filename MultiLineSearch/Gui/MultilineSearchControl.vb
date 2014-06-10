@@ -470,10 +470,6 @@ Namespace Gui
 
         Private Sub HelpIgnoreWs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpIgnoreWs.Click
             Try
-                'Dim updCheck As New Update.UpdateChecker
-                'updCheck.CheckForUpdates()
-                'Return
-
                 ShowF1Help(HelpIgnoreWs)
             Catch ex As Exception
             End Try

@@ -217,6 +217,17 @@ Namespace Gui
             Return result
         End Function
 
+
+        ''' <summary>
+        ''' Gets VS status bar.
+        ''' </summary>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Shared Function GetVsStatusBar() As IVsStatusbar
+            Return TryCast(Package.GetGlobalService(GetType(SVsStatusbar)), IVsStatusbar)
+        End Function
+
+
     End Class
 
 
