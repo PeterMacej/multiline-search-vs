@@ -54,9 +54,60 @@
                ForceDeleteOnUninstall="yes"
                Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_FC0419954843479fA47B4F4780DF3FEB" >
     <RegistryValue Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
-               Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_Default_FC0419954843479fA47B4F4780DF3FEB" />
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_Default_FC0419954843479fA47B4F4780DF3FEB" />
     <RegistryValue Name="Name" Value="Helixoft.MultiLineSearch.MyToolWindow" Type="string"
                    Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_Name_FC0419954843479fA47B4F4780DF3FEB" />
   </RegistryKey>
 
+  <!-- Options pages -->
+  <RegistryKey Root="HKLM"
+               Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\ToolsOptionsPages\Environment"
+               ForceDeleteOnUninstall="yes"
+               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_3A95188CB609460a8D0789274EEA5527" >
+    <RegistryValue Value="#0" Type="string"
+               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_Default_3A95188CB609460a8D0789274EEA5527" />
+    <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_Name_3A95188CB609460a8D0789274EEA5527" />
+  </RegistryKey>
+
+  <RegistryKey Root="HKLM"
+               Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\ToolsOptionsPages\Environment\Multiline Find and Replace"
+               ForceDeleteOnUninstall="yes"
+               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_1192D57A69D54410AC3029DB733FECE2" >
+    <RegistryValue Value="#120" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Default_1192D57A69D54410AC3029DB733FECE2" />
+    <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Name_1192D57A69D54410AC3029DB733FECE2" />
+    <RegistryValue Name="Page" Value="{e0b68d27-9489-4053-ab39-6701ac637c30}" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Page_1192D57A69D54410AC3029DB733FECE2" />
+  </RegistryKey>
+
+  <RegistryKey Root="HKLM"
+               Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\AutomationProperties\Environment\Multiline Find and Replace"
+               ForceDeleteOnUninstall="yes"
+               Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_361A86721F4F413dB5F91D85863FB85E" >
+    <RegistryValue Name="Name" Value="Environment.Multiline Find and Replace" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_Name_361A86721F4F413dB5F91D85863FB85E" />
+    <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_Package_361A86721F4F413dB5F91D85863FB85E" />
+  </RegistryKey>
+  
+  <!-- Settings categories in Import/Export settings -->
+  <RegistryKey Root="HKLM"
+               Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\UserSettings\Environment_MultilineFindandReplace"
+               ForceDeleteOnUninstall="yes"
+               Id="R_HKML_VS_$(var.VsVersion)_UserSettings_D79A602FECAD40578B366BFF6F95B408" >
+    <RegistryValue Value="123" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Default_D79A602FECAD40578B366BFF6F95B408" />
+    <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Package_D79A602FECAD40578B366BFF6F95B408" />
+    <RegistryValue Name="Category" Value="{e0b68d27-9489-4053-ab39-6701ac637c30}" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Category_D79A602FECAD40578B366BFF6F95B408" />
+    <RegistryValue Name="ToolsOptionsPath" Value="Environment" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_ToolsOptionsPath_D79A602FECAD40578B366BFF6F95B408" />
+    <RegistryValue Name="Description" Value="124" Type="string"
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Description_D79A602FECAD40578B366BFF6F95B408" />
+  </RegistryKey>
+
+  
 </Include>
