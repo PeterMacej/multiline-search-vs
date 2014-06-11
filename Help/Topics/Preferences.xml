@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" lasteditedby="cimpo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Preferences</title>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Preferences</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can set the preferences under </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Tools</text><text styleclass="Normal" style="font-weight:normal;" translate="true">/</text><text styleclass="Normal" style="font-weight:bold;" translate="true">Options</text><text styleclass="Normal" translate="true"> menu. Navigate to </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Environment</text><text styleclass="Normal" translate="true"> - </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Multiline Find and Replace</text><text styleclass="Normal" translate="true">.</text></para>
+  </body>
+</topic>
