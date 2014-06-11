@@ -10,6 +10,22 @@ Namespace Update
 
 #Region "Properties"
 
+        Private mShowOptionsMethod As Action = Nothing
+        ''' <summary>
+        ''' Gets or sets a delegate to a method that shows update options page.
+        ''' </summary>
+        ''' <value></value>
+        ''' <remarks></remarks>
+        Public Property ShowOptionsMethod() As Action
+            Get
+                Return mShowOptionsMethod
+            End Get
+            Set(ByVal value As Action)
+                mShowOptionsMethod = value
+            End Set
+        End Property
+
+
         Private mUpdateInf As UpdateInfo
         Friend Property UpdateInf() As UpdateInfo
             Get
@@ -88,9 +104,21 @@ Namespace Update
 
 
         Private Sub ButtonDownload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonDownload.Click
-            System.Diagnostics.Process.Start(Me.UpdateInf.DownloadUrl)
+            Try
+                System.Diagnostics.Process.Start(Me.UpdateInf.DownloadUrl)
+            Catch ex As Exception
+            End Try
         End Sub
 
+
+        Private Sub ButtonPrefs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonPrefs.Click
+            Try
+                If Me.ShowOptionsMethod IsNot Nothing Then
+                    Me.ShowOptionsMethod.Invoke()
+                End If
+            Catch ex As Exception
+            End Try
+        End Sub
     End Class
 
 End Namespace

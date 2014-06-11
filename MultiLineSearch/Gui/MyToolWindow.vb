@@ -112,7 +112,9 @@ Namespace Gui
                     If options IsNot Nothing Then
                         Dim updCheck As New Update.UpdateChecker
                         Dim checkStatus As Update.UpdateChecker.CheckStatus
-                        checkStatus = updCheck.CheckForUpdatesAutomatically(options.CheckForUpdatesInterval, options.LastCheckForUpdatesDate)
+                        checkStatus = updCheck.CheckForUpdatesAutomatically(options.CheckForUpdatesInterval, _
+                            options.LastCheckForUpdatesDate, _
+                            AddressOf pkg.ShowOptions)
                         Select Case checkStatus
                             Case Update.UpdateChecker.CheckStatus.CheckNotPerformed
                             Case Else

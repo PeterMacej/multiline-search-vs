@@ -93,6 +93,7 @@ Namespace Update
             Me.PanelUpdateInfo = New System.Windows.Forms.Panel
             Me.LabelLatestDate = New System.Windows.Forms.Label
             Me.LabelHeader = New System.Windows.Forms.Label
+            Me.ButtonPrefs = New System.Windows.Forms.Button
             CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel1.SuspendLayout()
             Me.PanelUpdateInfo.SuspendLayout()
@@ -104,7 +105,7 @@ Namespace Update
             Me.Button1.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Button1.ForeColor = System.Drawing.SystemColors.ControlText
-            Me.Button1.Location = New System.Drawing.Point(384, 384)
+            Me.Button1.Location = New System.Drawing.Point(386, 414)
             Me.Button1.Name = "Button1"
             Me.Button1.Size = New System.Drawing.Size(76, 24)
             Me.Button1.TabIndex = 0
@@ -114,7 +115,7 @@ Namespace Update
             'Label1
             '
             Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-            Me.Label1.Location = New System.Drawing.Point(464, 233)
+            Me.Label1.Location = New System.Drawing.Point(464, 266)
             Me.Label1.Name = "Label1"
             Me.Label1.Size = New System.Drawing.Size(8, 12)
             Me.Label1.TabIndex = 6
@@ -266,12 +267,26 @@ Namespace Update
             Me.LabelHeader.TabIndex = 32
             Me.LabelHeader.Text = "Multiline Search and Replace"
             '
+            'ButtonPrefs
+            '
+            Me.ButtonPrefs.BackColor = System.Drawing.Color.FromArgb(CType(CType(246, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(252, Byte), Integer))
+            Me.ButtonPrefs.DialogResult = System.Windows.Forms.DialogResult.Cancel
+            Me.ButtonPrefs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.ButtonPrefs.ForeColor = System.Drawing.SystemColors.ControlText
+            Me.ButtonPrefs.Location = New System.Drawing.Point(34, 414)
+            Me.ButtonPrefs.Name = "ButtonPrefs"
+            Me.ButtonPrefs.Size = New System.Drawing.Size(179, 24)
+            Me.ButtonPrefs.TabIndex = 33
+            Me.ButtonPrefs.Text = "Update preferences ..."
+            Me.ButtonPrefs.UseVisualStyleBackColor = False
+            '
             'CheckUpdatesDlg
             '
             Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
             Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(246, Byte), Integer), CType(CType(249, Byte), Integer), CType(CType(252, Byte), Integer))
             Me.CancelButton = Me.Button1
-            Me.ClientSize = New System.Drawing.Size(494, 417)
+            Me.ClientSize = New System.Drawing.Size(494, 450)
+            Me.Controls.Add(Me.ButtonPrefs)
             Me.Controls.Add(Me.LabelHeader)
             Me.Controls.Add(Me.LabelLatestDate)
             Me.Controls.Add(Me.PanelUpdateInfo)
@@ -303,6 +318,7 @@ Namespace Update
 
         End Sub
         Friend WithEvents LabelHeader As System.Windows.Forms.Label
+        Friend WithEvents ButtonPrefs As System.Windows.Forms.Button
 
         #End Region
     End Class

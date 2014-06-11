@@ -205,6 +205,14 @@ Public NotInheritable Class MultiLineSearchPackage
     End Sub
 
 
+    ''' <summary>
+    ''' Shows the main options page.
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ShowOptions()
+        Me.ShowOptionPage(GetType(OptionPageMultilineFindReplace))
+    End Sub
+
 End Class
 
 

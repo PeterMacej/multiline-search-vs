@@ -32,8 +32,12 @@ Namespace Update
         ''' Checks for update if specified interval is over and shows the window with
         ''' results if update is found.
         ''' </summary>
+        ''' <param name="showOptionsMethod">A delegate to a method that shows update options page.</param>
         ''' <remarks></remarks>
-        Friend Function CheckForUpdatesAutomatically(ByVal checkForUpdatesInterval As Integer, ByVal lastCheckForUpdatesDate As DateTime) As CheckStatus
+        Friend Function CheckForUpdatesAutomatically(ByVal checkForUpdatesInterval As Integer, _
+        ByVal lastCheckForUpdatesDate As DateTime, _
+        ByVal showOptionsMethod As Action) As CheckStatus
+
             Dim res As CheckStatus
             Try
                 'test interval
@@ -51,6 +55,7 @@ Namespace Update
                     Dialogs.GetVsStatusBar.SetText("Multiline Search and Replace - updates found")
                     Dim updDlg As New CheckUpdatesDlg()
                     updDlg.UpdateInf = updInfo
+                    updDlg.ShowOptionsMethod = showOptionsMethod
                     Gui.Dialogs.ShowAsModal(updDlg)
                     Dialogs.GetVsStatusBar.SetText("")
                     res = CheckStatus.UpdateFound
