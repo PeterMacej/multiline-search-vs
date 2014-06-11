@@ -12,7 +12,7 @@
       <revision></revision>
     </version>
     <date>
-      <day>09</day>
+      <day>11</day>
       <month>06</month>
       <year>2014</year>
     </date>
@@ -20,8 +20,10 @@
       <![CDATA[
         1. NEW: Added new find options: Ignore leading whitespaces, Ignore trailing whitespaces, Ignore all whitespaces. This way you have more flexibility with indented text, inline multiple whitespaces, etc. See the help for more details.
         2. NEW: Added a short help (user guide).
-        3. CHANGE: Improved resizing. You can now drag the splitter and resize Find what and Replace with text boxes.
-        4. FIX: Ctrl+A in Find what and Replace with text boxes didn't work.
+        3. NEW: Added automatic checking for new versions. This can be set in the options.
+        4. NEW: Added options under Tools/Options, Environment - Multiline Find and Replace.
+        5. CHANGE: Improved resizing. You can now drag the splitter and resize Find what and Replace with text boxes.
+        6. FIX: Ctrl+A in Find what and Replace with text boxes didn't work.
 ]]>
     </whats-new>
     <download-url>

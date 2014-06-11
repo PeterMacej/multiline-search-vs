@@ -3,9 +3,9 @@
   <!--
   Versioning. These have to be changed for upgrades.
   -->
-  <?define ProductVersion="1.4" ?>
-  <?define ProductVersionShort="1.4" ?> <!--as defined in MultiLineSearchPackage attributes-->
-  <?define PackageAssemblyVersionLong="1.4.0.0" ?>
+  <?define ProductVersion="1.5" ?>
+  <?define ProductVersionShort="1.5" ?> <!--as defined in MultiLineSearchPackage attributes-->
+  <?define PackageAssemblyVersionLong="1.5.0.0" ?>
   <?define ProductName="Multiline Search and Replace" ?>
   <?define Manufacturer="Helixoft" ?>
   <?define ProductDescription="!(loc.ProductDescription)" ?>
