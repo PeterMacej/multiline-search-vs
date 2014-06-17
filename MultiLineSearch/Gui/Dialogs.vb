@@ -22,7 +22,7 @@ Namespace Gui
         Public Shared Function IsGuiInVsAllowed() As Boolean
             Dim res As Boolean = False
 
-            Dim dte As EnvDTE80.DTE2 = MultiLineSearchPackage.Dte
+            Dim dte As EnvDTE80.DTE2 = TryCast(Package.GetGlobalService(GetType(SDTE)), EnvDTE80.DTE2)
             If dte IsNot Nothing Then
                 ' the IDE is fully initialized
                 If Not dte.UserControl OrElse Not dte.MainWindow.Visible Then

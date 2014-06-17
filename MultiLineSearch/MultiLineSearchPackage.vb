@@ -70,13 +70,14 @@ Public NotInheritable Class MultiLineSearchPackage
 
 
 #Region "Properties"
-    Private Shared mDte As EnvDTE80.DTE2 = Nothing
+
+    Private mDte As EnvDTE80.DTE2 = Nothing
     ''' <summary>
     ''' Gets the DTE object.
     ''' </summary>
     ''' <value>Nothing if the IDE is not yet fully initialized.</value>
     ''' <remarks></remarks>
-    Public Shared ReadOnly Property Dte() As EnvDTE80.DTE2
+    Public ReadOnly Property Dte() As EnvDTE80.DTE2
         Get
             Return mDte
         End Get
