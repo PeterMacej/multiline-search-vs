@@ -29,7 +29,7 @@
     <DirectoryRef Id='TARGETDIR'>
       
       <!--VS 2010-->
-      <Directory Name="Extensions" Id="VS_10.0_EXTENSIONS_DIR">
+      <Directory Name="Extensions10" Id="VS_10.0_EXTENSIONS_DIR">
         <Directory Name="Helixoft.MultilineSearch" Id="EXTENSIONS_MULTILINE_10.0">
           <Component Id="C_extension.VsixManifest_10.0" Guid="{984FF5B3-ACFA-454e-BF01-4E52A668727E}">
             <Condition>DEVENV2010_EXE_PATH</Condition>
@@ -51,7 +51,7 @@
       </Directory>
 
       <!--VS 2012-->
-      <Directory Name="Extensions" Id="VS_11.0_EXTENSIONS_DIR">
+      <Directory Name="Extensions11" Id="VS_11.0_EXTENSIONS_DIR">
         <Directory Name="Helixoft.MultilineSearch" Id="EXTENSIONS_MULTILINE_11.0">
           <Component Id="C_extension.VsixManifest_11.0" Guid="{F565EDF1-03E6-44c0-9610-02482D88EF40}">
             <Condition>DEVENV2012_EXE_PATH</Condition>
@@ -73,7 +73,7 @@
       </Directory>
 
       <!--VS 2013-->
-      <Directory Name="Extensions" Id="VS_12.0_EXTENSIONS_DIR">
+      <Directory Name="Extensions12" Id="VS_12.0_EXTENSIONS_DIR">
         <Directory Name="Helixoft.MultilineSearch" Id="EXTENSIONS_MULTILINE_12.0">
           <Component Id="C_extension.VsixManifest_12.0" Guid="{994F9139-AE56-459f-B805-CEC33F9DC154}">
             <Condition>DEVENV2013_EXE_PATH</Condition>
