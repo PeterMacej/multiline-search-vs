@@ -55,7 +55,7 @@
                Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_FC0419954843479fA47B4F4780DF3FEB" >
     <RegistryValue Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
                    Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_Default_FC0419954843479fA47B4F4780DF3FEB" />
-    <RegistryValue Name="Name" Value="Helixoft.MultiLineSearch.MyToolWindow" Type="string"
+    <RegistryValue Name="Name" Value="Helixoft.MultiLineSearch.Gui.MyToolWindow" Type="string"
                    Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_Name_FC0419954843479fA47B4F4780DF3FEB" />
   </RegistryKey>
 
