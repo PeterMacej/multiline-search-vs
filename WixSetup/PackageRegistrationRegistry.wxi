@@ -5,108 +5,108 @@
   <RegistryKey Root="HKLM"
                Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\InstalledProducts\MultiLineSearchPackage"
                ForceDeleteOnUninstall="yes" 
-               Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_52C817A8EE7F49359093A1018EAF6512">
+               Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage">
     <RegistryValue Value="#110" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_Default_52C817A8EE7F49359093A1018EAF6512" />
+                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_Default" />
     <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_Package_52C817A8EE7F49359093A1018EAF6512"/>
+                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_Package"/>
     <RegistryValue Name="ProductDetails" Value="#112" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_ProductDetails_52C817A8EE7F49359093A1018EAF6512"/>
+                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_ProductDetails"/>
     <RegistryValue Name="PID" Value="$(var.ProductVersionShort)" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_PID_52C817A8EE7F49359093A1018EAF6512" />
+                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_PID" />
     <RegistryValue Name="LogoID" Value="#400" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_LogoID_52C817A8EE7F49359093A1018EAF6512"/>
+                   Id="R_HKML_VS_$(var.VsVersion)_MultiLineSearchPackage_LogoID"/>
   </RegistryKey>
 
   <!-- Package -->
   <RegistryKey Root="HKLM"
                Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\Packages\{29956436-0205-4c9e-9396-abce099383f9}"
                ForceDeleteOnUninstall="yes"
-               Id="R_HKML_VS_$(var.VsVersion)_Packages_1FECD835450A4e6b9358707049FF9A6F">
+               Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436">
     <RegistryValue Value="Helixoft.MultiLineSearch.MultiLineSearchPackage, MultiLineSearch, Version=$(var.PackageAssemblyVersionLong), Culture=neutral, PublicKeyToken=d5d9563008f04b24" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_Default_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_Default" />
     <RegistryValue Name="InprocServer32" Value="[SystemFolder]mscoree.dll" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_InprocServer32_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_InprocServer32" />
     <RegistryValue Name="Class" Value="Helixoft.MultiLineSearch.MultiLineSearchPackage" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_Class_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_Class" />
     <RegistryValue Name="CodeBase" Value="[#F_MultiLineSearch.dll_075BD0E6B19241bf8A75AA8A68102F83]" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_CodeBase_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_CodeBase" />
     <RegistryValue Name="ID" Value="1" Type="integer"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_ID_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_ID" />
     <RegistryValue Name="MinEdition" Value="Standard" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_MinEdition_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_MinEdition" />
     <RegistryValue Name="ProductVersion" Value="$(var.ProductVersionShort)" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_ProductVersion_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_ProductVersion" />
     <RegistryValue Name="ProductName" Value="$(var.ProductName)" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_ProductName_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_ProductName" />
     <RegistryValue Name="CompanyName" Value="$(var.Manufacturer)" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_Packages_CompanyName_1FECD835450A4e6b9358707049FF9A6F" />
+                   Id="R_HKML_VS_$(var.VsVersion)_Packages_29956436_CompanyName" />
   </RegistryKey>
 
   <!-- Menus -->
   <RegistryValue Root="HKLM" Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\Menus"
                  Name="{29956436-0205-4c9e-9396-abce099383f9}" Value=", 1000, 1" Type="string"
-                 Id="R_HKML_VS_$(var.VsVersion)_Menus_B7B1732D016C415297E45D30156A4EAA" />
+                 Id="R_HKML_VS_$(var.VsVersion)_Menus_29956436" />
 
   <!-- Tool windows -->
   <RegistryKey Root="HKLM"
                Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\ToolWindows\{5c82a791-7c9f-441e-952b-8848655dd85e}"
                ForceDeleteOnUninstall="yes"
-               Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_FC0419954843479fA47B4F4780DF3FEB" >
+               Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_5c82a791" >
     <RegistryValue Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_Default_FC0419954843479fA47B4F4780DF3FEB" />
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_5c82a791_Default" />
     <RegistryValue Name="Name" Value="Helixoft.MultiLineSearch.Gui.MyToolWindow" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_Name_FC0419954843479fA47B4F4780DF3FEB" />
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolWindows_5c82a791_Name" />
   </RegistryKey>
 
   <!-- Options pages -->
   <RegistryKey Root="HKLM"
                Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\ToolsOptionsPages\Environment"
                ForceDeleteOnUninstall="yes"
-               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_3A95188CB609460a8D0789274EEA5527" >
+               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment" >
     <RegistryValue Value="#0" Type="string"
-               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_Default_3A95188CB609460a8D0789274EEA5527" />
+               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_Default" />
     <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_Name_3A95188CB609460a8D0789274EEA5527" />
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_Environment_Package" />
   </RegistryKey>
 
   <RegistryKey Root="HKLM"
                Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\ToolsOptionsPages\Environment\Multiline Find and Replace"
                ForceDeleteOnUninstall="yes"
-               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_1192D57A69D54410AC3029DB733FECE2" >
+               Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR" >
     <RegistryValue Value="#120" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Default_1192D57A69D54410AC3029DB733FECE2" />
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Default" />
     <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Name_1192D57A69D54410AC3029DB733FECE2" />
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Package" />
     <RegistryValue Name="Page" Value="{e0b68d27-9489-4053-ab39-6701ac637c30}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Page_1192D57A69D54410AC3029DB733FECE2" />
+                   Id="R_HKML_VS_$(var.VsVersion)_ToolsOptionsPages_MFR_Page" />
   </RegistryKey>
 
   <RegistryKey Root="HKLM"
                Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\AutomationProperties\Environment\Multiline Find and Replace"
                ForceDeleteOnUninstall="yes"
-               Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_361A86721F4F413dB5F91D85863FB85E" >
+               Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_MFR" >
     <RegistryValue Name="Name" Value="Environment.Multiline Find and Replace" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_Name_361A86721F4F413dB5F91D85863FB85E" />
+                   Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_MFR_Name" />
     <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_Package_361A86721F4F413dB5F91D85863FB85E" />
+                   Id="R_HKML_VS_$(var.VsVersion)_AutomationProperties_MFR_Package" />
   </RegistryKey>
   
   <!-- Settings categories in Import/Export settings -->
   <RegistryKey Root="HKLM"
                Key="Software\Microsoft\VisualStudio\$(var.VsVersion)\UserSettings\Environment_MultilineFindandReplace"
                ForceDeleteOnUninstall="yes"
-               Id="R_HKML_VS_$(var.VsVersion)_UserSettings_D79A602FECAD40578B366BFF6F95B408" >
+               Id="R_HKML_VS_$(var.VsVersion)_UserSettings_MFR" >
     <RegistryValue Value="123" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Default_D79A602FECAD40578B366BFF6F95B408" />
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_MFR_Default" />
     <RegistryValue Name="Package" Value="{29956436-0205-4c9e-9396-abce099383f9}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Package_D79A602FECAD40578B366BFF6F95B408" />
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_MFR_Package" />
     <RegistryValue Name="Category" Value="{e0b68d27-9489-4053-ab39-6701ac637c30}" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Category_D79A602FECAD40578B366BFF6F95B408" />
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_MFR_Category" />
     <RegistryValue Name="ToolsOptionsPath" Value="Environment" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_ToolsOptionsPath_D79A602FECAD40578B366BFF6F95B408" />
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_MFR_ToolsOptionsPath" />
     <RegistryValue Name="Description" Value="124" Type="string"
-                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_Description_D79A602FECAD40578B366BFF6F95B408" />
+                   Id="R_HKML_VS_$(var.VsVersion)_UserSettings_MFR_Description" />
   </RegistryKey>
 
   
