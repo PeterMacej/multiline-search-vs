@@ -15,24 +15,28 @@
 
       <!--VS 2008-->
       <Component Id="C_PackageRegistration2008_2DF5783E339E43fbA13FCFD7B21F2282" Guid="{2DF5783E-339E-43fb-A13F-CFD7B21F2282}">
+        <?undef VsVersion?>
         <?define VsVersion = "9.0" ?>
         <?include PackageRegistrationRegistry.wxi ?>
       </Component>
 
       <!--VS 2010-->
       <Component Id="C_PackageRegistration2010_8F30B5E86F2044ccB8857AFBDE1574E6" Guid="{8F30B5E8-6F20-44cc-B885-7AFBDE1574E6}">
+        <?undef VsVersion?>
         <?define VsVersion = "10.0" ?>
         <?include PackageRegistrationRegistry.wxi ?>
       </Component>
 
       <!--VS 2012-->
       <Component Id="C_PackageRegistration2012_858F77450E974a33B355C59DD95E814D" Guid="{858F7745-0E97-4a33-B355-C59DD95E814D}">
+        <?undef VsVersion?>
         <?define VsVersion = "11.0" ?>
         <?include PackageRegistrationRegistry.wxi ?>
       </Component>
 
       <!--VS 2013-->
       <Component Id="C_PackageRegistration2013_EA218C0A25BF4a8e90B0F1EEFE75CE40" Guid="{EA218C0A-25BF-4a8e-90B0-F1EEFE75CE40}">
+        <?undef VsVersion?>
         <?define VsVersion = "12.0" ?>
         <?include PackageRegistrationRegistry.wxi ?>
       </Component>
