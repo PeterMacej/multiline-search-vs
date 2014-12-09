@@ -18,8 +18,8 @@ Namespace Update
             InitializeComponent()
 
             'Add any initialization after the InitializeComponent() call
-            FormFontAndScaleFixer.FixFont(Me)
             FormFontAndScaleFixer.FixDpiScale(Me)
+            FormFontAndScaleFixer.FixFont(Me)
         End Sub
 
         'Form overrides dispose to clean up the component list.
@@ -135,6 +135,7 @@ Namespace Update
             Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
             Me.PictureBox1.Name = "PictureBox1"
             Me.PictureBox1.Size = New System.Drawing.Size(500, 60)
+            Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.PictureBox1.TabIndex = 7
             Me.PictureBox1.TabStop = False
             '

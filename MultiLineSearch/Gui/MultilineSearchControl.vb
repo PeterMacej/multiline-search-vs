@@ -2,6 +2,7 @@ Imports System.Security.Permissions
 Imports System.Windows.Forms
 Imports system.ComponentModel
 Imports Helixoft.MultiLineSearch.SearchReplace
+Imports System.Drawing
 
 
 Namespace Gui
@@ -10,7 +11,14 @@ Namespace Gui
     '''  Multiline search controls.
     '''</summary>
     Public Class MultilineSearchControl
-    Inherits UserControl
+        Inherits UserControl
+
+
+        ''' <summary>
+        ''' DPI of the screen used at design time.
+        ''' </summary>
+        ''' <remarks>The usual value is 96,96.</remarks>
+        Public ReadOnly DesignTimeDpi As New SizeF(96, 96)
 
 
 #Region "Events"
@@ -55,6 +63,24 @@ Namespace Gui
 
 
 #Region "Properties"
+
+        ''' <summary>
+        ''' Gets the scaling factor between the current and design-time automatic scaling dimensions.
+        ''' </summary>
+        ''' <value></value>
+        ''' <remarks>This property is similar to the <see cref="AutoScaleFactor"/> property when
+        ''' the <see cref="AutoScaleMode"/> is set to DPI.
+        ''' But after scaling, the value of <see cref="AutoScaleFactor"/> and <see cref="AutoScaleDimensions"/>
+        ''' is updated to avoid progressive scaling. The value of this property is never updated
+        ''' and it holds the original ratio.</remarks>
+        Public ReadOnly Property DesignRuntimeDpiFactor() As SizeF
+            Get
+                Dim fw As Single = Me.CurrentAutoScaleDimensions.Width / Me.DesignTimeDpi.Width
+                Dim fh As Single = Me.CurrentAutoScaleDimensions.Height / Me.DesignTimeDpi.Height
+                Return New SizeF(fw, fh)
+            End Get
+        End Property
+
 
         '''<summary>
         ''' Enable the IME status handling for this control.
@@ -376,9 +402,9 @@ Namespace Gui
         ''' <param name="collapsed"></param>
         ''' <remarks></remarks>
         Private Sub SetFindOptionsCollapsed(ByVal collapsed As Boolean)
-            Dim rowFullHeight As Integer = 164
+            Dim rowFullHeight As Integer = CInt(164 * Me.DesignRuntimeDpiFactor.Height)
             Dim groupBoxFullHeight As Integer = Me.GroupBoxFindOptions.Height
-            Dim groupBoxCollapsedHeight As Integer = 18
+            Dim groupBoxCollapsedHeight As Integer = Me.ButtonFindOptionsCollapse.Height
 
             If collapsed Then
                 Me.ButtonFindOptionsCollapse.Image = Global.Helixoft.MultiLineSearch.My.Resources.MainResources.plus
@@ -401,7 +427,7 @@ Namespace Gui
         ''' <remarks></remarks>
         Private Sub ResizeTableLayoutRows()
             Try
-                Dim topRowMinSize As Integer = 100
+                Dim topRowMinSize As Integer = CInt(100 * Me.DesignRuntimeDpiFactor.Height)
 
                 Dim h As Integer = TableLayoutPanel1.Height
                 For i As Integer = 1 To TableLayoutPanel1.RowCount - 1

@@ -96,6 +96,11 @@ Namespace Gui
             Me.BitmapIndex = 0
 
             control = New MultilineSearchControl()
+
+            ' scale
+            'FormFontAndScaleFixer.FixDpiScale(control)
+            FormFontAndScaleFixer.FixDpiScale(control, control.DesignTimeDpi)
+            FormFontAndScaleFixer.FixFont(control)
         End Sub
 
 

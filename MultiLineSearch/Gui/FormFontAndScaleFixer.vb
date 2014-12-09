@@ -9,7 +9,7 @@ Imports System.Drawing
 Namespace Gui
 
     ''' <summary>
-    ''' Fixed the font typeface and scales the form according to DPI on current OS. 
+    ''' Fixes the font typeface and scales the form according to the DPI on the current OS. 
     ''' </summary>
     ''' <remarks>
     ''' Original idea and code (3 lines :-) by Benjamin Hollis: 
@@ -68,7 +68,7 @@ Namespace Gui
         ''' <summary>
         ''' Fixes the font of control and all it's children controls.
         ''' </summary>
-        ''' <param name="ctrl"></param>
+        ''' <param name="ctrl">A control to be scaled.</param>
         ''' <remarks>Fixes the font so that it match with OS settings.</remarks>
         Public Shared Sub FixFont(ByVal ctrl As Control)
             'If we can't fix the font, exit
@@ -141,41 +141,65 @@ Namespace Gui
 
 
         ''' <summary>
-        ''' Fixes the scale of control and all it's children controls relative to the display resolution..
+        ''' Fixes the scale of control and all it's children controls relative to the display resolution.
+        ''' It assumes that the design time DPI was 96, which is the most common case.
         ''' </summary>
-        ''' <param name="ctrl"></param>
+        ''' <param name="ctrl">A control to be scaled.</param>
         ''' <remarks>This method sets AutoScaleMode property of the control to ScaleMode.Dpi.
         ''' And it sets AutoScaleMode property of nested controls to ScaleMode.Inherit.</remarks>
         Public Shared Sub FixDpiScale(ByVal ctrl As Control)
+            Dim designTimeDpi As New SizeF(96, 96)
             If TypeOf ctrl Is ContainerControl Then
                 Dim contCtrl As ContainerControl = DirectCast(ctrl, ContainerControl)
-                contCtrl.AutoScaleDimensions = New SizeF(96.0F, 96.0F)
+                contCtrl.AutoScaleDimensions = designTimeDpi
                 contCtrl.AutoScaleMode = AutoScaleMode.Dpi
             End If
 
             'recursively traverse all children
             For Each childCtrl As Control In ctrl.Controls
-                FixNestedControlDpiScale(childCtrl)
+                FixNestedControlDpiScale(childCtrl, designTimeDpi)
             Next
         End Sub
 
 
         ''' <summary>
-        ''' Fixes the scale of nested control and all it's children controls relative to the display resolution..
+        ''' Fixes the scale of control and all it's children controls relative to the display resolution.
         ''' </summary>
-        ''' <param name="ctrl"></param>
-        ''' <remarks>This method sets AutoScaleMode property of the controls to ScaleMode.Inherit.
-        ''' It's because some parent control has already set AutoScaleMode property to ScaleMode.Dpi.</remarks>
-        Private Shared Sub FixNestedControlDpiScale(ByVal ctrl As Control)
+        ''' <param name="ctrl">A control to be scaled.</param>
+        ''' <param name="designTimeDpi">DPI of the screen used at control's design time.</param>
+        ''' <remarks>This method sets AutoScaleMode property of the control to ScaleMode.Dpi.
+        ''' And it sets AutoScaleMode property of nested controls to ScaleMode.Inherit.</remarks>
+        Public Shared Sub FixDpiScale(ByVal ctrl As Control, ByVal designTimeDpi As SizeF)
             If TypeOf ctrl Is ContainerControl Then
                 Dim contCtrl As ContainerControl = DirectCast(ctrl, ContainerControl)
-                contCtrl.AutoScaleDimensions = New SizeF(96.0F, 96.0F)
+                contCtrl.AutoScaleDimensions = designTimeDpi
+                contCtrl.AutoScaleMode = AutoScaleMode.Dpi
+            End If
+
+            'recursively traverse all children
+            For Each childCtrl As Control In ctrl.Controls
+                FixNestedControlDpiScale(childCtrl, designTimeDpi)
+            Next
+        End Sub
+
+
+        ''' <summary>
+        ''' Fixes the scale of nested control and all it's children controls relative to the display resolution.
+        ''' </summary>
+        ''' <param name="ctrl">A control to be scaled.</param>
+        ''' <param name="designTimeDpi">DPI of the screen used at control's design time.</param>
+        ''' <remarks>This method sets AutoScaleMode property of the controls to ScaleMode.Inherit.
+        ''' It's because some parent control has already set AutoScaleMode property to ScaleMode.Dpi.</remarks>
+        Private Shared Sub FixNestedControlDpiScale(ByVal ctrl As Control, ByVal designTimeDpi As SizeF)
+            If TypeOf ctrl Is ContainerControl Then
+                Dim contCtrl As ContainerControl = DirectCast(ctrl, ContainerControl)
+                contCtrl.AutoScaleDimensions = designTimeDpi
                 contCtrl.AutoScaleMode = AutoScaleMode.Inherit
             End If
 
             'recursively traverse all children
             For Each childCtrl As Control In ctrl.Controls
-                FixNestedControlDpiScale(childCtrl)
+                FixNestedControlDpiScale(childCtrl, designTimeDpi)
             Next
         End Sub
 

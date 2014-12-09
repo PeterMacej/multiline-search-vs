@@ -13,6 +13,9 @@ Namespace Gui
         Public Sub New(ByVal dte As [EnvDTE80].DTE2)
             Me.InitializeComponent()
 
+            FormFontAndScaleFixer.FixDpiScale(Me)
+            FormFontAndScaleFixer.FixFont(Me)
+
             If dte Is Nothing Then
                 Throw New NullReferenceException()
             End If
