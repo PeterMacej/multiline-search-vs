@@ -25,6 +25,11 @@
         <DirectorySearch Id="VS12ExtensionsPathSearch" Path="Extensions" Depth="1" />
       </RegistrySearch>
     </Property>
+    <Property Id="VS_14.0_EXTENSIONS_DIR" Secure="yes">
+      <RegistrySearch Id="VS14DevEnvForExtensionsSearch" Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\14.0\Setup\VS" Name="EnvironmentDirectory" Type="raw">
+        <DirectorySearch Id="VS14ExtensionsPathSearch" Path="Extensions" Depth="1" />
+      </RegistrySearch>
+    </Property>
 
     <DirectoryRef Id='TARGETDIR'>
       
