@@ -94,6 +94,28 @@
         </Directory>
       </Directory>
 
+      <!--VS 2015-->
+      <Directory Name="Extensions14" Id="VS_14.0_EXTENSIONS_DIR">
+        <Directory Name="Helixoft.MultilineSearch" Id="EXTENSIONS_MULTILINE_14.0">
+          <Component Id="C_extension.VsixManifest_14.0" Guid="{F050A3FB-DB84-4336-A131-3A5F26A7F95C}">
+            <Condition>DEVENV2015_EXE_PATH</Condition>
+            <File Id="F_extension.VsixManifest_14.0" Name="extension.VsixManifest" KeyPath="yes" DiskId="1" Source="Files\extension.VsixManifest" />
+          </Component>
+          <Component Id="C_main_icon.ico_14.0" Guid="{A7530196-274F-454f-A587-139391743DC3}">
+            <Condition>DEVENV2015_EXE_PATH</Condition>
+            <File Id="F_main_icon.ico_14.0" Name="main_icon.ico" KeyPath="yes" DiskId="1" Source="Files\main_icon.ico" />
+          </Component>
+          <Component Id="C_readme.txt_14.0" Guid="{A925C99F-B01E-4720-8A88-DB1EF6BCB2D7}">
+            <Condition>DEVENV2015_EXE_PATH</Condition>
+            <File Id="F_readme.txt_14.0" Name="readme.txt" KeyPath="yes" Vital="no" DiskId="1" Source="Files\readme.txt" />
+          </Component>
+          <Component Id="C_multiline_search_preview.png_14.0" Guid="{753B12B6-8C97-490c-9E04-3EABF3302900}">
+            <Condition>DEVENV2015_EXE_PATH</Condition>
+            <File Id="F_multiline_search_preview.png_14.0" Name="multiline_search_preview.png" KeyPath="yes" Vital="no" DiskId="1" Source="Files\multiline_search_preview.png" />
+          </Component>
+        </Directory>
+      </Directory>
+
     </DirectoryRef>
 
     <ComponentGroup Id="CG_Extension_registration_components">
@@ -101,14 +123,21 @@
       <ComponentRef Id="C_main_icon.ico_10.0" />
       <ComponentRef Id="C_readme.txt_10.0" />
       <ComponentRef Id="C_multiline_search_preview.png_10.0" />
+      
       <ComponentRef Id="C_extension.VsixManifest_11.0" />
       <ComponentRef Id="C_main_icon.ico_11.0" />
       <ComponentRef Id="C_readme.txt_11.0" />
       <ComponentRef Id="C_multiline_search_preview.png_11.0" />
+      
       <ComponentRef Id="C_extension.VsixManifest_12.0" />
       <ComponentRef Id="C_main_icon.ico_12.0" />
       <ComponentRef Id="C_readme.txt_12.0" />
       <ComponentRef Id="C_multiline_search_preview.png_12.0" />
+
+      <ComponentRef Id="C_extension.VsixManifest_14.0" />
+      <ComponentRef Id="C_main_icon.ico_14.0" />
+      <ComponentRef Id="C_readme.txt_14.0" />
+      <ComponentRef Id="C_multiline_search_preview.png_14.0" />
     </ComponentGroup>
 
 

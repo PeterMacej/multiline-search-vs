@@ -31,6 +31,11 @@
                       Key="Software\Microsoft\VisualStudio\12.0\Setup\VS"
                       Name="EnvironmentPath" Type="raw" />
     </Property>
+    <Property Id="DEVENV2015_EXE_PATH">
+      <RegistrySearch Id="RS_DEVENV2015_EXE_PATH" Root="HKLM"
+                      Key="Software\Microsoft\VisualStudio\14.0\Setup\VS"
+                      Name="EnvironmentPath" Type="raw" />
+    </Property>
 
 
     <!--
@@ -117,6 +122,20 @@
                   Return="ignore"
                   Impersonate="no"/>
 
+    <!--VS 2015-->
+    <!--Set CustomActionData-->
+    <CustomAction Id="CA_SETUP_VS2015_SET_DATA"
+                  Property="CA_SETUP_VS2015"
+                  Value="120:&quot;[DEVENV2015_EXE_PATH]&quot; /setup /nosetupvstemplates"
+                  Execute="immediate"/>
+    <!--Custom action-->
+    <CustomAction Id="CA_SETUP_VS2015"
+                  BinaryKey="HelixoftCA_dll"
+                  DllEntry="QuietExecute"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no"/>
+
     <!--
     Execute the defined custom actions to update Visual Studio.
     They must execute when all the following conditions are true:
@@ -161,6 +180,13 @@
         DEVENV2013_EXE_PATH
       </Custom>
 
+      <Custom Action="CA_SETUP_VS2015_SET_DATA" Before="CA_SETUP_VS2015">
+        DEVENV2015_EXE_PATH
+      </Custom>
+      <Custom Action="CA_SETUP_VS2015" Before="InstallFinalize">
+        DEVENV2015_EXE_PATH
+      </Custom>
+
     </InstallExecuteSequence>
 
 
@@ -171,6 +197,7 @@
       <ProgressText Action="CA_SETUP_VS2010">!(loc.ProgressUpdatingVS2010)</ProgressText>
       <ProgressText Action="CA_SETUP_VS2012">!(loc.ProgressUpdatingVS2012)</ProgressText>
       <ProgressText Action="CA_SETUP_VS2013">!(loc.ProgressUpdatingVS2013)</ProgressText>
+      <ProgressText Action="CA_SETUP_VS2015">!(loc.ProgressUpdatingVS2015)</ProgressText>
     </UI>
 
   </Fragment>

@@ -41,6 +41,13 @@
         <?include PackageRegistrationRegistry.wxi ?>
       </Component>
 
+      <!--VS 2015-->
+      <Component Id="C_PackageRegistration2015" Guid="{BDCF47B5-C94E-417e-9BA4-12B92E26B9CC}">
+        <?undef VsVersion?>
+        <?define VsVersion = "14.0" ?>
+        <?include PackageRegistrationRegistry.wxi ?>
+      </Component>
+
     </DirectoryRef>
 
     <ComponentGroup Id="CG_PackageRegistration_components">
@@ -49,6 +56,7 @@
       <ComponentRef Id="C_PackageRegistration2010" />
       <ComponentRef Id="C_PackageRegistration2012" />
       <ComponentRef Id="C_PackageRegistration2013" />
+      <ComponentRef Id="C_PackageRegistration2015" />
       <ComponentGroupRef Id="CG_Extension_registration_components"/>
     </ComponentGroup>
     

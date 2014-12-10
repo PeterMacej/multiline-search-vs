@@ -8,6 +8,7 @@ It provides a multiline Search/Replace dialog which is a wrapper around standard
 The extension adds new "Multiline Find/Replace" menu item in Edit > Find and Replace submenu.
 
 Multiline Search and Replace works with:
+ - Visual Studio 2015 - all editions except for Express edition
  - Visual Studio 2013 - all editions except for Express edition
  - Visual Studio 2012 - all editions except for Express edition
  - Visual Studio 2010 - all editions except for Express edition

@@ -12,7 +12,7 @@
     -->
 
     
-    <!-- Properties to get the installation folders of Visual Studio 2005, 2008, 2010, 2012 or 2013.
+    <!-- Properties to get the installation folders of Visual Studio 2005, 2008, 2010, 2012, 2013 or 2015.
            If the values can't be retrieved the properties will remain unset (with the FALSE value) and can be used 
            in boolean expressions later.
            The properties must be secure in order to the Repair, Change and Remove buttons of the maintenance mode to work correctly.
@@ -39,6 +39,10 @@
       <RegistrySearch Id="RS_VS2013InstallationFolderRegistrySearchId" Type="raw"
                       Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\12.0" Name="InstallDir"></RegistrySearch>
     </Property>
+    <Property Id="VS2015INSTALLATIONFOLDER" Secure="yes">
+      <RegistrySearch Id="RS_VS2015InstallationFolderRegistrySearchId" Type="raw"
+                      Root="HKLM" Key="SOFTWARE\Microsoft\VisualStudio\14.0" Name="InstallDir"></RegistrySearch>
+    </Property>
 
 
     <!-- Check that some Visual Studio version is present when installing.
@@ -46,7 +50,7 @@
            need to check that Visual Studio is present when uninstalling.
       -->
     <Condition Message="!(loc.ERR_ProductRequiresVS)">
-      Installed OR VS2005INSTALLATIONFOLDER OR VS2008INSTALLATIONFOLDER OR VS2010INSTALLATIONFOLDER OR VS2012INSTALLATIONFOLDER OR VS2013INSTALLATIONFOLDER
+      Installed OR VS2005INSTALLATIONFOLDER OR VS2008INSTALLATIONFOLDER OR VS2010INSTALLATIONFOLDER OR VS2012INSTALLATIONFOLDER OR VS2013INSTALLATIONFOLDER OR VS2015INSTALLATIONFOLDER
     </Condition>
 
 
