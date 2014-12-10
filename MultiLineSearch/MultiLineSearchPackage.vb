@@ -52,8 +52,8 @@ Imports Helixoft.MultiLineSearch.Settings
 ''' </remarks>
 <PackageRegistration(UseManagedResourcesOnly:=True), _
 DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\8.0"), _
-InstalledProductRegistration(False, "#110", "#112", "1.0", IconResourceID:=400), _
-ProvideLoadKey("Standard", "1.5", "Multiline Search and Replace", "Helixoft", 1), _
+InstalledProductRegistration(False, "#110", "#112", "1.6", IconResourceID:=400), _
+ProvideLoadKey("Standard", "1.6", "Multiline Search and Replace", "Helixoft", 1), _
 ProvideMenuResource(1000, 1), _
 ProvideToolWindow(GetType(MyToolWindow)), _
 ProvideOptionPage(GetType(OptionPageMultilineFindReplace), _

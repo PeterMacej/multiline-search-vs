@@ -3,7 +3,7 @@
   <Identifier Id="MultiLine.Search.459A0968-D0E0-4a63-83EB-7B6394DD674C">
     <Name>Multiline Search and Replace</Name>
     <Author>Peter Macej (from Helixoft)</Author>
-    <Version>1.5</Version>
+    <Version>1.6</Version>
     <Description>Adds multiline search and replace functionality to Visual Studio.</Description>
     <Locale>1033</Locale>
     <MoreInfoUrl>http://visualstudiogallery.msdn.microsoft.com/699CE302-B0D4-4083-BE0E-1682E873CEBF</MoreInfoUrl>
