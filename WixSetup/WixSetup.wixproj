@@ -58,7 +58,7 @@
     <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Helixoft\VSdocman\VS2005\VSdocman\WixCustomActions\WixCustomActions.vbproj">
+    <ProjectReference Include="..\..\VSdocman\src\WixCustomActions\WixCustomActions.vbproj">
       <Name>WixCustomActions</Name>
       <Project>{18878ec6-74cd-4b2a-b039-34d328f4baf7}</Project>
       <Private>True</Private>
