@@ -145,10 +145,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyControl.xaml.cs">
-      <DependentUpon>MyControl.xaml</DependentUpon>
+    <Compile Include="Gui\MultilineSearchControl.xaml.cs">
+      <DependentUpon>MultilineSearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyToolWindow.cs" />
+    <Compile Include="Gui\MyToolWindow.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -156,7 +156,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="MultiLineSearch2Package.cs" />
+    <Compile Include="MultiLineSearchPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
   </ItemGroup>
@@ -173,23 +173,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
+    <None Include="Resources\main_icon.xcf" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="MultiLineSearch2.vsct">
-      <ResourceName>Menus.ctmenu</ResourceName>
-    </VSCTCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Images.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Package.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MyControl.xaml">
+    <Page Include="Gui\MultilineSearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +195,35 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DteInitializer.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Settings\IdeSettings.cs" />
+    <Compile Include="Settings\OptionPageMultilineFindReplace.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings\PackageMemorySettingsReader.cs" />
+    <Compile Include="Settings\PackageMemorySettingsStore.cs" />
+    <Compile Include="Settings\PackageMemorySettingsWriter.cs" />
+    <Compile Include="SearchReplace\FindReplaceKind.cs" />
+    <Compile Include="SearchReplace\ISearchReplaceProvider.cs" />
+    <Compile Include="SearchReplace\FindReplaceOptions.cs" />
+    <Compile Include="SearchReplace\MultilineSearchReplace.cs" />
+    <VSCTCompile Include="MultiLineSearch.vsct" />
+    <Resource Include="Resources\main_icon.ico" />
+    <Resource Include="Resources\main_icon.png" />
+    <Resource Include="Resources\vs2013_replace_in_files.png" />
+    <Resource Include="Resources\vs2013_replace.png" />
+    <Resource Include="Resources\vs2013_find_in_files.png" />
+    <Resource Include="Resources\vs2013_find.png" />
+    <Content Include="Resources\vs_icons.htm" />
+    <Resource Include="Resources\plus.png" />
+    <Resource Include="Resources\minus.png" />
+    <Resource Include="Resources\main_icon_for_toolwindow.bmp" />
   </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>

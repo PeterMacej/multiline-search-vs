@@ -8,8 +8,10 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
+using Helixoft.MultiLineSearch.Settings;
 
-namespace Company.MultiLineSearch2
+
+namespace Helixoft.MultiLineSearch
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -21,19 +23,64 @@ namespace Company.MultiLineSearch2
     /// IVsPackage interface and uses the registration attributes defined in the framework to 
     /// register itself and its components with the shell.
     /// </summary>
+    /// <remarks>
+    /// A Visual Studio component can be registered under different registry roots; for instance
+    /// when you debug your package you want to register it in the experimental hive. The DefaultRegistryRoot
+    /// attribute specifies the registry root to use if no one is provided to regpkg.exe with
+    /// the /root switch.
+    /// </remarks>
     // This attribute tells the PkgDef creation utility (CreatePkgDef.exe) that this class is
     // a package.
     [PackageRegistration(UseManagedResourcesOnly = true)]
     // This attribute is used to register the information needed to show this package
     // in the Help/About dialog of Visual Studio.
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", "2.0", IconResourceID = 400)]
     // This attribute is needed to let the shell know that this package exposes some menus.
     [ProvideMenuResource("Menus.ctmenu", 1)]
     // This attribute registers a tool window exposed by this package.
     [ProvideToolWindow(typeof(MyToolWindow))]
-    [Guid(GuidList.guidMultiLineSearch2PkgString)]
-    public sealed class MultiLineSearch2Package : Package
+    [Guid(GuidList.GUID_MULTI_LINE_SEARCH_PKG_STRING)]
+    // registers the options page
+    //[ProvideOptionPage(GetType(OptionPageMultilineFindReplace), "Environment", "Multiline Find and Replace", 0, 120, true)]
+    // The ProvideProfile attribute registers settings category in Import/Export Settings. Note,
+    // ProvideProfileAttribute is designed to write resource IDs for unmanaged resources
+    // to the system registry. The Visual Studio resource loader expects unmanaged resource IDs 
+    // to have numeric values preceded by "#", and managed resources to have numeric values with
+    // no preceding "#". Therefore, we have to delete the "#" for managed resource IDs in registry manually.
+    [ProvideProfile(typeof(OptionPageMultilineFindReplace), "Environment", "MultilineFindandReplace", 122, 123, true, DescriptionResourceID = 124)]
+    public sealed class MultiLineSearchPackage : Package
     {
+
+        private DteInitializer dteInitializer;
+
+        #region "Properties"
+
+        private EnvDTE80.DTE2 mDte = null;
+        /// <summary>
+        /// Gets the DTE object.
+        /// </summary>
+        /// <value>Nothing if the IDE is not yet fully initialized.</value>
+        /// <remarks></remarks>
+        public EnvDTE80.DTE2 Dte
+        {
+            get { return mDte; }
+        }
+
+
+        /// <summary>
+        /// Gets package main options.
+        /// </summary>
+        /// <value></value>
+        /// <remarks></remarks>
+        public OptionPageMultilineFindReplace PackageOptions
+        {
+            get { return this.GetDialogPage(typeof(OptionPageMultilineFindReplace)) as OptionPageMultilineFindReplace; }
+        }
+
+        #endregion
+
+
+
         /// <summary>
         /// Default constructor of the package.
         /// Inside this method you can place any initialization code that does not require 
@@ -41,7 +88,7 @@ namespace Company.MultiLineSearch2
         /// not sited yet inside Visual Studio environment. The place to do all the other 
         /// initialization is the Initialize method.
         /// </summary>
-        public MultiLineSearch2Package()
+        public MultiLineSearchPackage()
         {
             Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering constructor for: {0}", this.ToString()));
         }
@@ -76,49 +123,57 @@ namespace Company.MultiLineSearch2
         /// </summary>
         protected override void Initialize()
         {
-            Debug.WriteLine (string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
+            Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.GetType().Name));
             base.Initialize();
+
+            InitializeDte();
 
             // Add our command handlers for menu (commands must exist in the .vsct file)
             OleMenuCommandService mcs = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-            if ( null != mcs )
+            if ((mcs != null))
             {
                 // Create the command for the menu item.
-                CommandID menuCommandID = new CommandID(GuidList.guidMultiLineSearch2CmdSet, (int)PkgCmdIDList.cmdidMyCommand);
-                MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID );
-                mcs.AddCommand( menuItem );
-                // Create the command for the tool window
-                CommandID toolwndCommandID = new CommandID(GuidList.guidMultiLineSearch2CmdSet, (int)PkgCmdIDList.cmdidMyTool);
-                MenuCommand menuToolWin = new MenuCommand(ShowToolWindow, toolwndCommandID);
-                mcs.AddCommand( menuToolWin );
+                CommandID menuCommandID = new CommandID(GuidList.GuidMultiLineSearchCmdSet, Convert.ToInt32(PkgCmdIDList.CMDID_MULTILINE_FIND));
+                MenuCommand menuItem = new MenuCommand(new EventHandler(MultilineFindCommandCallback), menuCommandID);
+                mcs.AddCommand(menuItem);
             }
         }
         #endregion
+
+
+        private void InitializeDte()
+        {
+            IVsShell shellService = default(IVsShell);
+
+            this.mDte = this.GetService(typeof(Microsoft.VisualStudio.Shell.Interop.SDTE)) as EnvDTE80.DTE2;
+
+            if (this.Dte == null)
+            {
+                // The IDE is not yet fully initialized
+                shellService = this.GetService(typeof(SVsShell)) as IVsShell;
+                this.dteInitializer = new DteInitializer(shellService, this.InitializeDte);
+            }
+            else
+            {
+                this.dteInitializer = null;
+            }
+        }
+
 
         /// <summary>
         /// This function is the callback used to execute a command when the a menu item is clicked.
         /// See the Initialize method to see how the menu item is associated to this function using
         /// the OleMenuCommandService service and the MenuCommand class.
         /// </summary>
-        private void MenuItemCallback(object sender, EventArgs e)
+        private void MultilineFindCommandCallback(object sender, EventArgs e)
         {
-            // Show a Message Box to prove we were here
-            IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
-            Guid clsid = Guid.Empty;
-            int result;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(
-                       0,
-                       ref clsid,
-                       "MultiLineSearch2",
-                       string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.ToString()),
-                       string.Empty,
-                       0,
-                       OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                       OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
-                       OLEMSGICON.OLEMSGICON_INFO,
-                       0,        // false
-                       out result));
+            //Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
+            //Dim clsid As Guid = Guid.Empty
+            //Dim result As Integer
+            //Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(0, clsid, "Multiline Search and Replace", String.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", Me.GetType().Name), String.Empty, 0, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, OLEMSGICON.OLEMSGICON_INFO, 0, result))
+            ShowToolWindow(sender, e);
         }
+
 
     }
 }

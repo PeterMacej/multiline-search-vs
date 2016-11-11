@@ -2,14 +2,14 @@
 // MUST match guids.h
 using System;
 
-namespace Company.MultiLineSearch2
+namespace Helixoft.MultiLineSearch
 {
     static class GuidList
     {
-        public const string guidMultiLineSearch2PkgString = "b996608b-c716-452d-a711-7cfad5c874c5";
-        public const string guidMultiLineSearch2CmdSetString = "f9d2a289-d7f7-44df-a331-f39b8e29d869";
-        public const string guidToolWindowPersistanceString = "0c0f322c-3ac7-4632-8af2-e707597f9fb1";
+        public const string GUID_MULTI_LINE_SEARCH_PKG_STRING = "29956436-0205-4c9e-9396-abce099383f9";
+        public const string GUID_MULTI_LINE_SEARCH_CMD_SET_STRING = "7d58fc84-2160-4645-be98-eb7f27c358f7";
+        public const string GUID_TOOL_WINDOW_PERSISTANCE_STRING = "5c82a791-7c9f-441e-952b-8848655dd85e";
 
-        public static readonly Guid guidMultiLineSearch2CmdSet = new Guid(guidMultiLineSearch2CmdSetString);
+        public static readonly Guid GuidMultiLineSearchCmdSet = new Guid(GUID_MULTI_LINE_SEARCH_CMD_SET_STRING);
     };
 }

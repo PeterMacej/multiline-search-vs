@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Company.MultiLineSearch2
+namespace Helixoft.MultiLineSearch.Gui
 {
     /// <summary>
     /// Interaction logic for MyControl.xaml
     /// </summary>
-    public partial class MyControl : UserControl
+    public partial class MultilineSearchControl : UserControl
     {
-        public MyControl()
+        public MultilineSearchControl()
         {
             InitializeComponent();
         }

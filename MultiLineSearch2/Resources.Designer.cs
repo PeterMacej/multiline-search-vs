@@ -70,7 +70,7 @@ namespace Helixoft.MultiLineSearch {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Tool Window.
+        ///   Looks up a localized string similar to Multiline Search and Replace.
         /// </summary>
         internal static string ToolWindowTitle {
             get {
