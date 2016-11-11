@@ -110,25 +110,6 @@ Namespace Gui
         ''' <remarks>This method should be called before Show call.</remarks>
         Public Sub InitializeContent()
             Try
-                ' check for updates
-                Dim pkg As MultiLineSearchPackage = TryCast(Me.Package, MultiLineSearchPackage)
-                If pkg IsNot Nothing Then
-                    Dim options As OptionPageMultilineFindReplace = pkg.PackageOptions
-                    If options IsNot Nothing Then
-                        Dim updCheck As New Update.UpdateChecker
-                        Dim checkStatus As Update.UpdateChecker.CheckStatus
-                        checkStatus = updCheck.CheckForUpdatesAutomatically(options.CheckForUpdatesInterval, _
-                            options.LastCheckForUpdatesDate, _
-                            AddressOf pkg.ShowOptions)
-                        Select Case checkStatus
-                            Case Update.UpdateChecker.CheckStatus.CheckNotPerformed
-                            Case Else
-                                options.LastCheckForUpdatesDate = DateTime.Today
-                                options.SaveSettingsToStorage()
-                        End Select
-                    End If
-                End If
-
                 ' prepopulate Find What field, if needed
                 Dim findInit As Boolean = False
                 Try

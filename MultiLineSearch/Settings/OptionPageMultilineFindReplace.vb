@@ -16,9 +16,6 @@ Namespace Settings
         Inherits DialogPage
 
 
-        Private pageCtrl As OptionPageMultilineFindReplaceCtrl = Nothing
-
-
         Public Sub New()
             SetDefaultValues()
         End Sub
@@ -28,23 +25,13 @@ Namespace Settings
         <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)> _
         Protected Overrides ReadOnly Property Window() As IWin32Window
             Get
-                If pageCtrl Is Nothing Then
-                    pageCtrl = New OptionPageMultilineFindReplaceCtrl()
-                End If
-                pageCtrl.Initialize(Me)
-
-                Return pageCtrl
+                ' get default grid view, we will never display the page
+                Return MyBase.Window
             End Get
         End Property
 
 
         Protected Overrides Sub OnApply(ByVal e As Microsoft.VisualStudio.Shell.DialogPage.PageApplyEventArgs)
-            If e.ApplyBehavior = ApplyKind.Apply Then
-                If pageCtrl IsNot Nothing Then
-                    pageCtrl.ApplyChanges()
-                End If
-            End If
-
             ' persist settings
             MyBase.OnApply(e)
         End Sub
@@ -52,8 +39,6 @@ Namespace Settings
 
         Protected Overrides Sub OnActivate(ByVal e As System.ComponentModel.CancelEventArgs)
             MyBase.OnActivate(e)
-
-            pageCtrl.Initialize(Me)
         End Sub
 
 
@@ -72,8 +57,6 @@ Namespace Settings
         ''' </summary>
         ''' <remarks></remarks>
         Private Sub SetDefaultValues()
-            Me.CheckForUpdatesInterval = 7
-            Me.LastCheckForUpdatesDate = DateTime.Today
             Me.IsFindOptionsCollapsed = False
             Me.IgnoreLeadingWs = False
             Me.IgnoreTrailingWs = False
@@ -83,41 +66,6 @@ Namespace Settings
 
 
 #Region "Settings properties"
-
-
-        Private mCheckForUpdatesInterval As Integer
-        ''' <summary>
-        ''' Gets or sets interval of automatic check for updates in days.
-        ''' </summary>
-        ''' <value>-1 if check is disabled.</value>
-        ''' <remarks></remarks>
-        <Category("Update")> _
-        <DisplayName("Automatically check for updates")> _
-        <Description("Interval of automatic check for updates in days.")> _
-        Public Property CheckForUpdatesInterval() As Integer
-            Get
-                Return mCheckForUpdatesInterval
-            End Get
-            Set(ByVal value As Integer)
-                mCheckForUpdatesInterval = value
-            End Set
-        End Property
-
-
-        Private mLastCheckForUpdatesDate As DateTime
-        ''' <summary>
-        ''' Gets or sets the date of the last check for updates.
-        ''' </summary>
-        ''' <value></value>
-        ''' <remarks></remarks>
-        Public Property LastCheckForUpdatesDate() As DateTime
-            Get
-                Return mLastCheckForUpdatesDate
-            End Get
-            Set(ByVal value As DateTime)
-                mLastCheckForUpdatesDate = value
-            End Set
-        End Property
 
 
         Private mIsFindOptionsCollapsed As Boolean

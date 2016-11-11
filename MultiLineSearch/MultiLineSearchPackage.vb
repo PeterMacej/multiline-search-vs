@@ -26,7 +26,7 @@ Imports Helixoft.MultiLineSearch.Settings
 ''' The PackageRegistration attribute tells the registration utility (regpkg.exe) that this class needs
 ''' to be registered as package.
 '''
-''' A Visual Studio component can be registered under different regitry roots; for instance
+''' A Visual Studio component can be registered under different registry roots; for instance
 ''' when you debug your package you want to register it in the experimental hive. The DefaultRegistryRoot
 ''' attribute specifies the registry root to use if no one is provided to regpkg.exe with
 ''' the /root switch.
@@ -50,23 +50,21 @@ Imports Helixoft.MultiLineSearch.Settings
 ''' to have numeric values preceded by "#", and managed resources to have numeric values with
 ''' no preceding "#". Therefore, we have to delete the "#" for managed resource IDs in registry manually.
 ''' </remarks>
-<PackageRegistration(UseManagedResourcesOnly:=True), _
-DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\8.0"), _
-InstalledProductRegistration(False, "#110", "#112", "1.6", IconResourceID:=400), _
-ProvideLoadKey("Standard", "1.6", "Multiline Search and Replace", "Helixoft", 1), _
-ProvideMenuResource(1000, 1), _
-ProvideToolWindow(GetType(MyToolWindow)), _
-ProvideOptionPage(GetType(OptionPageMultilineFindReplace), _
-    "Environment", "Multiline Find and Replace", 0, 120, True), _
-ProvideProfile(GetType(OptionPageMultilineFindReplace), _
-    "Environment", "MultilineFindandReplace", 122, 123, True, DescriptionResourceID:=124), _
-Guid(GuidList.GUID_MULTI_LINE_SEARCH_PKG_STRING)> _
+'''<ProvideOptionPage(GetType(OptionPageMultilineFindReplace),
+'''    "Environment", "Multiline Find and Replace", 0, 120, True)>
+<PackageRegistration(UseManagedResourcesOnly:=True)>
+<InstalledProductRegistration(False, "#110", "#112", "1.6", IconResourceID:=400)>
+<ProvideLoadKey("Standard", "1.6", "Multiline Search and Replace", "Helixoft", 1)>
+<ProvideMenuResource(1000, 1)>
+<ProvideToolWindow(GetType(MyToolWindow))>
+<ProvideProfile(GetType(OptionPageMultilineFindReplace),
+    "Environment", "MultilineFindandReplace", 122, 123, True, DescriptionResourceID:=124)>
+<Guid(GuidList.GUID_MULTI_LINE_SEARCH_PKG_STRING)>
 Public NotInheritable Class MultiLineSearchPackage
     Inherits Package
 
 
     Private dteInitializer As DteInitializer
-    Private searchForm As MultilineSearchForm
 
 
 #Region "Properties"
@@ -85,18 +83,6 @@ Public NotInheritable Class MultiLineSearchPackage
 
 
     ''' <summary>
-    ''' Indicates whether the multiline search window should be modal dialog or modeless (toolwindow).
-    ''' </summary>
-    ''' <value></value>
-    ''' <remarks></remarks>
-    Private ReadOnly Property UseModalWindow() As Boolean
-        Get
-            Return False
-        End Get
-    End Property
-
-
-    ''' <summary>
     ''' Gets package main options.
     ''' </summary>
     ''' <value></value>
@@ -106,7 +92,6 @@ Public NotInheritable Class MultiLineSearchPackage
             Return TryCast(Me.GetDialogPage(GetType(OptionPageMultilineFindReplace)), OptionPageMultilineFindReplace)
         End Get
     End Property
-
 #End Region
 
 
@@ -171,18 +156,11 @@ Public NotInheritable Class MultiLineSearchPackage
     ''' </summary>
     Private Sub MultilineFindCommandCallback(ByVal sender As Object, ByVal e As EventArgs)
 
-        If Me.UseModalWindow Then
-            If searchForm Is Nothing Then
-                searchForm = New MultilineSearchForm(Dte)
-            End If
-            Dialogs.ShowAsModal(searchForm)
-        Else
-            'Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
-            'Dim clsid As Guid = Guid.Empty
-            'Dim result As Integer
-            'Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(0, clsid, "Multiline Search and Replace", String.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", Me.GetType().Name), String.Empty, 0, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, OLEMSGICON.OLEMSGICON_INFO, 0, result))
-            ShowToolWindow(sender, e)
-        End If
+        'Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
+        'Dim clsid As Guid = Guid.Empty
+        'Dim result As Integer
+        'Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(0, clsid, "Multiline Search and Replace", String.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", Me.GetType().Name), String.Empty, 0, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST, OLEMSGICON.OLEMSGICON_INFO, 0, result))
+        ShowToolWindow(sender, e)
     End Sub
 
 
@@ -205,14 +183,6 @@ Public NotInheritable Class MultiLineSearchPackage
         Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show())
     End Sub
 
-
-    ''' <summary>
-    ''' Shows the main options page.
-    ''' </summary>
-    ''' <remarks></remarks>
-    Public Sub ShowOptions()
-        Me.ShowOptionPage(GetType(OptionPageMultilineFindReplace))
-    End Sub
 
 End Class
 
