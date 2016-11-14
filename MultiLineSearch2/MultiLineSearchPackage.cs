@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Helixoft.MultiLineSearch.Settings;
+using Helixoft.MultiLineSearch.Gui;
 
 
 namespace Helixoft.MultiLineSearch

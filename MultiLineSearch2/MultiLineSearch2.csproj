@@ -25,6 +25,11 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
+  <PropertyGroup>
+    <!-- Manually added, Helixoft -->
+    <!-- This is added to prevent forced migrations in Visual Studio 2012 and newer -->
+    <MinimumVisualStudioVersion Condition="'$(VisualStudioVersion)' != ''">$(VisualStudioVersion)</MinimumVisualStudioVersion>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,7 +45,7 @@
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug 2015|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -48,6 +53,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DeployExtension>True</DeployExtension>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -213,13 +219,19 @@
     <Compile Include="SearchReplace\ISearchReplaceProvider.cs" />
     <Compile Include="SearchReplace\FindReplaceOptions.cs" />
     <Compile Include="SearchReplace\MultilineSearchReplace.cs" />
-    <VSCTCompile Include="MultiLineSearch.vsct" />
+    <Compile Include="Gui\AfterSearchEventArgs.cs" />
+    <Compile Include="Gui\BeforeSearchEventArgs.cs" />
+    <Compile Include="Gui\DocumentTextSelection.cs" />
+    <VSCTCompile Include="MultiLineSearch.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
     <Resource Include="Resources\main_icon.ico" />
     <Resource Include="Resources\main_icon.png" />
     <Resource Include="Resources\vs2013_replace_in_files.png" />
     <Resource Include="Resources\vs2013_replace.png" />
     <Resource Include="Resources\vs2013_find_in_files.png" />
     <Resource Include="Resources\vs2013_find.png" />
+    <Compile Include="Gui\MultilineSearchControlOptions.cs" />
     <Content Include="Resources\vs_icons.htm" />
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\minus.png" />

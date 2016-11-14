@@ -7,6 +7,9 @@ using System.Windows;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
+using Helixoft.MultiLineSearch.SearchReplace;
+using Helixoft.MultiLineSearch.Settings;
+
 
 namespace Helixoft.MultiLineSearch.Gui
 {
@@ -193,7 +196,7 @@ namespace Helixoft.MultiLineSearch.Gui
         {
             // save options
             MultilineSearchControlOptions ctrlOptions = default(MultilineSearchControlOptions);
-            ctrlOptions = control.GetOptions;
+            ctrlOptions = control.GetOptions();
             try
             {
                 MultiLineSearchPackage pkg = this.Package as MultiLineSearchPackage;
