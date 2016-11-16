@@ -7,7 +7,7 @@
              Foreground="{DynamicResource VsBrush.WindowText}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             Name="MyToolWindow">
+             x:Name="MultilineSearchControl1">
 
     <!-- Resources of your control, dictionaries, styles, etc. -->
     <UserControl.Resources>
@@ -24,22 +24,80 @@
             <RowDefinition Height="5*" MinHeight="70"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="5*" MinHeight="70"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <DockPanel  MinHeight="50">
             <TextBlock Margin="10,10,10,5" HorizontalAlignment="Left" Text="Find what:" VerticalAlignment="Top" DockPanel.Dock="Top"/>
             <TextBox x:Name="FindBox" Margin="10,-5.2,10,10.2" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"/>
         </DockPanel>
+
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Margin="5,0" Grid.Row="1" VerticalAlignment="Center" ResizeDirection="Rows" ResizeBehavior="PreviousAndNext" ShowsPreview="True" HorizontalContentAlignment="Center"  Opacity="0.55" Background="{x:Null}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="0,0,0,1">
         </GridSplitter>
+
         <DockPanel  Grid.Row="2" MinHeight="50">
             <TextBlock Margin="10,10,10,5" HorizontalAlignment="Left" Text="Replace with:" VerticalAlignment="Top" DockPanel.Dock="Top"/>
             <TextBox x:Name="ReplaceBox" Margin="10,-5.2,10,15.4" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
         </DockPanel>
+
         <Expander x:Name="expander" Header="Find options" Margin="10,5.4,10,0" Grid.Row="3" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" IsExpanded="True" Style="{DynamicResource PlusMinusExpander}">
             <Grid Background="#FFE5E5E5">
                 <TextBlock>abc</TextBlock>
             </Grid>
         </Expander>
+
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="FindBtn" Grid.Column="1" Margin="3,10,3,3" Padding="3,1" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/MultiLineSearch;component/Resources/vs2013_find.png" Width="16" Height="16" Margin="0,0,3,0"/>
+                    <TextBlock Text="Find" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="FindInFilesBtn" Grid.Column="2" Margin="3,10,10,3" Padding="3,1" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/MultiLineSearch;component/Resources/vs2013_find_in_files.png" Width="16" Height="16" Margin="0,0,3,0"/>
+                    <TextBlock Text="Find in Files" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+
+
+            <Button x:Name="ReplaceBtn" Grid.Row="1" Grid.Column="1" Margin="3" Padding="3,1" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/MultiLineSearch;component/Resources/vs2013_replace.png" Width="16" Height="16" Margin="0,0,3,0"/>
+                    <TextBlock Text="Replace" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="ReplaceInFilesBtn" Grid.Row="1" Grid.Column="2" Margin="3,3,10,3" Padding="3,1" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/MultiLineSearch;component/Resources/vs2013_replace_in_files.png" Width="16" Height="16" Margin="0,0,3,0"/>
+                    <TextBlock Text="Replace in Files" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+            
+
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="3" >
+                <Separator Margin="0,8,0,2" />
+                <TextBlock FontSize="10" TextAlignment="Center">
+                    <Hyperlink NavigateUri="http://www.helixoft.com/vsdocman/overview.html" RequestNavigate="Hyperlink_RequestNavigate">
+                        <Hyperlink.Inlines>
+                            <Run Text="Generate documentation with VSdocman"/>
+                        </Hyperlink.Inlines>
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </UserControl>

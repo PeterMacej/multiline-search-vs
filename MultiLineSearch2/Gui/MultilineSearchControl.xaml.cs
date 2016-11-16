@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Helixoft.MultiLineSearch.SearchReplace;
 using System.ComponentModel;
+using System.Diagnostics;
 
 
 namespace Helixoft.MultiLineSearch.Gui
@@ -134,6 +135,7 @@ namespace Helixoft.MultiLineSearch.Gui
 
 
 
+        
         /// <summary>
         /// Initializes the control with specified options.
         /// </summary>
@@ -160,9 +162,17 @@ namespace Helixoft.MultiLineSearch.Gui
 
 
 
-
-
-
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
 
 

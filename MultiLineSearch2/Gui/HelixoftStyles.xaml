@@ -6,7 +6,7 @@
         <ResourceDictionary Source="VisualStudioStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- GridSplitter -->
+    <!-- GridSplitter with three dots -->
     <Style TargetType="GridSplitter">
         <Setter Property="Template">
             <Setter.Value>
@@ -34,7 +34,7 @@
         </Setter>
     </Style>
 
-    <!-- Expander -->
+    <!-- Expander with plus & minus -->
     <Style x:Key="ExpanderHeaderFocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
