@@ -169,11 +169,6 @@
     </Compile>
     <Compile Include="Gui\MyToolWindow.cs" />
     <Compile Include="Guids.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MultiLineSearchPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -182,8 +177,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
@@ -202,7 +197,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Gui\HelixoftStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\MultilineSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\VisualStudioStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +227,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DteInitializer.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Settings\IdeSettings.cs" />
     <Compile Include="Settings\OptionPageMultilineFindReplace.cs">
@@ -251,8 +259,6 @@
     <Compile Include="Gui\MultilineSearchControlOptions.cs" />
     <Content Include="MultiLineSearch2.csproj.user" />
     <Content Include="Resources\vs_icons.htm" />
-    <Resource Include="Resources\plus.png" />
-    <Resource Include="Resources\minus.png" />
     <Resource Include="Resources\main_icon_for_toolwindow.bmp" />
   </ItemGroup>
   <PropertyGroup>

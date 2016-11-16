@@ -8,10 +8,38 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
+
+    <!-- Resources of your control, dictionaries, styles, etc. -->
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="VisualStudioStyles.xaml" />
+                <ResourceDictionary Source="HelixoftStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <TextBlock Margin="10" HorizontalAlignment="Center">My Tool Window</TextBlock>
-            <Button Content="_Click Me!" Click="button1_Click" Width="120" Height="80" Name="button1"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" MinHeight="70"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="5*" MinHeight="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel  MinHeight="50">
+            <TextBlock Margin="10,10,10,5" HorizontalAlignment="Left" Text="Find what:" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+            <TextBox x:Name="FindBox" Margin="10,-5.2,10,10.2" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+        </DockPanel>
+        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Margin="5,0" Grid.Row="1" VerticalAlignment="Center" ResizeDirection="Rows" ResizeBehavior="PreviousAndNext" ShowsPreview="True" HorizontalContentAlignment="Center"  Opacity="0.55" Background="{x:Null}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="0,0,0,1">
+        </GridSplitter>
+        <DockPanel  Grid.Row="2" MinHeight="50">
+            <TextBlock Margin="10,10,10,5" HorizontalAlignment="Left" Text="Replace with:" VerticalAlignment="Top" DockPanel.Dock="Top"/>
+            <TextBox x:Name="ReplaceBox" Margin="10,-5.2,10,15.4" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+        </DockPanel>
+        <Expander x:Name="expander" Header="Find options" Margin="10,5.4,10,0" Grid.Row="3" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" IsExpanded="True" Style="{DynamicResource PlusMinusExpander}">
+            <Grid Background="#FFE5E5E5">
+                <TextBlock>abc</TextBlock>
+            </Grid>
+        </Expander>
     </Grid>
 </UserControl>

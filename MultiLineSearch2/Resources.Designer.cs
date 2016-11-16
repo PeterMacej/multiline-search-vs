@@ -70,11 +70,61 @@ namespace Helixoft.MultiLineSearch {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap help {
+            get {
+                object obj = ResourceManager.GetObject("help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiline Search and Replace.
         /// </summary>
         internal static string ToolWindowTitle {
             get {
                 return ResourceManager.GetString("ToolWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vs2013_find {
+            get {
+                object obj = ResourceManager.GetObject("vs2013_find", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vs2013_find_in_files {
+            get {
+                object obj = ResourceManager.GetObject("vs2013_find_in_files", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vs2013_replace {
+            get {
+                object obj = ResourceManager.GetObject("vs2013_replace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vs2013_replace_in_files {
+            get {
+                object obj = ResourceManager.GetObject("vs2013_replace_in_files", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
