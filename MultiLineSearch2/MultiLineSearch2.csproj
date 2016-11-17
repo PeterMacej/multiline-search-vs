@@ -164,12 +164,14 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gui\HelpProvider.cs" />
     <Compile Include="Gui\MultilineSearchControl.xaml.cs">
       <DependentUpon>MultilineSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\MyToolWindow.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Gui\SendKeys.cs" />
     <Compile Include="MultiLineSearchPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
@@ -186,6 +188,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Help\MultilineSearch.chm">
+      <Link>MultilineSearch.chm</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="Key.snk" />
     <None Include="ResetVsExperimental2013.bat" />
     <None Include="ResetVsExperimental2015.bat" />

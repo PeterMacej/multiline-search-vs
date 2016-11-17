@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:help="clr-namespace:Helixoft.MultiLineSearch.Gui" 
              Background="{DynamicResource VsBrush.Window}"
              Foreground="{DynamicResource VsBrush.WindowText}"
              mc:Ignorable="d"
              d:DesignHeight="328.105" d:DesignWidth="300"
-             x:Name="MultilineSearchControl1">
+             x:Name="MultilineSearchControl1" help:HelpProvider.ShowHelp="True"
+             KeyDown="MultilineSearchControl1_KeyDown">
 
     <!-- Resources of your control, dictionaries, styles, etc. -->
     <UserControl.Resources>
@@ -41,12 +43,12 @@
             <TextBox x:Name="ReplaceBox" Margin="10,-5.2,10,15.4" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
         </DockPanel>
 
-        <Expander x:Name="expander" Header="Find options" Margin="10,5.4,10,0" Grid.Row="3" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" IsExpanded="True" Style="{DynamicResource PlusMinusExpander}">
+        <Expander x:Name="expander" Header="Find options" Margin="10,5.4,10,0" Grid.Row="3" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" IsExpanded="True" Style="{DynamicResource PlusMinusExpander}" help:HelpProvider.HelpNavigator="Topic" help:HelpProvider.HelpKeyword="find_options.htm">
             <Grid Margin="10,0,0,0">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,5">
                     <StackPanel Orientation="Horizontal">
                         <CheckBox x:Name="CheckBoxIgnoreLeadWs" Content="Ignore leading whitespaces" ToolTip="If this option is selected, then all leading whitespaces on each line, except the first one, are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space or a tab here."/>
-                        <Image x:Name="HelpIgnoreWs" Source="/MultiLineSearch;component/Resources/help.png" Width="16" Height="16" Margin="10,0,0,0" />
+                        <Image x:Name="HelpIgnoreWs" Source="/MultiLineSearch;component/Resources/help.png" Width="16" Height="16" Margin="10,0,0,0" MouseUp="HelpIgnoreWs_MouseUp" />
                     </StackPanel>
                     <CheckBox x:Name="CheckBoxIgnoreTrailWs" Content="Ignore trailing whitespaces" ToolTip="If this option is selected, then all trailing whitespaces on each line, except the last one, are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space or a tab here."/>
                     <CheckBox x:Name="CheckBoxIgnoreAllWs" Content="Ignore all whitespaces" ToolTip="If this option is selected, then all whitespaces on each line are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space, a tab or a newline here."/>

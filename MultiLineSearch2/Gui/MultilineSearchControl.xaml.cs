@@ -14,7 +14,11 @@ using System.Windows.Shapes;
 using Helixoft.MultiLineSearch.SearchReplace;
 using System.ComponentModel;
 using System.Diagnostics;
-
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using swf = System.Windows.Forms;
+using System.Windows.Interop;
 
 namespace Helixoft.MultiLineSearch.Gui
 {
@@ -134,8 +138,29 @@ namespace Helixoft.MultiLineSearch.Gui
         }
 
 
+        /// <summary>
+        /// Initialize the control.
+        /// </summary>
+        /// <remarks></remarks>
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            // set a help file
+            try
+            {
+                string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                path = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(path), "MultiLineSearch.chm");
+                HelpProvider.HelpNamespace = path;
+                HelpProvider.HelpEnabled = true;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
-        
+
+
+
         /// <summary>
         /// Initializes the control with specified options.
         /// </summary>
@@ -159,7 +184,30 @@ namespace Helixoft.MultiLineSearch.Gui
         }
 
 
+        /// <summary>
+        /// Shows the F1 help for a specified control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <remarks></remarks>
+        private void ShowF1Help(UIElement control)
+        {
+            if (!string.IsNullOrEmpty(HelpProvider.HelpNamespace))
+            {
+                HelpProvider.ShowHelp(control);
+            }
+        }
 
+
+        private void CloseWindow()
+        {
+            try
+            {
+                Window.GetWindow(this).Close();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -175,19 +223,42 @@ namespace Helixoft.MultiLineSearch.Gui
         }
 
 
-
-
-
-
-
-
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions")]
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void HelpIgnoreWs_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(string.Format(System.Globalization.CultureInfo.CurrentUICulture, "We are inside {0}.button1_Click()", this.ToString()),
-                            "My Tool Window");
-
+            try
+            {
+                ShowF1Help(sender as UIElement);
+            }
+            catch (Exception ex)
+            {
+            }
         }
+
+
+        /// <summary>
+        /// Let the control process ESC.
+        /// </summary>
+        private void MultilineSearchControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.Key )
+                {
+                    case Key.Escape:
+                        CloseWindow();
+                        break;
+                    //case Key.F1:
+                    //    ShowF1Help(sender as UIElement);
+                    //    break;
+                    default:
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
     }
 }

@@ -9,6 +9,10 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 using Helixoft.MultiLineSearch.SearchReplace;
 using Helixoft.MultiLineSearch.Settings;
+using System.Windows.Forms;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Interop;
 
 
 namespace Helixoft.MultiLineSearch.Gui
@@ -110,6 +114,33 @@ namespace Helixoft.MultiLineSearch.Gui
             control.Canceling += control_Canceling;
 
             base.Content = control;
+        }
+
+
+        /// <summary>
+        /// Process F1.
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        protected override bool PreProcessMessage(ref Message m)
+        {
+            const int WM_KEYDOWN = 0x100;
+            if (m.Msg== WM_KEYDOWN)
+            {
+                Keys keyCode = (Keys)m.WParam & Keys.KeyCode;
+                switch (keyCode)
+                {
+                    case Keys.F1:
+                        // F1 is not passed to this.Content by Visual Studio.
+                        // Instead, it always opens MSDN.
+                        // Let's pass F1 manually here and stop VS from opening MSDN.
+                        SendKeys.Send(Key.F1);
+                        return true;    // processed
+                        break;
+                }
+                        
+            }
+            return base.PreProcessMessage(ref m);
         }
 
 
