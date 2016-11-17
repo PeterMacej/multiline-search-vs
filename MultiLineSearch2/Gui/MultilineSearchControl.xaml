@@ -6,7 +6,7 @@
              Background="{DynamicResource VsBrush.Window}"
              Foreground="{DynamicResource VsBrush.WindowText}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="328.105" d:DesignWidth="300"
              x:Name="MultilineSearchControl1">
 
     <!-- Resources of your control, dictionaries, styles, etc. -->
@@ -42,8 +42,15 @@
         </DockPanel>
 
         <Expander x:Name="expander" Header="Find options" Margin="10,5.4,10,0" Grid.Row="3" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" IsExpanded="True" Style="{DynamicResource PlusMinusExpander}">
-            <Grid Background="#FFE5E5E5">
-                <TextBlock>abc</TextBlock>
+            <Grid Margin="10,0,0,0">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="CheckBoxIgnoreLeadWs" Content="Ignore leading whitespaces" ToolTip="If this option is selected, then all leading whitespaces on each line, except the first one, are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space or a tab here."/>
+                        <Image x:Name="HelpIgnoreWs" Source="/MultiLineSearch;component/Resources/help.png" Width="16" Height="16" Margin="10,0,0,0" />
+                    </StackPanel>
+                    <CheckBox x:Name="CheckBoxIgnoreTrailWs" Content="Ignore trailing whitespaces" ToolTip="If this option is selected, then all trailing whitespaces on each line, except the last one, are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space or a tab here."/>
+                    <CheckBox x:Name="CheckBoxIgnoreAllWs" Content="Ignore all whitespaces" ToolTip="If this option is selected, then all whitespaces on each line are ignored. This applies to both, Find what text and a searched text. Whitespace is defined as a space, a tab or a newline here."/>
+                </StackPanel>
             </Grid>
         </Expander>
 
@@ -85,7 +92,7 @@
                     <TextBlock Text="Replace in Files" VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
-            
+
 
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="3" >
                 <Separator Margin="0,8,0,2" />

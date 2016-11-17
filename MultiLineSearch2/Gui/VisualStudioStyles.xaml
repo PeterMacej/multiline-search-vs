@@ -21,4 +21,8 @@
         <Setter Property="Foreground" Value="{DynamicResource {x:Static vsShell:EnvironmentColors.ToolWindowTextBrushKey}}"/>
     </Style>
 
+    <Style TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsShell:EnvironmentColors.ToolWindowTextBrushKey}}"/>
+    </Style>
+
 </ResourceDictionary>
