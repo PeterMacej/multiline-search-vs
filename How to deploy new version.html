@@ -5,31 +5,16 @@
 </head>
 <body>
     <ol>
-        <li>Generate a new PLK at <a href="http://msdn.microsoft.com/en-us/vstudio/cc655795">
-            http://msdn.microsoft.com/en-us/vstudio/cc655795</a> with the following parameters:
-            <ul>
-                <li><strong>Contact Email Address:</strong> peter@helixoft.com</li>
-                <li><strong>Company Name:</strong> Helixoft</li>
-                <li><strong>Product and Package Name:</strong> Multiline Search and Replace</li>
-                <li><strong>Package GUID:</strong> {29956436-0205-4c9e-9396-abce099383f9}</li>
-                <li><strong>Package Version:</strong> X.Y</li>
-                <li><strong>Min Product Edition:</strong> Standard</li>
-                <li><strong>Min VS Version:</strong> Visual Studio 2005</li>
-            </ul>
-            </li>
-        <li>Insert the PLK in <strong><a href="file://MultiLineSearch\VSPackage.resx ">VSpackage.resx</a></strong>,
-            as resource with ID 1.</li>
         <li>Change version in:
             <ul>
-                <li><strong>AssemblyInfo.vb</strong> (assembly and file version)&nbsp;</li>
-                <li><strong>MultiLineSearchPackage.vb</strong> in ProvideLoadKey and InstalledProductRegistration
-                    attributes. </li>
-                <li><strong>Properties.wxi</strong> on 3 lines.</li>
-                <li><strong>extension.VsixManifest</strong>&nbsp;</li>
+                <li><strong>AssemblyInfo.cs</strong> (assembly and file version)&nbsp;</li>
+                <li><strong>MultiLineSearchPackage.cs</strong> in InstalledProductRegistration
+                    attribute. </li>
+                <li><strong>release_notes.rtf</strong></li>
+                <li><strong>source.extension.vsixmanifest</strong>&nbsp;</li>
             </ul>
         
         </li>
-        <li>Update <strong>update.xml</strong>.</li>
         <li>Post in blog, FB, G+ and Twitter.</li>
     </ol>
 

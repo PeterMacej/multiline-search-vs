@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,16 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\VSdocman\src\WixCustomActions\WixCustomActions.vbproj">
-      <Name>WixCustomActions</Name>
-      <Project>{18878ec6-74cd-4b2a-b039-34d328f4baf7}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixUtilExtension">
