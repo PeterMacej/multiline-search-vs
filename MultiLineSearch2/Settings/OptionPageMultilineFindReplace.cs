@@ -70,7 +70,7 @@ namespace Helixoft.MultiLineSearch.Settings
             this.IgnoreLeadingWs = false;
             this.IgnoreTrailingWs = false;
             this.IgnoreAllWs = false;
-            this.SplitterPosition = 100;
+            this.SplitterPosition = 50;
         }
 
 

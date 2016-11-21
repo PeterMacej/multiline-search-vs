@@ -45,22 +45,6 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                 // escape the texts to regex
                 ConvertFindAndReplaceToRegEx(ref findText, ref replaceText, searchOptions);
 
-                // temporarily disable Tools - Options -
-                // Environment - Documents - Initialize Find text from editor
-                bool oldFindInit = false;
-                try
-                {
-                    //vs 2005/2008
-                    EnvDTE.Properties props = default(EnvDTE.Properties);
-                    props = dte.Properties["Environment", "FindAndReplace"];
-                    EnvDTE.Property prop = props.Item("InitializeFromEditor");
-                    oldFindInit = Convert.ToBoolean(prop.Value);
-                    prop.Value = false;
-                }
-                catch (Exception ex2)
-                {
-                }
-
                 // dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr   ' no effect in VS 2013
                 switch (searchOptions.SearchKind)
                 {
@@ -100,26 +84,12 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                     default:
                         break;
                 }
-
-                // restore Tools - Options -
-                // Environment - Documents - Initialize Find text from editor
-                try
-                {
-                    //vs 2005/2008
-                    EnvDTE.Properties props = default(EnvDTE.Properties);
-                    props = dte.Properties["Environment", "FindAndReplace"];
-                    EnvDTE.Property prop = props.Item("InitializeFromEditor");
-                    prop.Value = oldFindInit;
-                }
-                catch (Exception ex2)
-                {
-                }
             }
         }
 
 
         /// <summary>
-        /// Turn's on the regex option in the Find/Replace dialog.
+        /// Turns on the regex option in the Find/Replace dialog.
         /// </summary>
         /// <remarks>In VS 2005-2010?, it was enough to set 
         /// Dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr
@@ -152,7 +122,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }
                     // VS 2005-2010
-                    if (settingsStore.Settings.TryGetValue("Document Options",out setting))
+                    if (settingsStore.Settings.TryGetValue("Document Options", out setting))
                     {
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }
@@ -172,7 +142,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
 
 
         /// <summary>
-        /// Turn's on the regex option in the Find/Replace in Files dialog.
+        /// Turns on the regex option in the Find/Replace in Files dialog.
         /// </summary>
         /// <remarks>In VS 2005-2010?, it was enough to set 
         /// Dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr
@@ -205,7 +175,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }
                     // VS 2005-2010
-                    if (settingsStore.Settings.TryGetValue("FiF Options",out setting))
+                    if (settingsStore.Settings.TryGetValue("FiF Options", out setting))
                     {
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }
@@ -224,21 +194,21 @@ namespace Helixoft.MultiLineSearch.SearchReplace
         }
 
 
-        private double GetVsVersion()
-        {
-            double version = 10;
-            // default is VS 2010
-            try
-            {
-                version = double.Parse(dte.Version, new System.Globalization.CultureInfo("en-US", false).NumberFormat);
-                //use dot as decimal separator
-            }
-            catch (Exception ex)
-            {
-            }
+        //private double GetVsVersion()
+        //{
+        //    double version = 10;
+        //    // default is VS 2010
+        //    try
+        //    {
+        //        version = double.Parse(dte.Version, new System.Globalization.CultureInfo("en-US", false).NumberFormat);
+        //        //use dot as decimal separator
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
 
-            return version;
-        }
+        //    return version;
+        //}
 
 
         /// <summary>
@@ -254,16 +224,12 @@ namespace Helixoft.MultiLineSearch.SearchReplace
             replaceWith = ConvertReplaceWithToRegEx(replaceWith);
 
             // define an empty group in Find what, if necessary
-            if (GetVsVersion() > 10)
+            if (replaceWith.IndexOf("$+") >= 0)
             {
-                if (replaceWith.IndexOf("$+") >= 0)
-                {
-                    // replaceWith contains the $+ which substitutes the last group
-                    findWhat += "()";
-                    // create the last (and only) (and empty) group
-                }
+                // replaceWith contains the $+ which substitutes the last group
+                findWhat += "()";
+                // create the last (and only) (and empty) group
             }
-
         }
 
 
@@ -300,17 +266,8 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                 }
             }
 
-
-            // Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
-            // the same as .NET regex where \r is defined and needed.
-            if (GetVsVersion() > 10)
-            {
-                original = original.Replace("\r\n", "((\\r\\n)|\\n|\\r)");
-            }
-            else
-            {
-                original = original.Replace("\r\n", "\\n");
-            }
+            // Escape newlines
+            original = original.Replace("\r\n", "((\\r\\n)|\\n|\\r)");
 
             return original;
         }
@@ -328,70 +285,32 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                 //uses the last non-empty value from history. To prevent this,
                 //we must pass some non-empty value which produces empty text.
 
-                if (GetVsVersion() > 10)
-                {
-                    // Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
-                    // the same as .NET regex where $ is used for group replacement.
-                    return "$+";
-                    // substitute the last group (which needs to be defined in 'Find what' and empty)
-                }
-                else
-                {
-                    // In VS 2005-2010, \number is used for group replacement
-                    //The ninth regex tagged expression seems good for this as it is very
-                    //unlikely that user will add 9 tagged expressions in Find field in
-                    //original VS Find dialog after it is pre-filled with this macro.
-                    return "\\9";
-                }
+                // The $ is used for group replacement.
+                return "$+";
+                // substitute the last group (which needs to be defined in 'Find what' and empty)
             }
 
             // Escape regex special chars used in Replace
-            if (GetVsVersion() > 10)
-            {
-                // Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
-                // the same as .NET regex where $ is used for group replacement.
-                original = original.Replace("$", "$$");
-                // All other characters are treated as literals, except for \r \n and \t. All other
-                // combinations are OK. For test, try to replace with the following:
-                // \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\w\v\x\y\z\1\0\9\A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\W\V\X\Y\Z\~\!\@\#\$\%\^\&\*\(\)\-\=\+\?\<\>\:\"\'\[\]\{\}\/
-                // The \\ doesn't work for escaping the \ character. So we cannot escape \r with \\r. We
-                // need to use more complicated \$+r, where again, the $+ substitutes the last group
-                // (which needs to be defined in 'Find what' and empty). This is important if we want to replace
-                // with a text like:
-                // C:\MyFolder\root\nextLevel\test
-                // Without escaping we would get:
-                // C:\MyFolder
-                // oot
-                // extLevel  est
-                original = original.Replace("\\r", "\\$+r");
-                original = original.Replace("\\n", "\\$+n");
-                original = original.Replace("\\t", "\\$+t");
-            }
-            else
-            {
-                // In VS 2005-2010, \number is used for group replacement
-                // All other characters are treated as literals.
-                char[] specialChars = null;
-                specialChars = "\\".ToCharArray();
-                char c = '\0';
-                foreach (char c_loopVariable in specialChars)
-                {
-                    c = c_loopVariable;
-                    original = original.Replace(c.ToString(), "\\" + c.ToString());
-                }
-            }
+            // The $ is used for group replacement.
+            original = original.Replace("$", "$$");
+            // All other characters are treated as literals, except for \r \n and \t. All other
+            // combinations are OK. For test, try to replace with the following:
+            // \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\w\v\x\y\z\1\0\9\A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\W\V\X\Y\Z\~\!\@\#\$\%\^\&\*\(\)\-\=\+\?\<\>\:\"\'\[\]\{\}\/
+            // The \\ doesn't work for escaping the \ character. So we cannot escape \r with \\r. We
+            // need to use more complicated \$+r, where again, the $+ substitutes the last group
+            // (which needs to be defined in 'Find what' and empty). This is important if we want to replace
+            // with a text like:
+            // C:\MyFolder\root\nextLevel\test
+            // Without escaping we would get:
+            // C:\MyFolder
+            // oot
+            // extLevel  est
+            original = original.Replace("\\r", "\\$+r");
+            original = original.Replace("\\n", "\\$+n");
+            original = original.Replace("\\t", "\\$+t");
 
             // Escape newlines
-            if (GetVsVersion() > 10)
-            {
-                // Starting with VS 2012, the regex syntax in Find dialog has changed. It is now
-                // the same as .NET regex where \r is defined and needed.
-                original = original.Replace("\r\n", "\\r\\n");
-            }
-            else
-            {
-                original = original.Replace("\r\n", "\\n");
-            }
+            original = original.Replace("\r\n", "\\r\\n");
 
             return original;
         }

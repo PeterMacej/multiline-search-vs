@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="b996608b-c716-452d-a711-7cfad5c874c5" Version="1.0" Language="en-US" Publisher="Company" />
-    <DisplayName>MultiLineSearch2</DisplayName>
-    <Description>Information about my package</Description>
+    <Identity Id="MultiLine.Search.459A0968-D0E0-4a63-83EB-7B6394DD674C" Version="2.0" Language="en-US" Publisher="Helixoft" />
+    <DisplayName>Multiline Search and Replace</DisplayName>
+    <Description xml:space="preserve">Adds multiline search and replace functionality to Visual Studio.</Description>
+    <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/699CE302-B0D4-4083-BE0E-1682E873CEBF</MoreInfo>
+    <License>license.txt</License>
+    <ReleaseNotes>release_notes.rtf</ReleaseNotes>
+    <Icon>VSIX Files\main_icon.ico</Icon>
+    <PreviewImage>VSIX Files\multiline_search_preview.png</PreviewImage>
+    <Tags>find, search, replace, multiline</Tags>
   </Metadata>
   <Installation InstalledByMsi="false">
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[12.0]" />
