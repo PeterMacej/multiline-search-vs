@@ -84,7 +84,7 @@
                     <TextBlock Text="Find" VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
-            <Button x:Name="FindInFilesBtn" Grid.Column="2" Margin="3,10,10,3" Padding="3,1" >
+            <Button x:Name="FindInFilesBtn" Grid.Column="2" Margin="0,10,10,3" Padding="3,1" HorizontalAlignment="Right" Width="107" Click="FindInFilesBtn_Click" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/MultiLineSearch;component/Resources/vs2013_find_in_files.png" Width="16" Height="16" Margin="0,0,3,0"/>
                     <TextBlock Text="Find in Files" VerticalAlignment="Center" />
@@ -92,13 +92,13 @@
             </Button>
 
 
-            <Button x:Name="ReplaceBtn" Grid.Row="1" Grid.Column="1" Margin="3" Padding="3,1" >
+            <Button x:Name="ReplaceBtn" Grid.Row="1" Grid.Column="1" Margin="2.6,3,0,2.6" Padding="3,1" Click="ReplaceBtn_Click" HorizontalAlignment="Left" Width="68" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/MultiLineSearch;component/Resources/vs2013_replace.png" Width="16" Height="16" Margin="0,0,3,0"/>
                     <TextBlock Text="Replace" VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
-            <Button x:Name="ReplaceInFilesBtn" Grid.Row="1" Grid.Column="2" Margin="3,3,10,3" Padding="3,1" >
+            <Button x:Name="ReplaceInFilesBtn" Grid.Row="1" Grid.Column="2" Margin="3,3,10,3" Padding="3,1" Click="ReplaceInFilesBtn_Click" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/MultiLineSearch;component/Resources/vs2013_replace_in_files.png" Width="16" Height="16" Margin="0,0,3,0"/>
                     <TextBlock Text="Replace in Files" VerticalAlignment="Center" />

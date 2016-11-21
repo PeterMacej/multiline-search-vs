@@ -200,6 +200,9 @@ namespace Helixoft.MultiLineSearch.Gui
         }
 
 
+        /// <summary>
+        /// Closes the owner window of this control.
+        /// </summary>
         private void CloseWindow()
         {
             try
@@ -210,6 +213,64 @@ namespace Helixoft.MultiLineSearch.Gui
             {
             }
         }
+
+
+        /// <summary>
+        /// Raises the <see cref="BeforeSearch"/> event.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <remarks></remarks>
+        protected virtual void OnBeforeSearch(BeforeSearchEventArgs e)
+        {
+            if (BeforeSearch != null)
+            {
+                BeforeSearch(this, e);
+            }
+        }
+
+
+        /// <summary>
+        /// Raises the <see cref="AfterSearch"/> event.
+        /// </summary>
+        /// <param name="e"></param>
+        /// <remarks></remarks>
+        protected virtual void OnAfterSearch(AfterSearchEventArgs e)
+        {
+            if (AfterSearch != null)
+            {
+                AfterSearch(this, e);
+            }
+        }
+
+
+        #region "Search, replace, regex"
+
+        /// <summary>
+        /// Executes a search/replace and raises appropriate events.
+        /// </summary>
+        /// <remarks></remarks>
+        private void ExecuteSearchReplace()
+        {
+            BeforeSearchEventArgs args1 = new BeforeSearchEventArgs(this.SearchOptions, this.FindText, this.ReplaceText);
+            OnBeforeSearch(args1);
+
+            if (this.SearchProvider == null)
+            {
+                args1.Cancel = true;
+            }
+            if (!args1.Cancel)
+            {
+                this.SearchProvider.ExecSearchReplace(this.SearchOptions, this.FindText, this.ReplaceText);
+
+                AfterSearchEventArgs args2 = new AfterSearchEventArgs(this.SearchOptions, this.FindText, this.ReplaceText);
+                OnAfterSearch(args2);
+            }
+        }
+
+        #endregion
+
+
+        #region Event handlers
 
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -267,12 +328,52 @@ namespace Helixoft.MultiLineSearch.Gui
         {
             try
             {
-                this.FindBox.Text = FindGridRow.Height.ToString() + "\n" + ReplaceGridRow.Height.ToString();
-
+                SearchOptions.SearchKind = FindReplaceKind.Find;
+                ExecuteSearchReplace();
             }
             catch (Exception ex)
             {
             }
         }
+
+
+        private void FindInFilesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SearchOptions.SearchKind = FindReplaceKind.FindInFiles;
+                ExecuteSearchReplace();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void ReplaceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SearchOptions.SearchKind = FindReplaceKind.Replace;
+                ExecuteSearchReplace();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void ReplaceInFilesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SearchOptions.SearchKind = FindReplaceKind.ReplaceInFiles;
+                ExecuteSearchReplace();
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        #endregion
+
     }
 }
