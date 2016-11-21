@@ -31,18 +31,6 @@ namespace Helixoft.MultiLineSearch.Gui
         #region "Events"
 
         /// <summary>
-        /// Occurs before the control is canceled.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        /// <remarks>The Canceling event occurs as the control is being canceled with Cancel button.
-        /// When a control is canceled, its parent form is closed.
-        /// To cancel the closure of a form, set the Cancel property
-        /// of the <see cref="CancelEventArgs"/> passed to your event handler to true.</remarks>
-        public event EventHandler<CancelEventArgs> Canceling;
-
-
-        /// <summary>
         /// Occurs before the search is executed.
         /// </summary>
         /// <param name="sender"></param>
@@ -168,6 +156,17 @@ namespace Helixoft.MultiLineSearch.Gui
         /// <remarks></remarks>
         public void SetOptions(MultilineSearchControlOptions options)
         {
+            this.expander.IsExpanded = !options.IsFindOptionsCollapsed;
+
+            // Just a note:
+            // This control need not to be in final size now.
+            // this.Height may be NaN, which is not a problem. We can set % heights now.
+            // The control will be then correctly resized by window frame later.
+
+            GridLength h = new GridLength(options.SplitterPosition, GridUnitType.Star);
+            this.FindGridRow.Height = h;
+            h = new GridLength(100-options.SplitterPosition, GridUnitType.Star);
+            this.ReplaceGridRow.Height = h;
         }
 
 
@@ -179,6 +178,9 @@ namespace Helixoft.MultiLineSearch.Gui
         public MultilineSearchControlOptions GetOptions()
         {
             MultilineSearchControlOptions options = new MultilineSearchControlOptions();
+            options.IsFindOptionsCollapsed = !this.expander.IsExpanded;
+            double heightPerc = 100 * this.FindGridRow.Height.Value / (this.FindGridRow.Height.Value  + this.ReplaceGridRow.Height.Value);
+            options.SplitterPosition = Convert.ToInt32(heightPerc);
 
             return options;
         }
@@ -260,5 +262,17 @@ namespace Helixoft.MultiLineSearch.Gui
             }
         }
 
+
+        private void FindBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.FindBox.Text = FindGridRow.Height.ToString() + "\n" + ReplaceGridRow.Height.ToString();
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gui\HelpProvider.cs" />
+    <Compile Include="Gui\InverseBooleanConverter.cs" />
     <Compile Include="Gui\MultilineSearchControl.xaml.cs">
       <DependentUpon>MultilineSearchControl.xaml</DependentUpon>
     </Compile>

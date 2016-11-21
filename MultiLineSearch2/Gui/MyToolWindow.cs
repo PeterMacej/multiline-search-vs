@@ -111,7 +111,6 @@ namespace Helixoft.MultiLineSearch.Gui
             // the object returned by the Content property.
             control = new MultilineSearchControl();
             control.BeforeSearch += control_BeforeSearch;
-            control.Canceling += control_Canceling;
 
             base.Content = control;
         }
@@ -194,22 +193,6 @@ namespace Helixoft.MultiLineSearch.Gui
         }
 
 
-        private void control_Canceling(object sender, System.ComponentModel.CancelEventArgs args)
-        {
-            try
-            {
-                IVsWindowFrame winFrame = this.Frame as IVsWindowFrame;
-                if (winFrame != null)
-                {
-                    winFrame.CloseFrame(Convert.ToUInt32(__FRAMECLOSE.FRAMECLOSE_NoSave));
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
-
         //' not used
         //Public Overrides Sub OnToolWindowCreated()
         //    MyBase.OnToolWindowCreated()
@@ -226,22 +209,24 @@ namespace Helixoft.MultiLineSearch.Gui
         protected override void OnClose()
         {
             // save options
-            MultilineSearchControlOptions ctrlOptions = default(MultilineSearchControlOptions);
+            MultilineSearchControlOptions ctrlOptions;
             ctrlOptions = control.GetOptions();
+            FindReplaceOptions searchOptions;
+            searchOptions = control.SearchOptions;
             try
             {
                 MultiLineSearchPackage pkg = this.Package as MultiLineSearchPackage;
                 if (pkg != null)
                 {
-                    OptionPageMultilineFindReplace options = pkg.PackageOptions;
-                    if (options != null)
+                    OptionPageMultilineFindReplace pkgOptions = pkg.PackageOptions;
+                    if (pkgOptions != null)
                     {
-                        options.IgnoreLeadingWs = ctrlOptions.IgnoreLeadingWhitespaces;
-                        options.IgnoreTrailingWs = ctrlOptions.IgnoreTrailingWhitespaces;
-                        options.IgnoreAllWs = ctrlOptions.IgnoreAllWhitespaces;
-                        options.IsFindOptionsCollapsed = ctrlOptions.IsFindOptionsCollapsed;
-                        options.SplitterPosition = ctrlOptions.SplitterPosition;
-                        options.SaveSettingsToStorage();
+                        pkgOptions.IgnoreLeadingWs = searchOptions.IgnoreLeadingWhitespaces;
+                        pkgOptions.IgnoreTrailingWs = searchOptions.IgnoreTrailingWhitespaces;
+                        pkgOptions.IgnoreAllWs = searchOptions.IgnoreAllWhitespaces;
+                        pkgOptions.IsFindOptionsCollapsed = ctrlOptions.IsFindOptionsCollapsed;
+                        pkgOptions.SplitterPosition = ctrlOptions.SplitterPosition;
+                        pkgOptions.SaveSettingsToStorage();
                     }
                 }
             }
@@ -266,7 +251,7 @@ namespace Helixoft.MultiLineSearch.Gui
 
             // load options
             MultilineSearchControlOptions ctrlOptions = new MultilineSearchControlOptions();
-            ctrlOptions.HideCancelButton = true;
+            FindReplaceOptions searchOptions = new FindReplaceOptions();
             try
             {
                 // load options
@@ -276,9 +261,9 @@ namespace Helixoft.MultiLineSearch.Gui
                     OptionPageMultilineFindReplace options = pkg.PackageOptions;
                     if (options != null)
                     {
-                        ctrlOptions.IgnoreLeadingWhitespaces = options.IgnoreLeadingWs;
-                        ctrlOptions.IgnoreTrailingWhitespaces = options.IgnoreTrailingWs;
-                        ctrlOptions.IgnoreAllWhitespaces = options.IgnoreAllWs;
+                        searchOptions.IgnoreLeadingWhitespaces = options.IgnoreLeadingWs;
+                        searchOptions.IgnoreTrailingWhitespaces = options.IgnoreTrailingWs;
+                        searchOptions.IgnoreAllWhitespaces = options.IgnoreAllWs;
                         ctrlOptions.IsFindOptionsCollapsed = options.IsFindOptionsCollapsed;
                         ctrlOptions.SplitterPosition = options.SplitterPosition;
                     }
@@ -288,6 +273,7 @@ namespace Helixoft.MultiLineSearch.Gui
             {
             }
             control.SetOptions(ctrlOptions);
+            control.SearchOptions = searchOptions;
         }
     }
 
