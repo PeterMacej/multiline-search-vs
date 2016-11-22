@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<helpproject xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="helpproject.xsd" version="1.6" isskin="false" isrepository="false">
+<helpproject xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="helpproject.xsd" version="1.9" isskin="false" isrepository="false">
   <config>
     <namespaces/>
     <export-task-groups>
@@ -8,7 +8,7 @@
           <export-task name="Publish as CHM" format="CHM">
             <task-config-group name="settings">
               <task-config-value name="outputfile">MultilineSearch.chm</task-config-value>
-              <task-config-value name="skin">..\..\..\..\Program Files (x86)\EC Software\HelpAndManual6\Templates\HTML Skins\HM6-OnlineHelp-Webhelp+CHM.hmskin</task-config-value>
+              <task-config-value name="skin">$(HMSYS)Templates\HTML Skins\CHM Skin, Dark Blue Header, Feature Images.hmskin</task-config-value>
               <task-config-value name="deletetemp">1</task-config-value>
               <task-config-value name="make0include">CHM</task-config-value>
               <task-config-value name="make0status">*</task-config-value>
@@ -20,7 +20,6 @@
     <helpwindows>
       <helpwindow name="Main" left="-1" top="-1" width="-1" height="-1">
         <caption translate="true">&lt;%TITLE%&gt;</caption>
-        <window-options-hlp autosize="true" maximize="false" posabsolute="false" keepontop="false" buttons="0" headercolor="#F0F0F0" textcolor="#FFFFFF"/>
         <window-options-chm navigation="true" navigationwidth="200" search="true" favorite="true" saveregistry="true" buttons="12366">
           <user-button name="jump1">
             <caption translate="true">jump1</caption>
@@ -55,8 +54,8 @@
       <config-value name="title" translate="true">Multiline Search and Replace for Visual Studio</config-value>
       <config-value name="author" translate="true">Helixoft</config-value>
       <config-value name="copyright" translate="true">© &lt;%YEAR%&gt; &lt;%AUTHOR%&gt;</config-value>
-      <config-value name="versionmajor">1</config-value>
-      <config-value name="versionminor">5</config-value>
+      <config-value name="versionmajor">2</config-value>
+      <config-value name="versionminor">0</config-value>
       <config-value name="versionbuild">0</config-value>
       <config-value name="lcid">en-us</config-value>
       <config-value name="charset">ANSI_CHARSET</config-value>
@@ -64,7 +63,7 @@
       <config-value name="autohelpstart">0</config-value>
       <config-value name="autohelpincrement">1</config-value>
       <config-value name="autohelpanchor">0</config-value>
-      <config-value name="searchpath">.\;..\MultiLineSearch\Graphics\;..\..\Helixoft\VSdocman\Help\IMAGES\</config-value>
+      <config-value name="searchpath">.\;..\MultiLineSearch\Graphics\;..\..\VSdocman\Help\IMAGES\</config-value>
       <config-group name="custombuilds">
         <config-value name="demo">Demo Build</config-value>
         <config-value name="user1">User defined 1</config-value>
@@ -75,6 +74,7 @@
       <config-value name="summary" translate="true">An extension that adds multiline search and replace functionality to Visual Studio.</config-value>
       <config-value name="make0include">CHM</config-value>
       <config-value name="make0status">*</config-value>
+      <config-group name="bookmarks"/>
     </config-group>
     <config-group name="html">
       <config-value name="defaultext">.asp</config-value>
@@ -103,7 +103,7 @@
     </config-group>
     <config-group name="chm">
       <config-value name="outputfile">MultilineSearch.chm</config-value>
-      <config-value name="skin">..\..\..\..\Program Files (x86)\EC Software\HelpAndManual6\Templates\HTML Skins\HM6-OnlineHelp-Webhelp+CHM.hmskin</config-value>
+      <config-value name="skin">$(HMSYS)Templates\HTML Skins\CHM Skin, Dark Blue Header, Feature Images.hmskin</config-value>
       <config-value name="deletetemp">1</config-value>
     </config-group>
     <variables/>
