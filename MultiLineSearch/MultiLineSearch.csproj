@@ -314,7 +314,7 @@
     <Resource Include="Resources\vs2013_find_in_files.png" />
     <Resource Include="Resources\vs2013_find.png" />
     <Compile Include="Gui\MultilineSearchControlOptions.cs" />
-    <Content Include="MultiLineSearch2.csproj.user" />
+    <None Include="MultiLineSearch.csproj.user" />
     <Content Include="Resources\vs_icons.htm" />
     <Resource Include="Resources\main_icon_for_toolwindow.bmp" />
   </ItemGroup>
