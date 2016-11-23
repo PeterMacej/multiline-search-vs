@@ -7,13 +7,15 @@
     <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/699CE302-B0D4-4083-BE0E-1682E873CEBF</MoreInfo>
     <License>license.txt</License>
     <ReleaseNotes>release_notes.rtf</ReleaseNotes>
-    <Icon>VSIX Files\main_icon.ico</Icon>
-    <PreviewImage>VSIX Files\multiline_search_preview.png</PreviewImage>
+    <Icon>main_icon.ico</Icon>
+    <PreviewImage>multiline_search_preview.png</PreviewImage>
     <Tags>find, search, replace, multiline</Tags>
   </Metadata>
   <Installation InstalledByMsi="false">
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[12.0]" />
-    <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Community" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[12.0]" />
+    <InstallationTarget Version="[14.0,15.0]" Id="Microsoft.VisualStudio.Pro" />
+    <InstallationTarget Version="[14.0,15.0]" Id="Microsoft.VisualStudio.Community" />
+    <InstallationTarget Version="[14.0,15.0]" Id="Microsoft.VisualStudio.Enterprise" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
