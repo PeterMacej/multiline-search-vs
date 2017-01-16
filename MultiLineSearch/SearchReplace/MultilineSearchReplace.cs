@@ -45,45 +45,79 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                 // escape the texts to regex
                 ConvertFindAndReplaceToRegEx(ref findText, ref replaceText, searchOptions);
 
-                // dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr   ' no effect in VS 2013
-                switch (searchOptions.SearchKind)
+                bool oldFindInit = false;
+                try
                 {
-                    case FindReplaceKind.Find:
-                        SetRegexInFindDialog();
-                        break;
-                    case FindReplaceKind.FindInFiles:
-                        SetRegexInFindInFilesDialog();
-                        break;
-                    case FindReplaceKind.Replace:
-                        SetRegexInFindDialog();
-                        break;
-                    case FindReplaceKind.ReplaceInFiles:
-                        SetRegexInFindInFilesDialog();
-                        break;
-                    default:
-                        break;
+                    // temporarily disable Tools - Options -
+                    // Environment - Documents - Initialize Find text from editor
+                    try
+                    {
+                        EnvDTE.Properties props = default(EnvDTE.Properties);
+                        props = dte.Properties["Environment", "FindAndReplace"];
+                        EnvDTE.Property prop = props.Item("InitializeFromEditor");
+                        oldFindInit = Convert.ToBoolean(prop.Value);
+                        prop.Value = false;
+                    }
+                    catch (Exception ex2)
+                    {
+                    }
+
+                    // dte.Find.PatternSyntax = vsFindPatternSyntax.vsFindPatternSyntaxRegExpr   ' no effect in VS 2013
+                    switch (searchOptions.SearchKind)
+                    {
+                        case FindReplaceKind.Find:
+                            SetRegexInFindDialog();
+                            break;
+                        case FindReplaceKind.FindInFiles:
+                            SetRegexInFindInFilesDialog();
+                            break;
+                        case FindReplaceKind.Replace:
+                            SetRegexInFindDialog();
+                            break;
+                        case FindReplaceKind.ReplaceInFiles:
+                            SetRegexInFindInFilesDialog();
+                            break;
+                        default:
+                            break;
+                    }
+
+                    dte.Find.FindWhat = findText;
+                    dte.Find.ReplaceWith = replaceText;
+
+                    switch (searchOptions.SearchKind)
+                    {
+                        case FindReplaceKind.Find:
+                            dte.ExecuteCommand("Edit.Find");
+                            break;
+                        case FindReplaceKind.FindInFiles:
+                            dte.ExecuteCommand("Edit.FindinFiles");
+                            break;
+                        case FindReplaceKind.Replace:
+                            dte.ExecuteCommand("Edit.Replace");
+                            break;
+                        case FindReplaceKind.ReplaceInFiles:
+                            dte.ExecuteCommand("Edit.ReplaceinFiles");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                finally
+                {
+                    // restore Tools - Options -
+                    // Environment - Documents - Initialize Find text from editor
+                    try
+                    {
+                        EnvDTE.Properties props = default(EnvDTE.Properties);
+                        props = dte.Properties["Environment", "FindAndReplace"];
+                        EnvDTE.Property prop = props.Item("InitializeFromEditor");
+                        prop.Value = oldFindInit;
+                    }
+                    catch (Exception ex2)
+                    {
+                    }
                 }
 
-                dte.Find.FindWhat = findText;
-                dte.Find.ReplaceWith = replaceText;
-
-                switch (searchOptions.SearchKind)
-                {
-                    case FindReplaceKind.Find:
-                        dte.ExecuteCommand("Edit.Find");
-                        break;
-                    case FindReplaceKind.FindInFiles:
-                        dte.ExecuteCommand("Edit.FindinFiles");
-                        break;
-                    case FindReplaceKind.Replace:
-                        dte.ExecuteCommand("Edit.Replace");
-                        break;
-                    case FindReplaceKind.ReplaceInFiles:
-                        dte.ExecuteCommand("Edit.ReplaceinFiles");
-                        break;
-                    default:
-                        break;
-                }
             }
         }
 
@@ -292,7 +326,10 @@ namespace Helixoft.MultiLineSearch.SearchReplace
 
             // Escape regex special chars used in Replace
             // The $ is used for group replacement.
-            original = original.Replace("$", "$$");
+            // $$ should be used for replacing with $ literal. But this only works if any group replacement (e.g. $1, $+, ...)
+            // is also present in the replace string. So replace with "$$ $1" works but simple "$$" inserts
+            // two $$. We need to use the trick described below for \r and always use $+$.
+            original = original.Replace("$", "$+$");
             // All other characters are treated as literals, except for \r \n and \t. All other
             // combinations are OK. For test, try to replace with the following:
             // \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\w\v\x\y\z\1\0\9\A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\W\V\X\Y\Z\~\!\@\#\$\%\^\&\*\(\)\-\=\+\?\<\>\:\"\'\[\]\{\}\/
