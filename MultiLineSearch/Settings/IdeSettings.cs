@@ -39,6 +39,8 @@ namespace Helixoft.MultiLineSearch.Settings
 
         public IdeSettings()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             shellService = Package.GetGlobalService(typeof(SVsShell)) as IVsShell;
             if (shellService == null)
             {
@@ -58,6 +60,8 @@ namespace Helixoft.MultiLineSearch.Settings
         /// <remarks></remarks>
         public PackageMemorySettingsStore GetSettings(string packageGuid, string categoryGuid)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             try
             {
                 Guid pkgGuid = new Guid(packageGuid);
@@ -85,7 +89,7 @@ namespace Helixoft.MultiLineSearch.Settings
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
@@ -108,6 +112,8 @@ namespace Helixoft.MultiLineSearch.Settings
             {
                 return;
             }
+
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             try
             {
@@ -135,7 +141,7 @@ namespace Helixoft.MultiLineSearch.Settings
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

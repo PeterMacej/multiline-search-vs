@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using EnvDTE80;
 using Helixoft.MultiLineSearch.Settings;
 using System.Text.RegularExpressions;
+using Microsoft.VisualStudio.Shell;
 
 
 namespace Helixoft.MultiLineSearch.SearchReplace
@@ -40,6 +41,8 @@ namespace Helixoft.MultiLineSearch.SearchReplace
         /// <param name="replaceText">Plain text, can contain newlines.</param>
         public void ExecSearchReplace(FindReplaceOptions searchOptions, string findText, string replaceText)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (searchOptions.SearchKind != FindReplaceKind.None)
             {
                 // escape the texts to regex
@@ -58,7 +61,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         oldFindInit = Convert.ToBoolean(prop.Value);
                         prop.Value = false;
                     }
-                    catch (Exception ex2)
+                    catch (Exception)
                     {
                     }
 
@@ -113,7 +116,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         EnvDTE.Property prop = props.Item("InitializeFromEditor");
                         prop.Value = oldFindInit;
                     }
-                    catch (Exception ex2)
+                    catch (Exception)
                     {
                     }
                 }
@@ -169,7 +172,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                     settings.SetSettings(pkgGuid, categoryGuid, settingsStore);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -222,7 +225,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                     settings.SetSettings(pkgGuid, categoryGuid, settingsStore);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

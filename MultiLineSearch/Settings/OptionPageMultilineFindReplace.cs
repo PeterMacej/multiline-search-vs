@@ -71,6 +71,7 @@ namespace Helixoft.MultiLineSearch.Settings
             this.IgnoreTrailingWs = false;
             this.IgnoreAllWs = false;
             this.SplitterPosition = 50;
+            this.SavedSearches = new SavedSearchList();
         }
 
 
@@ -141,6 +142,15 @@ namespace Helixoft.MultiLineSearch.Settings
             get { return mSplitterPosition; }
             set { mSplitterPosition = value; }
         }
+
+
+        /// <summary>
+        /// Gets or sets all saved searches.
+        /// </summary>
+        /// <value></value>
+        /// <remarks></remarks>
+        public SavedSearchList SavedSearches { get; set; } = new SavedSearchList();
+
 
         #endregion
 

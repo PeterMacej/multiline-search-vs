@@ -25,6 +25,8 @@ namespace Helixoft.MultiLineSearch
 
         public static void WriteToGeneralOutputPane(string message)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             //System.Windows.Forms.MessageBox.Show(message)
             //Return
 

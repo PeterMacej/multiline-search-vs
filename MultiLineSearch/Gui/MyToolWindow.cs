@@ -135,7 +135,7 @@ namespace Helixoft.MultiLineSearch.Gui
                         // Let's pass F1 manually here and stop VS from opening MSDN.
                         SendKeys.Send(Key.F1);
                         return true;    // processed
-                        break;
+                        //break;
                 }
                         
             }
@@ -149,6 +149,8 @@ namespace Helixoft.MultiLineSearch.Gui
         /// <remarks>This method should be called before Show call.</remarks>
         public void InitializeContent()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             try
             {
                 // pre-populate Find What field, if needed
@@ -160,7 +162,7 @@ namespace Helixoft.MultiLineSearch.Gui
                     EnvDTE.Property prop = props.Item("InitializeFromEditor");
                     findInit = Convert.ToBoolean(prop.Value);
                 }
-                catch (Exception ex2)
+                catch (Exception)
                 {
                 }
 
@@ -174,7 +176,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -187,7 +189,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 // set the search provider on the last possible moment (to be sure it's not null)
                 this.control.SearchProvider = this.SearchProvider;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -230,7 +232,7 @@ namespace Helixoft.MultiLineSearch.Gui
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 

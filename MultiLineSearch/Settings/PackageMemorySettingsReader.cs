@@ -72,7 +72,7 @@ namespace Helixoft.MultiLineSearch.Settings
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
@@ -92,7 +92,7 @@ namespace Helixoft.MultiLineSearch.Settings
                     return VSConstants.S_OK;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
@@ -106,6 +106,7 @@ namespace Helixoft.MultiLineSearch.Settings
             plDataLength = 0;
             return VSConstants.S_FALSE;
 
+            /*
             try
             {
                 if (SettingsStore.Settings.ContainsKey(pszSettingName))
@@ -129,11 +130,12 @@ namespace Helixoft.MultiLineSearch.Settings
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
             return VSConstants.S_FALSE;
+            */
         }
 
 
@@ -149,7 +151,7 @@ namespace Helixoft.MultiLineSearch.Settings
                     return VSConstants.S_OK;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
@@ -169,7 +171,7 @@ namespace Helixoft.MultiLineSearch.Settings
                     return VSConstants.S_OK;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 

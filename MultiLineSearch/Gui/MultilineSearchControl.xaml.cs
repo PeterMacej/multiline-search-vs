@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 using Helixoft.MultiLineSearch.SearchReplace;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using swf = System.Windows.Forms;
 using System.Windows.Interop;
 
@@ -141,7 +138,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 HelpProvider.HelpNamespace = path;
                 HelpProvider.HelpEnabled = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -209,7 +206,7 @@ namespace Helixoft.MultiLineSearch.Gui
             {
                 Window.GetWindow(this).Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -280,7 +277,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
                 e.Handled = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -292,7 +289,7 @@ namespace Helixoft.MultiLineSearch.Gui
             {
                 ShowF1Help(sender as UIElement);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -318,7 +315,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -331,7 +328,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 SearchOptions.SearchKind = FindReplaceKind.Find;
                 ExecuteSearchReplace();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -344,7 +341,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 SearchOptions.SearchKind = FindReplaceKind.FindInFiles;
                 ExecuteSearchReplace();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -356,7 +353,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 SearchOptions.SearchKind = FindReplaceKind.Replace;
                 ExecuteSearchReplace();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -368,7 +365,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 SearchOptions.SearchKind = FindReplaceKind.ReplaceInFiles;
                 ExecuteSearchReplace();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

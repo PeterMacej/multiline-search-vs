@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Shell;
 
 
 namespace Helixoft.MultiLineSearch
@@ -24,6 +25,8 @@ namespace Helixoft.MultiLineSearch
 
         internal DteInitializer(IVsShell shellService, Action callback)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             int hr = 0;
 
             this.shellService = shellService;
@@ -38,6 +41,8 @@ namespace Helixoft.MultiLineSearch
 
         private int IVsShellPropertyEvents_OnShellPropertyChange(int propid, object var)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             int hr = 0;
             bool isZombie = false;
 

@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Helixoft.MultiLineSearch.Settings;
 using Helixoft.MultiLineSearch.Gui;
+using Microsoft.VisualStudio.AsyncPackageHelpers;
 
 
 namespace Helixoft.MultiLineSearch
@@ -32,10 +33,11 @@ namespace Helixoft.MultiLineSearch
     /// </remarks>
     // This attribute tells the PkgDef creation utility (CreatePkgDef.exe) that this class is
     // a package.
-    [PackageRegistration(UseManagedResourcesOnly = true)]
+    //[PackageRegistration(UseManagedResourcesOnly = true)]
+    [Microsoft.VisualStudio.AsyncPackageHelpers.AsyncPackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     // This attribute is used to register the information needed to show this package
     // in the Help/About dialog of Visual Studio.
-    [InstalledProductRegistration("#110", "#112", "2.1", IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", "2.2", IconResourceID = 400)]
     // This attribute is needed to let the shell know that this package exposes some menus.
     [ProvideMenuResource("Menus.ctmenu", 1)]
     // This attribute registers a tool window exposed by this package.
@@ -49,9 +51,10 @@ namespace Helixoft.MultiLineSearch
     // to have numeric values preceded by "#", and managed resources to have numeric values with
     // no preceding "#". Therefore, we have to delete the "#" for managed resource IDs in registry manually.
     [ProvideProfile(typeof(OptionPageMultilineFindReplace), "Environment", "MultilineFindandReplace", 122, 123, true, DescriptionResourceID = 124)]
-    public sealed class MultiLineSearchPackage : Package
+    public sealed class MultiLineSearchPackage : Package, IAsyncLoadablePackageInitialize
     {
 
+        private bool isAsyncLoadSupported;
         private DteInitializer dteInitializer;
 
         #region "Properties"
@@ -102,11 +105,56 @@ namespace Helixoft.MultiLineSearch
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
+        /// 
+        /// Both asynchronous package and synchronous package loading will call this method initially so it is important to skip any initialization
+        /// meant for async load phase based on AsyncPackage support in IDE.
         /// </summary>
         protected override void Initialize()
         {
             Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.GetType().Name));
             base.Initialize();
+
+            isAsyncLoadSupported = this.IsAsyncPackageSupported();
+
+            // Only perform initialization if async package framework is not supported
+            if (!isAsyncLoadSupported)
+            {
+                this.MainThreadInitialization();
+            }
+        }
+
+
+        /// <summary>
+        /// Performs the asynchronous initialization for the package in cases where IDE supports AsyncPackage.
+        /// 
+        /// This method is always called from background thread initially.
+        /// </summary>
+        /// <param name="asyncServiceProvider">Async service provider instance to query services asynchronously.</param>
+        /// <param name="pProfferService">Async service proffer instance.</param>
+        /// <param name="pProgressCallback">Progress callback instance.</param>
+        /// <returns></returns>
+        public IVsTask Initialize(IAsyncServiceProvider asyncServiceProvider, IProfferAsyncService pProfferService, IAsyncProgressCallback pProgressCallback)
+        {
+            if (!isAsyncLoadSupported)
+            {
+                throw new InvalidOperationException("Async Initialize method should not be called when async load is not supported.");
+            }
+
+            return ThreadHelper.JoinableTaskFactory.RunAsync<object>(async () =>
+            {
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                //IVsUIShell shellService = await asyncServiceProvider.GetServiceAsync<IVsUIShell>(typeof(SVsUIShell));
+                this.MainThreadInitialization();
+                return null;
+            }).AsVsTask();
+        }
+
+        #endregion
+
+
+        private void MainThreadInitialization()
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             InitializeDte();
 
@@ -120,11 +168,12 @@ namespace Helixoft.MultiLineSearch
                 mcs.AddCommand(menuItem);
             }
         }
-        #endregion
 
 
         private void InitializeDte()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             IVsShell shellService = default(IVsShell);
 
             this.mDte = this.GetService(typeof(Microsoft.VisualStudio.Shell.Interop.SDTE)) as EnvDTE80.DTE2;
@@ -164,6 +213,8 @@ namespace Helixoft.MultiLineSearch
         /// </summary>
         private void ShowToolWindow(object sender, EventArgs e)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             // Get the instance number 0 of this tool window. This window is single instance so this instance
             // is actually the only one.
             // The last flag is set to true so that if the tool window does not exists it will be created.

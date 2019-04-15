@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.VisualStudio.Shell;
 
 
 namespace Helixoft.MultiLineSearch.Gui
@@ -22,6 +23,8 @@ namespace Helixoft.MultiLineSearch.Gui
         /// <remarks>If no selection is made, the active word is selected.</remarks>
         public static string GetActiveDocumentText(DTE2 dte)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             string res = null;
 
             if (dte.ActiveDocument == null)
@@ -53,7 +56,7 @@ namespace Helixoft.MultiLineSearch.Gui
                         res = sel.Text;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
             }
