@@ -116,6 +116,16 @@
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>
+            <Button x:Name="LoadBtn" Grid.Column="0" Margin="10,10,15,3" Padding="3,1" Click="LoadBtn_Click" MinWidth="60" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Load..." VerticalAlignment="Center" Margin="0,0,3,0" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="SaveBtn" Grid.Column="0" Grid.Row="1" Margin="10,10,15,3" Padding="3,1" Click="SaveBtn_Click" MinWidth="60" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Save..." VerticalAlignment="Center" Margin="0,0,3,0" />
+                </StackPanel>
+            </Button>
         </Grid>
 
     </Grid>

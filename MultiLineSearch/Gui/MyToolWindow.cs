@@ -228,6 +228,7 @@ namespace Helixoft.MultiLineSearch.Gui
                         pkgOptions.IgnoreAllWs = searchOptions.IgnoreAllWhitespaces;
                         pkgOptions.IsFindOptionsCollapsed = ctrlOptions.IsFindOptionsCollapsed;
                         pkgOptions.SplitterPosition = ctrlOptions.SplitterPosition;
+                        pkgOptions.SavedSearches = ctrlOptions.SavedSearches;
                         pkgOptions.SaveSettingsToStorage();
                     }
                 }
@@ -268,6 +269,7 @@ namespace Helixoft.MultiLineSearch.Gui
                         searchOptions.IgnoreAllWhitespaces = options.IgnoreAllWs;
                         ctrlOptions.IsFindOptionsCollapsed = options.IsFindOptionsCollapsed;
                         ctrlOptions.SplitterPosition = options.SplitterPosition;
+                        ctrlOptions.SavedSearches = options.SavedSearches;
                     }
                 }
             }

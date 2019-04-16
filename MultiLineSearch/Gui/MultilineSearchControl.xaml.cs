@@ -16,6 +16,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using swf = System.Windows.Forms;
 using System.Windows.Interop;
+using Helixoft.MultiLineSearch.Settings;
+
 
 namespace Helixoft.MultiLineSearch.Gui
 {
@@ -24,6 +26,13 @@ namespace Helixoft.MultiLineSearch.Gui
     /// </summary>
     public partial class MultilineSearchControl : UserControl
     {
+
+        /// <summary>
+        /// Gets or sets all saved searches.
+        /// </summary>
+        /// <value></value>
+        private SavedSearchList SavedSearches;
+
 
         #region "Events"
 
@@ -114,7 +123,6 @@ namespace Helixoft.MultiLineSearch.Gui
             DependencyProperty.Register("ReplaceText", typeof(string), typeof(MultilineSearchControl), new PropertyMetadata(""));
 
 
-
         #endregion
 
         public MultilineSearchControl()
@@ -164,6 +172,7 @@ namespace Helixoft.MultiLineSearch.Gui
             this.FindGridRow.Height = h;
             h = new GridLength(100-options.SplitterPosition, GridUnitType.Star);
             this.ReplaceGridRow.Height = h;
+            this.SavedSearches = options.SavedSearches;
         }
 
 
@@ -178,6 +187,7 @@ namespace Helixoft.MultiLineSearch.Gui
             options.IsFindOptionsCollapsed = !this.expander.IsExpanded;
             double heightPerc = 100 * this.FindGridRow.Height.Value / (this.FindGridRow.Height.Value  + this.ReplaceGridRow.Height.Value);
             options.SplitterPosition = Convert.ToInt32(heightPerc);
+            options.SavedSearches = this.SavedSearches;
 
             return options;
         }
@@ -369,6 +379,63 @@ namespace Helixoft.MultiLineSearch.Gui
             {
             }
         }
+
+
+        private void LoadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var searchesDlg = new SavedSearchesManager();
+            searchesDlg.SearchList = this.SavedSearches;
+            searchesDlg.ShowDialog();
+            if (searchesDlg.DialogResult.HasValue && searchesDlg.DialogResult.Value )
+            {
+                // save searches, some could be possible deleted
+                this.SavedSearches = searchesDlg.SearchList;
+
+                // apply loaded search
+                var s = searchesDlg.SelectedSearch;
+                if (s != null)
+                {
+                    this.FindBox.Text = s.FindText;
+                    this.ReplaceBox.Text = s.ReplaceWith;
+                    this.CheckBoxIgnoreLeadWs.IsChecked  = s.IgnoreLeadingWs;
+                    this.CheckBoxIgnoreTrailWs.IsChecked = s.IgnoreTrailingWs;
+                    this.CheckBoxIgnoreAllWs.IsChecked = s.IgnoreAllWs;
+                }
+            }
+        }
+
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var inputBox = new InputBox("New search name:", "Enter name");
+            if (inputBox.ShowDialog() == true)
+            {
+                if (!string.IsNullOrEmpty( inputBox.Answer ))
+                {
+                    var newSearch = new SavedSearch();
+                    newSearch.Name = inputBox.Answer;
+                    newSearch.FindText = this.FindText;
+                    newSearch.ReplaceWith = this.ReplaceText;
+                    newSearch.IgnoreLeadingWs = this.SearchOptions.IgnoreLeadingWhitespaces;
+                    newSearch.IgnoreTrailingWs = this.SearchOptions.IgnoreTrailingWhitespaces;
+                    newSearch.IgnoreAllWs = this.SearchOptions.IgnoreAllWhitespaces;
+
+                    int existingIndex = this.SavedSearches.FindIndex(  s => s.Name == newSearch.Name);
+                    if (existingIndex >= 0)
+                    {
+                        var dlgres = System.Windows.MessageBox.Show($"A search with the name \"{newSearch.Name}\" already exists.\n\nOverwrite?", "Name exists", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (dlgres == MessageBoxResult.Yes)
+                        {
+                            this.SavedSearches[existingIndex] = newSearch;
+                        }
+                    } else
+                    {
+                        this.SavedSearches.Add(newSearch);
+                    }
+                }
+            }
+        }
+
 
         #endregion
 

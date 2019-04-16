@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using Helixoft.MultiLineSearch.Settings;
 
 namespace Helixoft.MultiLineSearch.Gui
 {
@@ -33,6 +34,28 @@ namespace Helixoft.MultiLineSearch.Gui
         /// <value></value>
         /// <remarks></remarks>
         public int SplitterPosition { get; set; }
+
+
+        private SavedSearchList _SavedSearches;
+        /// <summary>
+        /// Gets or sets all saved searches.
+        /// </summary>
+        /// <value></value>
+        public SavedSearchList SavedSearches
+        {
+            get
+            {
+                if (_SavedSearches == null)
+                {
+                    _SavedSearches = new SavedSearchList();
+                }
+                return _SavedSearches;
+            }
+            set
+            {
+                _SavedSearches = value;
+            }
+        }
 
         #endregion
     }

@@ -32,7 +32,7 @@ namespace Helixoft.MultiLineSearch.Settings
         /// Gets or sets the search phrase.
         /// </summary>
         /// <value></value>
-        public string Search { get; set; }
+        public string FindText { get; set; }
 
 
         /// <summary>
@@ -77,6 +77,18 @@ namespace Helixoft.MultiLineSearch.Settings
     [TypeConverter(typeof(SavedSearchListTypeConverter))]
     public class SavedSearchList : List<SavedSearch>
     {
+
+        public  SavedSearchList() : base()
+        {
+        }
+
+
+        public SavedSearchList(IEnumerable <SavedSearch> initValues) : base(initValues)
+        {
+        }
+
+
+
         //[XmlArray("Searches"), XmlArrayItem(typeof(SavedSearch), ElementName = "SavedSearch")]
         //public List<SavedSearch> Searches { get; set; }
     }

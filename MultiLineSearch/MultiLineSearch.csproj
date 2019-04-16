@@ -216,6 +216,9 @@
     <Compile Include="AsyncPackageHelpersForVs2013\ExtensionMethods.cs" />
     <Compile Include="AsyncPackageHelpersForVs2013\ProvideAutoLoadAttribute.cs" />
     <Compile Include="Gui\HelpProvider.cs" />
+    <Compile Include="Gui\InputBox.xaml.cs">
+      <DependentUpon>InputBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\InverseBooleanConverter.cs" />
     <Compile Include="Gui\MultilineSearchControl.xaml.cs">
       <DependentUpon>MultilineSearchControl.xaml</DependentUpon>
@@ -223,6 +226,9 @@
     <Compile Include="Gui\MyToolWindow.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Gui\SavedSearchesManager.xaml.cs">
+      <DependentUpon>SavedSearchesManager.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\SendKeys.cs" />
     <Compile Include="MultiLineSearchPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,7 +286,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Gui\InputBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\MultilineSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\SavedSearchesManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
