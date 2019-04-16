@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" lasteditedby="cimpo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Saving Your Searches</title>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Saving Your Searches</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can save your search settings so that you can re-use them again. </text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Press the </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Save</text><text styleclass="Normal" translate="true"> button to save the current configuration. You will be asked for a name that will be displayed in the list of saved searches.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To load a search, press the </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Load</text><text styleclass="Normal" translate="true"> button and select a saved search from the list.</text></para>
+    <para styleclass="Normal"></para>
+    <para styleclass="Normal"><image src="multiline_search_saved_searches.png" scale="100.00%" styleclass="Image Caption"></image></para>
+  </body>
+</topic>
