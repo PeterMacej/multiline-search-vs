@@ -34,7 +34,7 @@
 
         <DockPanel  MinHeight="50">
             <TextBlock Margin="10,10,10,5" HorizontalAlignment="Left" Text="Find what:" VerticalAlignment="Top" DockPanel.Dock="Top"/>
-            <TextBox x:Name="FindBox" Margin="10,-5.2,10,10.2" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{Binding Path=FindText}"/>
+            <TextBox x:Name="FindBox" Margin="10,-5.2,10,10.2" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" Text="{Binding Path=FindText}"/>
         </DockPanel>
 
         <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Margin="5,0" Grid.Row="1" VerticalAlignment="Center" ResizeDirection="Rows" ResizeBehavior="PreviousAndNext" ShowsPreview="True" HorizontalContentAlignment="Center"  Opacity="0.55" Background="{x:Null}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="0,0,0,1">
@@ -42,7 +42,7 @@
 
         <DockPanel  Grid.Row="2" MinHeight="50">
             <TextBlock Margin="10,10,10,5" HorizontalAlignment="Left" Text="Replace with:" VerticalAlignment="Top" DockPanel.Dock="Top"/>
-            <TextBox x:Name="ReplaceBox" Margin="10,-5.2,10,15.4" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{Binding Path=ReplaceText}"/>
+            <TextBox x:Name="ReplaceBox" Margin="10,-5.2,10,15.4" MinWidth="10" MinHeight="20" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" Text="{Binding Path=ReplaceText}"/>
         </DockPanel>
 
         <Expander x:Name="expander" Header="Find options" Margin="10,5.4,10,0" Grid.Row="3" VerticalAlignment="Top" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" IsExpanded="True" Style="{DynamicResource PlusMinusExpander}" help:HelpProvider.HelpNavigator="Topic" help:HelpProvider.HelpKeyword="find_options.htm">

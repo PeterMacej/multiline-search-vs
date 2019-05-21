@@ -44,7 +44,6 @@
     <StartProgram>C:\Program Files %28x86%29\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe</StartProgram>
     <StartArguments>/rootsuffix Exp</StartArguments>
     <StartAction>Program</StartAction>
-    <DeployTargetInstanceId>
-    </DeployTargetInstanceId>
+    <DeployTargetInstanceId>7b7ecb3b</DeployTargetInstanceId>
   </PropertyGroup>
 </Project>
