@@ -198,6 +198,8 @@ namespace Helixoft.MultiLineSearch
         /// </summary>
         private void MultilineFindCommandCallback(object sender, EventArgs e)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             //Dim uiShell As IVsUIShell = TryCast(GetService(GetType(SVsUIShell)), IVsUIShell)
             //Dim clsid As Guid = Guid.Empty
             //Dim result As Integer

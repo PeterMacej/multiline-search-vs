@@ -63,6 +63,8 @@ namespace Helixoft.MultiLineSearch
         }
         int IVsShellPropertyEvents.OnShellPropertyChange(int propid, object var)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             return IVsShellPropertyEvents_OnShellPropertyChange(propid, var);
         }
     }

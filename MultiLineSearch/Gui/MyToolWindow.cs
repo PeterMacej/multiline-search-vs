@@ -34,7 +34,7 @@ namespace Helixoft.MultiLineSearch.Gui
         // using the Content property. Note that, even if this class implements IDispose, we are
         // not calling Dispose on this object. This is because ToolWindowPane calls Dispose on 
         // the object returned by the Content property.
-        private MultilineSearchControl control;
+        private readonly MultilineSearchControl control;
 
 
         #region "Properties"
