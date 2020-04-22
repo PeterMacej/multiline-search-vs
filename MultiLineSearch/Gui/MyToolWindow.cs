@@ -76,7 +76,7 @@ namespace Helixoft.MultiLineSearch.Gui
                 {
                     if (this.Dte != null)
                     {
-                        mSearchProvider = new MultilineSearchReplace(this.Dte);
+                        mSearchProvider = new MultilineSearchReplace(this.Dte, this.Package as Package);
                     }
                 }
                 return mSearchProvider;

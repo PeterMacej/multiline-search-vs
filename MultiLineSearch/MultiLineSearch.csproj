@@ -325,6 +325,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SearchReplace\NewVsFindDialog.cs" />
     <Compile Include="Settings\SavedSearch.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Settings\IdeSettings.cs" />

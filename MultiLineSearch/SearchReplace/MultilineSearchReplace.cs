@@ -19,17 +19,23 @@ namespace Helixoft.MultiLineSearch.SearchReplace
     {
 
 
-
         private readonly DTE2 dte;
+        private readonly Package package;
 
-        public MultilineSearchReplace(DTE2 dte)
+
+        public MultilineSearchReplace(DTE2 dte, Package package)
         {
             if (dte == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException("dte");
+            }
+            if (package == null)
+            {
+                throw new ArgumentNullException("package");
             }
 
             this.dte = dte;
+            this.package = package;
         }
 
 
@@ -94,12 +100,16 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                             break;
                         case FindReplaceKind.FindInFiles:
                             dte.ExecuteCommand("Edit.FindinFiles");
+                            // populate dialog texts in VS 16.5+
+                            NewVsFindDialog.PopulateDialogValues(findText, replaceText);
                             break;
                         case FindReplaceKind.Replace:
                             dte.ExecuteCommand("Edit.Replace");
                             break;
                         case FindReplaceKind.ReplaceInFiles:
                             dte.ExecuteCommand("Edit.ReplaceinFiles");
+                            // populate dialog texts in VS 16.5+
+                            NewVsFindDialog.PopulateDialogValues(findText, replaceText);
                             break;
                         default:
                             break;
