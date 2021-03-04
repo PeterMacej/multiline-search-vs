@@ -75,7 +75,12 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                 object _findPattern = GetFieldValue(_findReplaceControl, "_findPattern");
                 if (_findPattern == null)
                 {
-                    return;
+                    // Starting with VS 16.9, this field has a new name "FindPattern", try to get it.
+                    _findPattern = GetFieldValue(_findReplaceControl, "FindPattern");
+                    if (_findPattern == null)
+                    {
+                        return;
+                    }
                 }
                 // set the Find text
                 ExecuteMethod(_findPattern, "SelectCurrentText");
@@ -85,7 +90,12 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                 object _replacePattern = GetFieldValue(_findReplaceControl, "_replacePattern");
                 if (_replacePattern == null)
                 {
-                    return;
+                    // Starting with VS 16.9, this field has a new name "ReplacePattern", try to get it.
+                    _replacePattern = GetFieldValue(_findReplaceControl, "ReplacePattern");
+                    if (_replacePattern == null)
+                    {
+                        return;
+                    }
                 }
                 // set the Replace text
                 ExecuteMethod(_replacePattern, "SelectCurrentText");
