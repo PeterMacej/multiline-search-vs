@@ -54,8 +54,8 @@
       <config-value name="title" translate="true">Multiline Search and Replace for Visual Studio</config-value>
       <config-value name="author" translate="true">Helixoft</config-value>
       <config-value name="copyright" translate="true">© &lt;%YEAR%&gt; &lt;%AUTHOR%&gt;</config-value>
-      <config-value name="versionmajor">2</config-value>
-      <config-value name="versionminor">2</config-value>
+      <config-value name="versionmajor">3</config-value>
+      <config-value name="versionminor">0</config-value>
       <config-value name="versionbuild">0</config-value>
       <config-value name="lcid">en-us</config-value>
       <config-value name="charset">ANSI_CHARSET</config-value>

@@ -53,7 +53,7 @@ namespace Helixoft.MultiLineSearch
                 // wrap attempts to write in an error handler:
                 message += Environment.NewLine;
                 pane.Activate();
-                if ((ErrorHandler.Failed(pane.OutputString(message))))
+                if (ErrorHandler.Failed(pane.OutputStringThreadSafe(message)))
                 {
                     // throw an exception/etc.
                     return;

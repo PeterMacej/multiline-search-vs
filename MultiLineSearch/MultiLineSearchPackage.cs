@@ -10,7 +10,6 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Helixoft.MultiLineSearch.Settings;
 using Helixoft.MultiLineSearch.Gui;
-using Microsoft.VisualStudio.AsyncPackageHelpers;
 
 
 namespace Helixoft.MultiLineSearch
@@ -33,11 +32,10 @@ namespace Helixoft.MultiLineSearch
     /// </remarks>
     // This attribute tells the PkgDef creation utility (CreatePkgDef.exe) that this class is
     // a package.
-    //[PackageRegistration(UseManagedResourcesOnly = true)]
-    [Microsoft.VisualStudio.AsyncPackageHelpers.AsyncPackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     // This attribute is used to register the information needed to show this package
     // in the Help/About dialog of Visual Studio.
-    [InstalledProductRegistration("#110", "#112", "2.5", IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", "2.6", IconResourceID = 400)]
     // This attribute is needed to let the shell know that this package exposes some menus.
     [ProvideMenuResource("Menus.ctmenu", 1)]
     // This attribute registers a tool window exposed by this package.
@@ -51,10 +49,9 @@ namespace Helixoft.MultiLineSearch
     // to have numeric values preceded by "#", and managed resources to have numeric values with
     // no preceding "#". Therefore, we have to delete the "#" for managed resource IDs in registry manually.
     [ProvideProfile(typeof(OptionPageMultilineFindReplace), "Environment", "MultilineFindandReplace", 122, 123, true, DescriptionResourceID = 124)]
-    public sealed class MultiLineSearchPackage : Package, IAsyncLoadablePackageInitialize
+    public sealed class MultiLineSearchPackage : AsyncPackage
     {
 
-        private bool isAsyncLoadSupported;
         private DteInitializer dteInitializer;
 
         #region "Properties"
@@ -99,54 +96,25 @@ namespace Helixoft.MultiLineSearch
 
 
         /////////////////////////////////////////////////////////////////////////////
-        // Overridden Package Implementation
+        // Overridden AsyncPackage Implementation
         #region Package Members
 
         /// <summary>
-        /// Initialization of the package; this method is called right after the package is sited, so this is the place
-        /// where you can put all the initialization code that rely on services provided by VisualStudio.
-        /// 
-        /// Both asynchronous package and synchronous package loading will call this method initially so it is important to skip any initialization
-        /// meant for async load phase based on AsyncPackage support in IDE.
+        /// The async initialization portion of the package initialization process. This method is invoked from a background thread.
         /// </summary>
-        protected override void Initialize()
+        /// <param name="cancellationToken">A cancellation token to monitor for initialization cancellation, which can occur when VS is shutting down.</param>
+        /// <param name="progress"></param>
+        /// <returns>A task representing the async work of package initialization, or an already completed task if there is none. Do not return null from this method.</returns>
+        /// <remarks></remarks>
+        protected override System.Threading.Tasks.Task InitializeAsync(System.Threading.CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.GetType().Name));
-            base.Initialize();
-
-            isAsyncLoadSupported = this.IsAsyncPackageSupported();
-
-            // Only perform initialization if async package framework is not supported
-            if (!isAsyncLoadSupported)
-            {
-                this.MainThreadInitialization();
-            }
-        }
-
-
-        /// <summary>
-        /// Performs the asynchronous initialization for the package in cases where IDE supports AsyncPackage.
-        /// 
-        /// This method is always called from background thread initially.
-        /// </summary>
-        /// <param name="asyncServiceProvider">Async service provider instance to query services asynchronously.</param>
-        /// <param name="pProfferService">Async service proffer instance.</param>
-        /// <param name="pProgressCallback">Progress callback instance.</param>
-        /// <returns></returns>
-        public IVsTask Initialize(IAsyncServiceProvider asyncServiceProvider, IProfferAsyncService pProfferService, IAsyncProgressCallback pProgressCallback)
-        {
-            if (!isAsyncLoadSupported)
-            {
-                throw new InvalidOperationException("Async Initialize method should not be called when async load is not supported.");
-            }
-
             return ThreadHelper.JoinableTaskFactory.RunAsync<object>(async () =>
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 //IVsUIShell shellService = await asyncServiceProvider.GetServiceAsync<IVsUIShell>(typeof(SVsUIShell));
                 this.MainThreadInitialization();
                 return null;
-            }).AsVsTask();
+            }).Task;
         }
 
         #endregion

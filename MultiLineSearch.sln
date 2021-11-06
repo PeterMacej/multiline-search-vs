@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.539
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E86EBA16-32DC-4487-9677-537004D1F800}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,12 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLineSearch", "MultiLin
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug 2013|Any CPU = Debug 2013|Any CPU
-		Debug 2013|Mixed Platforms = Debug 2013|Mixed Platforms
-		Debug 2013|x86 = Debug 2013|x86
-		Debug 2015|Any CPU = Debug 2015|Any CPU
-		Debug 2015|Mixed Platforms = Debug 2015|Mixed Platforms
-		Debug 2015|x86 = Debug 2015|x86
 		Debug 2017|Any CPU = Debug 2017|Any CPU
 		Debug 2017|Mixed Platforms = Debug 2017|Mixed Platforms
 		Debug 2017|x86 = Debug 2017|x86
@@ -29,18 +23,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2013|Any CPU.ActiveCfg = Debug 2013|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2013|Any CPU.Build.0 = Debug 2013|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2013|Mixed Platforms.ActiveCfg = Debug 2013|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2013|Mixed Platforms.Build.0 = Debug 2013|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2013|x86.ActiveCfg = Debug 2013|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2013|x86.Build.0 = Debug 2013|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2015|Any CPU.ActiveCfg = Debug 2015|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2015|Any CPU.Build.0 = Debug 2015|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2015|Mixed Platforms.ActiveCfg = Debug 2015|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2015|Mixed Platforms.Build.0 = Debug 2015|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2015|x86.ActiveCfg = Debug 2015|Any CPU
-		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2015|x86.Build.0 = Debug 2015|Any CPU
 		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2017|Any CPU.ActiveCfg = Debug 2017|Any CPU
 		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2017|Any CPU.Build.0 = Debug 2017|Any CPU
 		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Debug 2017|Mixed Platforms.ActiveCfg = Debug 2017|Any CPU

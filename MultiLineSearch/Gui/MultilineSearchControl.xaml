@@ -109,7 +109,7 @@
             <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="3" >
                 <Separator Margin="0,8,0,2" />
                 <TextBlock FontSize="10" TextAlignment="Center">
-                    <Hyperlink NavigateUri="http://www.helixoft.com/vsdocman/overview.html" RequestNavigate="Hyperlink_RequestNavigate">
+                    <Hyperlink NavigateUri="https://www.helixoft.com/vsdocman/overview.html" RequestNavigate="Hyperlink_RequestNavigate">
                         <Hyperlink.Inlines>
                             <Run Text="Generate documentation with VSdocman"/>
                         </Hyperlink.Inlines>

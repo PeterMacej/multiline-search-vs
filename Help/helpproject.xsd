@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by Alexander Halser (EC Software GmbH) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XInclude" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="unqualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
 	<xs:element name="helpproject">
@@ -511,6 +510,54 @@
 			<xs:extension base="embedded-image.class"/>
 		</xs:simpleContent>
 	</xs:complexType>
+	<xs:complexType name="equation.class" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Equation object</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="align">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="left"/>
+							<xs:enumeration value="right"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="styleclass" type="xs:string"/>
+				<xs:attribute name="style" type="xs:string"/>
+				<xs:attribute name="font-family" type="xs:string"/>
+				<xs:attribute name="font-size" type="xs:integer"/>
+				<xs:attribute name="color" type="color.type"/>
+				<xs:attribute name="margin-horizontal" type="xs:integer"/>
+				<xs:attribute name="margin-vertical" type="xs:integer"/>
+				<xs:attribute name="translate" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="figurelabel.class" mixed="false">
+		<xs:annotation>
+			<xs:documentation>Label element of a figure caption</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="styleclass" type="xs:string"/>
+				<xs:attribute name="style" type="xs:string"/>
+				<xs:attribute name="type">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="figure"/>
+							<xs:enumeration value="table"/>
+							<xs:enumeration value="user"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="figurelistinclude" type="xs:boolean"/>
+				<xs:attribute name="id" type="xs:string" use="required"/>
+				<xs:attribute name="translate" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 	<xs:complexType name="file.class" mixed="true">
 		<xs:annotation>
 			<xs:documentation>Topic and baggage file reference (can include wildcards)</xs:documentation>
@@ -583,6 +630,7 @@
 		<xs:attribute name="style" type="xs:string"/>
 		<xs:attribute name="id" type="xs:string"/>
 		<xs:attribute name="class" type="xs:string"/>
+		<xs:attribute name="figurelistinclude" type="xs:boolean"/>
 	</xs:complexType>
 	<xs:complexType name="snippet.class" mixed="false">
 		<xs:annotation>
@@ -622,6 +670,7 @@
 					<xs:enumeration value="topiclink"/>
 					<xs:enumeration value="weblink"/>
 					<xs:enumeration value="filelink"/>
+					<xs:enumeration value="figurelink"/>
 					<xs:enumeration value="javascript"/>
 					<xs:enumeration value="macro"/>
 				</xs:restriction>
@@ -657,6 +706,37 @@
 				<xs:attribute name="translate" type="xs:boolean"/>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="linklist.class" mixed="false">
+		<xs:annotation>
+			<xs:documentation>Multiple text links placeholder</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="type" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="siblings"/>
+							<xs:enumeration value="children"/>
+							<xs:enumeration value="anchors"/>
+							<xs:enumeration value="recent"/>
+							<xs:enumeration value="date"/>
+							<xs:enumeration value="seealso"/>
+							<xs:enumeration value="tableoffigures"/>
+							<xs:enumeration value="tableoftables"/>
+							<xs:enumeration value="tableofequations"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="value" type="xs:string"/>
+				<xs:attribute name="value_from" type="xs:string"/>
+				<xs:attribute name="value_to" type="xs:string"/>
+				<xs:attribute name="dateformat" type="xs:string"/>
+				<xs:attribute name="excludeself" type="xs:boolean" default="false"/>
+				<xs:attribute name="inline" type="xs:boolean" default="false"/>
+				<xs:attribute name="translate" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
 	</xs:complexType>
 	<xs:complexType name="line.class" mixed="false">
 		<xs:annotation>
@@ -737,11 +817,13 @@
 			<xs:element name="text" type="text.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="table" type="table.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="link" type="link.class" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="linklist" type="linklist.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="anchor" type="anchor.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="br" type="br.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="line" type="line.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="tab" type="tab.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="var" type="var.class" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="figurelabel" type="figurelabel.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="conditional-text" type="conditional-text.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="draft-comment" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType mixed="true">
@@ -751,6 +833,7 @@
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="embedded-image" type="embedded-image.class" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="equation" type="equation.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="image" type="image.class" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="html-code" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType mixed="true">
@@ -767,6 +850,17 @@
 		</xs:choice>
 		<xs:attribute name="styleclass" type="xs:string"/>
 		<xs:attribute name="style" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="repository.class" mixed="false">
+		<xs:annotation>
+			<xs:documentation>Repository binding in project</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" type="xs:string" use="required"/>
+				<xs:attribute name="href" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
 	</xs:complexType>
 	<xs:complexType name="simpletext.class" mixed="false">
 		<xs:annotation>
@@ -900,6 +994,7 @@
 		<xs:attribute name="style" type="xs:string"/>
 		<xs:attribute name="class" type="xs:string"/>
 		<xs:attribute name="translate" type="xs:boolean"/>
+		<xs:attribute name="figurelistinclude" type="xs:boolean"/>
 	</xs:complexType>
 	<xs:complexType name="topicref.class" mixed="true">
 		<xs:annotation>
@@ -974,6 +1069,7 @@
 		<xs:attribute name="template" type="xs:string" use="required"/>
 		<xs:attribute name="status" type="xs:string" use="optional"/>
 		<xs:attribute name="class" type="xs:string" use="optional"/>
+		<xs:attribute name="modified" type="xs:dateTime"/>
 		<xs:attribute name="lasteditedby" type="xs:string" use="optional"/>
 		<xs:attribute name="version" type="xs:string" use="optional"/>
 	</xs:complexType>
@@ -995,17 +1091,7 @@
 			<xs:extension base="xs:string">
 				<xs:attribute name="styleclass" type="xs:string"/>
 				<xs:attribute name="style" type="xs:string"/>
-			</xs:extension>
-		</xs:simpleContent>
-	</xs:complexType>
-	<xs:complexType name="repository.class" mixed="false">
-		<xs:annotation>
-			<xs:documentation>Repository binding in project</xs:documentation>
-		</xs:annotation>
-		<xs:simpleContent>
-			<xs:extension base="xs:string">
-				<xs:attribute name="name" type="xs:string" use="required"/>
-				<xs:attribute name="href" type="xs:string" use="required"/>
+				<xs:attribute name="translate" type="xs:boolean"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -1019,8 +1105,8 @@
 			<xs:element name="html-code" type="html-code.class" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="src" type="xs:string" use="required"/>
-		<xs:attribute name="width" type="pixel.type" use="required"/>
-		<xs:attribute name="height" type="pixel.type" use="required"/>
+		<xs:attribute name="width" type="pixel.type"/>
+		<xs:attribute name="height" type="pixel.type"/>
 		<xs:attribute name="scale" type="percent.type"/>
 		<xs:attribute name="align">
 			<xs:simpleType>
@@ -1038,6 +1124,8 @@
 		<xs:attribute name="previewimage" type="xs:string"/>
 		<xs:attribute name="lightbox" type="xs:boolean"/>
 		<xs:attribute name="autostart" type="xs:boolean"/>
+		<xs:attribute name="playafter" type="xs:float"/>
+		<xs:attribute name="printcolumns" type="xs:integer"/>
 		<xs:attribute name="loop" type="xs:boolean"/>
 		<xs:attribute name="showcontrols" type="xs:boolean"/>
 		<xs:attribute name="playbutton" type="xs:boolean"/>
