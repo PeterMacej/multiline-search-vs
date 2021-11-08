@@ -26,8 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles"
 		SharedFiles\SharedFiles.README = SharedFiles\SharedFiles.README
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLineSearch2017_2019", "MultiLineSearch2017_2019\MultiLineSearch2017_2019.csproj", "{389101BF-E509-400D-8A2C-4A37A92CA72D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{389101bf-e509-400d-8a2c-4a37a92ca72d}*SharedItemsImports = 4
 		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{50a5aa24-6c2b-4014-a39d-94151fbb1e17}*SharedItemsImports = 4
 		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{8d36e90d-d008-4696-95c4-0a3ad55eb018}*SharedItemsImports = 13
 	EndGlobalSection
@@ -60,6 +63,24 @@ Global
 		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{50A5AA24-6C2B-4014-A39D-94151FBB1E17}.Release|x86.ActiveCfg = Release|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2017|Any CPU.ActiveCfg = Debug 2017|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2017|Any CPU.Build.0 = Debug 2017|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2017|Mixed Platforms.ActiveCfg = Debug 2017|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2017|Mixed Platforms.Build.0 = Debug 2017|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2017|x86.ActiveCfg = Debug 2017|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2017|x86.Build.0 = Debug 2017|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2019|Any CPU.ActiveCfg = Debug 2019|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2019|Any CPU.Build.0 = Debug 2019|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2019|Mixed Platforms.ActiveCfg = Debug 2019|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2019|Mixed Platforms.Build.0 = Debug 2019|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2019|x86.ActiveCfg = Debug 2019|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Debug 2019|x86.Build.0 = Debug 2019|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Release|x86.ActiveCfg = Release|Any CPU
+		{389101BF-E509-400D-8A2C-4A37A92CA72D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
