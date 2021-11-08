@@ -63,7 +63,7 @@
       <config-value name="autohelpstart">0</config-value>
       <config-value name="autohelpincrement">1</config-value>
       <config-value name="autohelpanchor">0</config-value>
-      <config-value name="searchpath">.\;..\MultiLineSearch\Graphics\;..\..\VSdocman\Help\IMAGES\</config-value>
+      <config-value name="searchpath">.\;..\..\VSdocman\Help\IMAGES\;..\Graphics\</config-value>
       <config-group name="custombuilds">
         <config-value name="demo">Demo Build</config-value>
         <config-value name="user1">User defined 1</config-value>
