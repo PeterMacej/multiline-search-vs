@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8d36e90d-d008-4696-95c4-0a3ad55eb018</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MultiLineSearch.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DteInitializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Guids.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\AfterSearchEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\BeforeSearchEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\DocumentTextSelection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\HelpProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\InputBox.xaml.cs">
+      <DependentUpon>InputBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\InverseBooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\MultilineSearchControl.xaml.cs">
+      <DependentUpon>MultilineSearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\MultilineSearchControlOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\MyToolWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\SavedSearchesManager.xaml.cs">
+      <DependentUpon>SavedSearchesManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Gui\SendKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MultiLineSearchPackage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PkgCmdID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\FindReplaceKind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\FindReplaceOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\ISearchReplaceProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\MultilineSearchReplace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\NewVsFindDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\IdeSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\OptionPageMultilineFindReplace.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\PackageMemorySettingsReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\PackageMemorySettingsStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\PackageMemorySettingsWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\SavedSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Gui\HelixoftStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Gui\InputBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Gui\MultilineSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Gui\SavedSearchesManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Gui\VisualStudioStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\help.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\main_icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\main_icon.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\main_icon_for_toolwindow.bmp" />
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\vs2013_find.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\vs2013_find_in_files.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\vs2013_replace.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\vs2013_replace_in_files.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Resources\main_icon.xcf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Resources\vs_icons.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)VSPackage.resx" />
+  </ItemGroup>
+</Project>

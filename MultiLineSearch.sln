@@ -10,7 +10,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLineSearch", "MultiLineSearch\MultiLineSearch.csproj", "{50A5AA24-6C2B-4014-A39D-94151FBB1E17}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MultiLineSearch.Shared", "MultiLineSearch.Shared\MultiLineSearch.Shared.shproj", "{8D36E90D-D008-4696-95C4-0A3AD55EB018}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles", "{F2C2DC7B-EFA5-4F72-948A-D1147B2AEA91}"
+	ProjectSection(SolutionItems) = preProject
+		SharedFiles\authenticode_helixoft.pfx = SharedFiles\authenticode_helixoft.pfx
+		SharedFiles\Helixoft_sign.targets = SharedFiles\Helixoft_sign.targets
+		SharedFiles\Key.snk = SharedFiles\Key.snk
+		SharedFiles\license.txt = SharedFiles\license.txt
+		SharedFiles\main_icon.ico = SharedFiles\main_icon.ico
+		SharedFiles\main_icon.png = SharedFiles\main_icon.png
+		SharedFiles\multiline_search_preview.png = SharedFiles\multiline_search_preview.png
+		SharedFiles\MultiLineSearch.vsct = SharedFiles\MultiLineSearch.vsct
+		SharedFiles\release_notes.rtf = SharedFiles\release_notes.rtf
+		SharedFiles\SharedFiles.README = SharedFiles\SharedFiles.README
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{50a5aa24-6c2b-4014-a39d-94151fbb1e17}*SharedItemsImports = 4
+		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{8d36e90d-d008-4696-95c4-0a3ad55eb018}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug 2017|Any CPU = Debug 2017|Any CPU
 		Debug 2017|Mixed Platforms = Debug 2017|Mixed Platforms
@@ -43,6 +63,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2C2DC7B-EFA5-4F72-948A-D1147B2AEA91} = {E86EBA16-32DC-4487-9677-537004D1F800}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8991CA9B-344D-4F02-AF9B-C0AE4110377D}

@@ -1,0 +1,7 @@
+The solution is split in multiple VSIX projects and shared project and shared files. This is necessary starting with VS 2022, if you also want to support earlier VS versions.
+It's no longer possible to have a single VSIX for VS 2022 and also for earlier version. See https://docs.microsoft.com/en-us/visualstudio/extensibility/migration/update-visual-studio-extension?view=vs-2022
+
+So most of the common files are moved to the shared project MultilineSearch.Shared. But some files need to have properties set in the referencing VSIX project and thus must be linked instead.
+It's not possible to Add as a link from a shared project neither is it possible to add linked file into shared project. Therefore, the files that need to be linked in VSIX projects are placed in a separate SharedFiles folder.
+
+As mentioned, it not possible to add linked file into shared project, so some files are duplicated if they are needed also in the shared project, such as Resources\main_ico.ico.

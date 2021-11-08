@@ -96,7 +96,7 @@
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used 
             inside a button definition. An important aspect of this declaration is that the element id 
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidMainIcon" href="Resources\main_icon.png" usedList="bmpMainIco"/>
+      <Bitmap guid="guidMainIcon" href="main_icon.png" usedList="bmpMainIco"/>
 
     </Bitmaps>
  
