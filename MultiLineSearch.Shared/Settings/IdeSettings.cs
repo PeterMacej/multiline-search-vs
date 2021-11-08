@@ -137,7 +137,12 @@ namespace Helixoft.MultiLineSearch.Settings
                     {
                         PackageMemorySettingsReader setReader = new PackageMemorySettingsReader(settings);
                         Guid catGuid = new Guid(categoryGuid);
+#if VS2019
                         pkgSettings2.ImportSettings(catGuid, setReader, Convert.ToUInt32(__UserSettingsFlags.USF_None), null);
+#else
+                        pkgSettings2.ImportSettings(catGuid, setReader, __UserSettingsFlags.USF_None, null);
+#endif
+
                     }
                 }
             }
