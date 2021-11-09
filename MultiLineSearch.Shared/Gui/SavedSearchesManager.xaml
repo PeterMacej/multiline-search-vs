@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Helixoft.MultiLineSearch.Gui"
         xmlns:gui="clr-namespace:Helixoft.MultiLineSearch.Gui"
         mc:Ignorable="d"
-        Title="Saved searches" Height="421.142" Width="366.367" Icon="/MultiLineSearch;component/Resources/main_icon.ico" ShowInTaskbar="False">
+        Title="Saved searches" Height="421.142" Width="366.367" Icon="/MultiLineSearch;component/main_icon.ico" ShowInTaskbar="False">
 
     <!-- Resources of your control, dictionaries, styles, etc. -->
     <Window.Resources>

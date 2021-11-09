@@ -75,9 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="$(MSBuildThisFileDirectory)Resources\help.png" />
-    <Resource Include="$(MSBuildThisFileDirectory)Resources\main_icon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="$(MSBuildThisFileDirectory)Resources\main_icon.ico" />
     <Resource Include="$(MSBuildThisFileDirectory)Resources\main_icon.png" />
     <Resource Include="$(MSBuildThisFileDirectory)Resources\main_icon_for_toolwindow.bmp" />
     <Resource Include="$(MSBuildThisFileDirectory)Resources\vs2013_find.png" />
