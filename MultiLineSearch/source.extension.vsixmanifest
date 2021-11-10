@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="MultiLine.Search.459A0968-D0E0-4a63-83EB-7B6394DD674C" Version="3.1" Language="en-US" Publisher="Helixoft" />
+    <Identity Id="MultiLine.Search.459A0968-D0E0-4a63-83EB-7B6394DD674C" Version="3.2" Language="en-US" Publisher="Helixoft" />
     <DisplayName>Multiline Search and Replace</DisplayName>
     <Description xml:space="preserve">Adds multiline search and replace functionality to Visual Studio. It provides a multiline Search/Replace dialog which is just a helper that pre-fills the standard Search/Replace dialog with the correct regex. The extension adds new "Multiline Find/Replace" menu item in "Edit" &gt; "Find and Replace" submenu.</Description>
     <MoreInfo>https://marketplace.visualstudio.com/items?itemName=PeterMacej.MultilineSearchandReplace</MoreInfo>

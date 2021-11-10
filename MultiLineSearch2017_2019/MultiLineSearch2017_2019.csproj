@@ -114,7 +114,6 @@
     <VSCTCompile Include="..\SharedFiles\MultiLineSearch.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <Generator>VsctGenerator</Generator>
-      <LastGenOutput>..\SharedFiles\MultiLineSearch.cs</LastGenOutput>
     </VSCTCompile>
     <Content Include="..\SharedFiles\main_icon.ico">
       <Link>main_icon.ico</Link>

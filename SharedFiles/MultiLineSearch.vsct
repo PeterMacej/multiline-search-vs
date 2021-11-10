@@ -105,7 +105,8 @@
   
   <KeyBindings>
     <KeyBinding guid="guidMultiLineSearchCmdSet" id="cmdidMultilineFind"
-                key1="F" mod1="Control Alt"
+                key1="M" mod1="Control"
+				key2="F" mod2="Control"
                 editor="guidVSStd97"
                 />
   </KeyBindings>
