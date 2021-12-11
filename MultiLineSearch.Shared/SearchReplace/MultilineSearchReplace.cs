@@ -97,19 +97,23 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                     {
                         case FindReplaceKind.Find:
                             dte.ExecuteCommand("Edit.Find");
+                            // populate quick find texts in VS 17.0+
+                            NewVsQuickFind.PopulateQuickFindValues(findText, replaceText, true);
                             break;
                         case FindReplaceKind.FindInFiles:
                             dte.ExecuteCommand("Edit.FindinFiles");
                             // populate dialog texts in VS 16.5+
-                            NewVsFindDialog.PopulateDialogValues(findText, replaceText);
+                            NewVsFindDialog.PopulateDialogValues(findText, replaceText, true);
                             break;
                         case FindReplaceKind.Replace:
                             dte.ExecuteCommand("Edit.Replace");
+                            // populate quick find texts in VS 17.0+
+                            NewVsQuickFind.PopulateQuickFindValues(findText, replaceText, true);
                             break;
                         case FindReplaceKind.ReplaceInFiles:
                             dte.ExecuteCommand("Edit.ReplaceinFiles");
                             // populate dialog texts in VS 16.5+
-                            NewVsFindDialog.PopulateDialogValues(findText, replaceText);
+                            NewVsFindDialog.PopulateDialogValues(findText, replaceText, true);
                             break;
                         default:
                             break;
@@ -174,7 +178,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }
                     // VS 2012-2013
-                    if (settingsStore.Settings.TryGetValue("AdornmentOptions",out setting))
+                    if (settingsStore.Settings.TryGetValue("AdornmentOptions", out setting))
                     {
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }
@@ -227,7 +231,7 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }
                     // VS 2012-2013
-                    if (settingsStore.Settings.TryGetValue("DialogOptions",out setting))
+                    if (settingsStore.Settings.TryGetValue("DialogOptions", out setting))
                     {
                         setting.Value = setting.Value.ToString().Replace(" Plain ", " Regex ");
                     }

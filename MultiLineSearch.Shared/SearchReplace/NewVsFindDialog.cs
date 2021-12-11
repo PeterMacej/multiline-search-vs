@@ -15,11 +15,18 @@ namespace Helixoft.MultiLineSearch.SearchReplace
     /// <summary>
     /// Provides interaction with the new 'Find/Replace in files' dialog introduced in VS 16.5. 
     /// </summary>
-    /// <remarks>This class uses undocumented Microsoft.VisualStudio.Editor.Implementation.NewFind.UI.NewFindDialog
+    /// <remarks>
+    /// <para>
+    /// Starting with VS 16.5, the new 'Find/Replace in files' dialog ignores the search strings stored in <see cref="EnvDTE.Find.FindWhat"/>
+    /// and <see cref="EnvDTE.Find.ReplaceWith"/>. This helper class is needed to populate the new UI with specified values.
+    /// </para>
+    /// <para>
+    /// This class uses undocumented Microsoft.VisualStudio.Editor.Implementation.NewFind.UI.NewFindDialog
     /// from Microsoft.VisualStudio.Editor.Implementation.dll via reflection.
     /// It's a hack, needs to be replaced with some more official implementation in the future.
+    /// </para>
     /// </remarks>
-    internal class NewVsFindDialog
+    internal class NewVsFindDialog : ReflectionHelper
     {
 
         /// <summary>
@@ -28,7 +35,8 @@ namespace Helixoft.MultiLineSearch.SearchReplace
         /// </summary>
         /// <param name="findText"></param>
         /// <param name="replaceText"></param>
-        public static void PopulateDialogValues(string findText, string replaceText)
+        /// <param name="useRegex">The value of "Use regular expressions" checkbox.</param>
+        public static void PopulateDialogValues(string findText, string replaceText, bool useRegex)
         {
             try
             {
@@ -113,90 +121,13 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                     return;
                 }
                 System.Windows.Controls.CheckBox regexCheckbox = GetPropertyValue(regexCheckboxOptionCtrl, "Content") as System.Windows.Controls.CheckBox;
-                regexCheckbox.IsChecked = true;
+                regexCheckbox.IsChecked = useRegex;
 
             }
             catch (Exception)
             {
             }
         }
-
-
-        /// <summary>
-        /// Uses reflection to get the field value from an object.
-        /// </summary>
-        ///
-        /// <param name="instance">The instance object.</param>
-        /// <param name="fieldName">The field's name which is to be fetched.</param>
-        ///
-        /// <returns>The field value from the object.</returns>
-        private static object GetFieldValue(object instance, string fieldName)
-        {
-            const BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
-            var field = instance.GetType().GetField(fieldName, bindFlags);
-            return field == null ? null : field.GetValue(instance);
-        }
-
-
-        /// <summary>
-        /// Uses reflection to get the property value from an object.
-        /// </summary>
-        ///
-        /// <param name="instance">The instance object.</param>
-        /// <param name="propertyName">The property's name which is to be fetched.</param>
-        ///
-        /// <returns>The property value from the object.</returns>
-        private static object GetPropertyValue(object instance, string propertyName)
-        {
-            const BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
-            var property = instance.GetType().GetProperty(propertyName, bindFlags);
-            return property == null ? null : property.GetValue(instance);
-        }
-
-
-        /// <summary>
-        /// Uses reflection to execute a method of an object.
-        /// </summary>
-        ///
-        /// <param name="instance">The instance object.</param>
-        /// <param name="methodName">The method's name which is to be executed.</param>
-        ///
-        /// <returns>The return value of the method.</returns>
-        private static object ExecuteMethod(object instance, string methodName, object[] parameters)
-        {
-            const BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
-            var method = instance.GetType().GetMethod (methodName, bindFlags);
-            return method == null ? null : method.Invoke(instance, parameters);
-        }
-
-
-        /// <summary>
-        /// Uses reflection to execute a method of an object.
-        /// </summary>
-        ///
-        /// <param name="instance">The instance object.</param>
-        /// <param name="methodName">The method's name which is to be executed.</param>
-        ///
-        /// <returns>The return value of the method.</returns>
-        private static object ExecuteMethod(object instance, string methodName)
-        {
-            return ExecuteMethod(instance, methodName, null);
-        }
-
-
-        /// <summary>
-        /// Uses reflection to execute a method of an object.
-        /// </summary>
-        ///
-        /// <param name="instance">The instance object.</param>
-        /// <param name="methodName">The method's name which is to be executed.</param>
-        ///
-        /// <returns>The return value of the method.</returns>
-        private static object ExecuteMethod(object instance, string methodName, object param1)
-        {
-            return ExecuteMethod(instance, methodName, new object[] { param1 });
-        }
-
 
     }
 }

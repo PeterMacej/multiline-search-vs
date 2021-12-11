@@ -40,7 +40,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\FindReplaceOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\ISearchReplaceProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\MultilineSearchReplace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\NewVsQuickFind.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\NewVsFindDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SearchReplace\ReflectionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\IdeSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\OptionPageMultilineFindReplace.cs">
       <SubType>Component</SubType>
