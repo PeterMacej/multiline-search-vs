@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Sign DLLs and VSIX with Helixoft certificate -->
+
+
+	<PropertyGroup>
+		<!-- All the properties here are set from the following environment variables:
+		CODESIGN_TIME_STAMP_SERVER, 
+		CODESIGN_PFX_SHA1, 
+		CODESIGN_PFX_FILE, 
+		CODESIGN_PFX_PWD.
+		If any of these variable is missing, the signing will be skipped. This allows for building by 
+		anyone from a public repository, but of course the result will not be signed.
+		 -->
+
+		<TimeStampServer>$(CODESIGN_TIME_STAMP_SERVER)</TimeStampServer>
+		<!-- The SHA1 thumbprint obtained from certmgr.msc. The pfx file must be first imported into certmgr.msc, 
+    	see http://stackoverflow.com/questions/17710357/how-do-i-securely-store-a-pfx-password-to-use-in-msbuild 
+    	This is to avoid usage of the password (which is still required for VSIX, unfortunately). -->
+		<sha1>$(CODESIGN_PFX_SHA1)</sha1>
+
+		<!--The following is only needed for vsixsigntool.exe which (unlike signtool.exe) doesn't support certificate 
+		from the Certificate Store to be used instead of a PFX file. -->
+		<PfxFile>$(CODESIGN_PFX_FILE)</PfxFile>
+		<PfxPwd>$(CODESIGN_PFX_PWD)</PfxPwd>
+
+		<PfxCertificateAvailable Condition="'$(TimeStampServer)' != '' And '$(sha1)' != '' And Exists('$(PfxFile)') And '$(PfxPwd)' != '' ">yes</PfxCertificateAvailable>
+	</PropertyGroup>
+
+
+	<Target Name="WarnPfxCertificateNotAvailable"
+			BeforeTargets="SignTool;MsiSignTool;VsixSignTool"
+			Condition="'$(PfxCertificateAvailable)' != 'yes'">
+		<Warning Text="The code signing will be skipped because the pfx certificate info is missing! The following environment variables need to be set: CODESIGN_TIME_STAMP_SERVER, CODESIGN_PFX_SHA1, CODESIGN_PFX_FILE, CODESIGN_PFX_PWD." />
+	</Target>
+
+
+	<!-- Sign all FileToSign items.
+	But only if they are not signed yet. First verify each item  whether it's signed.
+	-->
+	<Target Name="SignTool"
+			Condition="'$(PfxCertificateAvailable)' == 'yes'"
+			Outputs="%(FileToSign.Identity)">
+
+		<!--Get the path to signtool.exe in the SignToolPath property. See https://stackoverflow.com/a/63572481/217666 -->
+		<ItemGroup>
+			<KitsRegKeys Include="KitsRoot" />
+			<KitsRegKeys Include="KitsRoot81" />
+			<KitsRegKeys Include="KitsRoot10" />
+			<KitsRegKeyValues Include="@(KitsRegKeys)">
+				<Value>$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots', '%(KitsRegKeys.Identity)', null, RegistryView.Registry32, RegistryView.Default))</Value>
+			</KitsRegKeyValues>
+		</ItemGroup>
+		<PropertyGroup>
+			<WindowsKitsRoot>%(KitsRegKeyValues.Value)</WindowsKitsRoot>
+			<SignToolPlatform Condition="'$(SignToolPlatform)'=='' And '$(Platform)'!='AnyCPU'">$(Platform)</SignToolPlatform>
+			<SignToolPlatform Condition="'$(SignToolPlatform)'==''">x86</SignToolPlatform>
+		</PropertyGroup>
+		<ItemGroup>
+			<SignToolPaths Include="$(WindowsKitsRoot)bin\**\$(SignToolPlatform)\signtool.exe"/>
+		</ItemGroup>
+		<PropertyGroup>
+			<SignToolPath>%(SignToolPaths.Identity)</SignToolPath>
+		</PropertyGroup>
+		<Error Condition="'$(SignToolPath)'=='' Or !Exists('$(SignToolPath)')"
+		   Text="In order to sign file, this package requires access to the signtool.exe tool from the Windows Kits, which was not found. Please either: 1) Supply a correct path to your Windows Kits bin directory containing signtool.exe by setting %24(SignToolPath) OR 2) Install Windows Kits" />
+
+		<!--Prepare sign parameters-->
+		<PropertyGroup>
+			<!--<SignToolPath>C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe</SignToolPath>-->
+			<SignSha1Command>"$(SignToolPath)" sign /sha1 "$(sha1)" /v /t "$(TimeStampServer)" /d "%(FileToSign.Description)" /n "Helixoft" /du "%(FileToSign.DescriptionUrl)" "%(FileToSign.Identity)"</SignSha1Command>
+			<SignSha256Command>"$(SignToolPath)" sign /sha1 "$(sha1)" /v /tr "$(TimeStampServer)" /fd sha256 /td sha256 /as /d "%(FileToSign.Description)" /n "Helixoft" /du "%(FileToSign.DescriptionUrl)" "%(FileToSign.Identity)"</SignSha256Command>
+			<SignVerifyCommand>"$(SignToolPath)" verify /all /pa /q /hash SHA256 "%(FileToSign.Identity)"</SignVerifyCommand>
+		</PropertyGroup>
+
+		<!--Detect whether the file is already signed-->
+		<Exec Command="$(SignVerifyCommand)" IgnoreExitCode="true" ConsoleToMSBuild="true">
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfSignVerify" />
+			<Output TaskParameter="ExitCode" PropertyName="SignVerifyExitCode" />
+		</Exec>
+
+		<Message Text="Signing: %(FileToSign.Identity)" Importance="high"/>
+		<Message Text="File already signed. Signing skipped." Condition="$(SignVerifyExitCode) == 0" Importance="high"/>
+		<Message Text="File not signed yet. Starting to sign.." Condition="$(SignVerifyExitCode) != 0" Importance="high"/>
+		<Exec Command="$(SignSha1Command)" Condition="$(SignVerifyExitCode) != 0" />
+		<Exec Command="$(SignSha256Command)" Condition="$(SignVerifyExitCode) != 0" />
+		<Message Text="  " Importance="high"/>
+	</Target>
+
+
+	<!-- Sign all MsiFileToSign items.
+	But only if they are not signed yet. First verify each item  whether it's signed.
+	-->
+	<Target Name="MsiSignTool"
+			Condition="'$(PfxCertificateAvailable)' == 'yes'"
+			Outputs="%(MsiFileToSign.Identity)">
+
+		<!--Get the path to signtool.exe in the SignToolPath property. See https://stackoverflow.com/a/63572481/217666 -->
+		<ItemGroup>
+			<KitsRegKeys Include="KitsRoot" />
+			<KitsRegKeys Include="KitsRoot81" />
+			<KitsRegKeys Include="KitsRoot10" />
+			<KitsRegKeyValues Include="@(KitsRegKeys)">
+				<Value>$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots', '%(KitsRegKeys.Identity)', null, RegistryView.Registry32, RegistryView.Default))</Value>
+			</KitsRegKeyValues>
+		</ItemGroup>
+		<PropertyGroup>
+			<WindowsKitsRoot>%(KitsRegKeyValues.Value)</WindowsKitsRoot>
+			<SignToolPlatform Condition="'$(SignToolPlatform)'=='' And '$(Platform)'!='AnyCPU'">$(Platform)</SignToolPlatform>
+			<SignToolPlatform Condition="'$(SignToolPlatform)'==''">x86</SignToolPlatform>
+		</PropertyGroup>
+		<ItemGroup>
+			<SignToolPaths Include="$(WindowsKitsRoot)bin\**\$(SignToolPlatform)\signtool.exe"/>
+		</ItemGroup>
+		<PropertyGroup>
+			<SignToolPath>%(SignToolPaths.Identity)</SignToolPath>
+		</PropertyGroup>
+		<Error Condition="'$(SignToolPath)'=='' Or !Exists('$(SignToolPath)')"
+		   Text="In order to sign file, this package requires access to the signtool.exe tool from the Windows Kits, which was not found. Please either: 1) Supply a correct path to your Windows Kits bin directory containing signtool.exe by setting %24(SignToolPath) OR 2) Install Windows Kits" />
+
+		<!--Prepare sign parameters-->
+		<PropertyGroup>
+			<!--<SignToolPath>C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe</SignToolPath>-->
+			<MsiSignSha256Command>"$(SignToolPath)" sign /sha1 "$(sha1)" /v /tr "$(TimeStampServer)" /fd sha256 /td sha256 /d "%(MsiFileToSign.Description)" /n "Helixoft" /du "%(MsiFileToSign.DescriptionUrl)" "%(MsiFileToSign.Identity)"</MsiSignSha256Command>
+			<MsiSignVerifyCommand>"$(SignToolPath)" verify /all /pa /q /hash SHA256 "%(MsiFileToSign.Identity)"</MsiSignVerifyCommand>
+		</PropertyGroup>
+
+		<!--Detect whether the file is already signed-->
+		<Exec Command="$(MsiSignVerifyCommand)" IgnoreExitCode="true" ConsoleToMSBuild="true">
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfMsiSignVerify" />
+			<Output TaskParameter="ExitCode" PropertyName="MsiSignVerifyExitCode" />
+		</Exec>
+
+		<Message Text="Signing: %(MsiFileToSign.Identity)" Importance="high"/>
+		<Message Text="File already signed. Signing skipped." Condition="$(MsiSignVerifyExitCode) == 0" Importance="high"/>
+		<Message Text="File not signed yet. Starting to sign.." Condition="$(MsiSignVerifyExitCode) != 0" Importance="high"/>
+		<!--MSI cannot be dually signed. In addition to SHA256 it maybe only allows to insert also SHA-1 signature hash (thumbprint), but how?-->
+		<Exec Command="$(MsiSignSha256Command)" Condition="$(MsiSignVerifyExitCode) != 0" />
+		<Message Text="  " Importance="high"/>
+	</Target>
+
+
+	<!-- Sign all VsixFileToSign items.
+		But only if they are not signed yet. First verify each item  whether it's signed.
+	-->
+	<Target Name="VsixSignTool"
+			Condition="'$(PfxCertificateAvailable)' == 'yes'"
+			Outputs="%(VsixFileToSign.Identity)">
+
+		<PropertyGroup>
+			<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+			<!--NuGet packages-->
+			<PackagesDirectory Condition="$(PackagesDirectory) == ''">$([MSBuild]::EnsureTrailingSlash($(NugetPackageRoot)))</PackagesDirectory>
+		</PropertyGroup>
+
+		<ItemGroup>
+			<!-- Used for transforms, see https://msdn.microsoft.com/en-us/library/ms171476(v=vs.140).aspx -->
+			<VsixSignPackage Include="$(PackagesDirectory)Microsoft.VSSDK.Vsixsigntool\*\tools\vssdk\vsixsigntool.exe"/>
+		</ItemGroup>
+
+		<PropertyGroup>
+			<VsixSignToolPath>@(VsixSignPackage->'%(fullpath)')</VsixSignToolPath>
+			<VsixSignCommand>"$(VsixSignToolPath)" sign /f "$(PfxFile)" /p $(PfxPwd) /sha1 "$(sha1)" /v /tr "$(TimeStampServer)" /fd sha256 /td sha256 "%(VsixFileToSign.Identity)"</VsixSignCommand>
+			<VsixSignVerifyCommand>"$(VsixSignToolPath)" verify /sha1 "$(sha1)" /q "%(VsixFileToSign.Identity)"</VsixSignVerifyCommand>
+		</PropertyGroup>
+
+		<!--Detect whether the file is already signed-->
+		<Exec Command="$(VsixSignVerifyCommand)" IgnoreExitCode="true" ConsoleToMSBuild="true">
+			<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfVsixSignVerify" />
+			<Output TaskParameter="ExitCode" PropertyName="VsixSignVerifyExitCode" />
+		</Exec>
+
+		<Message Text="Signing: %(VsixFileToSign.Identity)" Importance="high"/>
+		<Message Text="File already signed. Signing skipped." Condition="$(VsixSignVerifyExitCode) == 0" Importance="high"/>
+		<Message Text="File not signed yet. Starting to sign.." Condition="$(VsixSignVerifyExitCode) != 0" Importance="high"/>
+		<Exec Command="$(VsixSignCommand)" Condition="$(VsixSignVerifyExitCode) != 0" />
+		<Message Text="  " Importance="high"/>
+	</Target>
+
+
+</Project>
