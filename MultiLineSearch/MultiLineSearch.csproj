@@ -96,10 +96,6 @@
       <Link>MultilineSearch.chm</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\SharedFiles\license.txt">
-      <Link>license.txt</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <VSCTCompile Include="..\SharedFiles\MultiLineSearch.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <Generator>VsctGenerator</Generator>
@@ -114,6 +110,10 @@
     </Content>
     <Content Include="..\SharedFiles\multiline_search_preview.png">
       <Link>multiline_search_preview.png</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\LICENSE">
+      <Link>LICENSE</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\SharedFiles\Key.snk">

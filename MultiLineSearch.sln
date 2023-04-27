@@ -1,10 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E86EBA16-32DC-4487-9677-537004D1F800}"
 	ProjectSection(SolutionItems) = preProject
 		How to deploy new version.html = How to deploy new version.html
+		LICENSE = LICENSE
+		README.md = README.md
 		whatsnew.html = whatsnew.html
 	EndProjectSection
 EndProject
@@ -14,14 +16,12 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MultiLineSearch.Shared", "M
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles", "{F2C2DC7B-EFA5-4F72-948A-D1147B2AEA91}"
 	ProjectSection(SolutionItems) = preProject
-		SharedFiles\authenticode_helixoft.pfx = SharedFiles\authenticode_helixoft.pfx
 		SharedFiles\Helixoft_sign.targets = SharedFiles\Helixoft_sign.targets
 		SharedFiles\Key.snk = SharedFiles\Key.snk
-		SharedFiles\license.txt = SharedFiles\license.txt
 		SharedFiles\main_icon.ico = SharedFiles\main_icon.ico
 		SharedFiles\main_icon.png = SharedFiles\main_icon.png
-		SharedFiles\multiline_search_preview.png = SharedFiles\multiline_search_preview.png
 		SharedFiles\MultiLineSearch.vsct = SharedFiles\MultiLineSearch.vsct
+		SharedFiles\multiline_search_preview.png = SharedFiles\multiline_search_preview.png
 		SharedFiles\release_notes.rtf = SharedFiles\release_notes.rtf
 		SharedFiles\SharedFiles.README = SharedFiles\SharedFiles.README
 	EndProjectSection
@@ -29,11 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiLineSearch2017_2019", "MultiLineSearch2017_2019\MultiLineSearch2017_2019.csproj", "{389101BF-E509-400D-8A2C-4A37A92CA72D}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{389101bf-e509-400d-8a2c-4a37a92ca72d}*SharedItemsImports = 4
-		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{50a5aa24-6c2b-4014-a39d-94151fbb1e17}*SharedItemsImports = 4
-		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{8d36e90d-d008-4696-95c4-0a3ad55eb018}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -75,6 +70,11 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8991CA9B-344D-4F02-AF9B-C0AE4110377D}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{389101bf-e509-400d-8a2c-4a37a92ca72d}*SharedItemsImports = 4
+		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{50a5aa24-6c2b-4014-a39d-94151fbb1e17}*SharedItemsImports = 4
+		MultiLineSearch.Shared\MultiLineSearch.Shared.projitems*{8d36e90d-d008-4696-95c4-0a3ad55eb018}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
