@@ -1,4 +1,4 @@
-## Version history
+# Version history
 Version 3.3
 (11\. December 2021)
 
