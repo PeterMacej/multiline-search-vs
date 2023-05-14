@@ -1,3 +1,9 @@
+UPDATE
+The following info is now obsolete. It was OK at the time the VSIX was moved to VS 2022. It seemed that it's not possible to have a single VSIX for VS 2022, 2019 ans 2017.
+After some time it turned out that it can be done in fact. The original separate VSIX project for VS 2017 and 2019 was removed, and the shared project is no longer needed. 
+I kept the shared project and the shared files in case they will be needed in the future.
+
+ORIGINAL INFO
 The solution is split in multiple VSIX projects and shared project and shared files. This is necessary starting with VS 2022, if you also want to support earlier VS versions.
 It's no longer possible to have a single VSIX for VS 2022 and also for earlier version. See https://docs.microsoft.com/en-us/visualstudio/extensibility/migration/update-visual-studio-extension?view=vs-2022
 
