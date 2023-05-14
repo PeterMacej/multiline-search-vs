@@ -179,11 +179,11 @@
     </PackageReference>
   </ItemGroup>
   <Import Project="..\MultiLineSearch.Shared\MultiLineSearch.Shared.projitems" Label="Shared" />
-  <Target Name="SignPackage" BeforeTargets="CreateVsixContainer">
+  <Target Name="SignPackage" BeforeTargets="CreateVsixContainer" Condition=" '$(Configuration)' == 'Release' ">
     <Message Text="Signing the package DLL..." Importance="high" />
     <CallTarget Targets="SignTool" />
   </Target>
-  <Target Name="SignVsix" AfterTargets="CreateVsixContainer">
+  <Target Name="SignVsix" AfterTargets="CreateVsixContainer" Condition=" '$(Configuration)' == 'Release' ">
     <Message Text="Signing the VSIX..." Importance="high" />
     <CallTarget Targets="VsixSignTool" />
   </Target>
