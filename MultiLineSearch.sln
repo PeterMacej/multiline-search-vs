@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		How to deploy new version.html = How to deploy new version.html
 		LICENSE = LICENSE
 		README.md = README.md
+		Release notes.md = Release notes.md
 		whatsnew.html = whatsnew.html
 	EndProjectSection
 EndProject
@@ -22,7 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles"
 		SharedFiles\main_icon.png = SharedFiles\main_icon.png
 		SharedFiles\MultiLineSearch.vsct = SharedFiles\MultiLineSearch.vsct
 		SharedFiles\multiline_search_preview.png = SharedFiles\multiline_search_preview.png
-		SharedFiles\release_notes.rtf = SharedFiles\release_notes.rtf
 		SharedFiles\SharedFiles.README = SharedFiles\SharedFiles.README
 	EndProjectSection
 EndProject

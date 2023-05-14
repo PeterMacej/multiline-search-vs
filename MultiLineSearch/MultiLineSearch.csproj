@@ -119,10 +119,6 @@
     <None Include="..\SharedFiles\Key.snk">
       <Link>Key.snk</Link>
     </None>
-    <Content Include="..\SharedFiles\release_notes.rtf">
-      <Link>release_notes.rtf</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
