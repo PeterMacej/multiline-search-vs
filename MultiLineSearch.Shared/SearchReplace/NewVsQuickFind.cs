@@ -43,7 +43,10 @@ namespace Helixoft.MultiLineSearch.SearchReplace
         /// <param name="findText"></param>
         /// <param name="replaceText"></param>
         /// <param name="useRegex">The value of "Use regular expressions" checkbox.</param>
-        public static void PopulateQuickFindValues(string findText, string replaceText, bool useRegex)
+        /// <returns>
+        /// <see langword="true"/> if success; <see langword="false"/> otherwise.
+        /// </returns>
+        public static bool PopulateQuickFindValues(string findText, string replaceText, bool useRegex)
         {
             try
             {
@@ -53,21 +56,21 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                 var editorPkg = GetPackageByGuid(guidEditorPkg);    // it's of type Microsoft.VisualStudio.Editor.Implementation.EditorPackage
                 if (editorPkg == null)
                 {
-                    return;
+                    return false;
                 }
 
                 // get FindAdornmentManager
                 object FindAdorment = GetPropertyValue(editorPkg, "FindAdorment");    // it's of type Microsoft.VisualStudio.Editor.Implementation.Find.FindAdornmentManager
                 if (FindAdorment == null)
                 {
-                    return;
+                    return false;
                 }
 
                 // get FindUI which a quick find control
                 object FindUI = GetPropertyValue(FindAdorment, "FindUI");    // it's of type Microsoft.VisualStudio.Editor.Implementation.Find.FindUI
                 if (FindUI == null)
                 {
-                    return;
+                    return false;
                 }
 
                 // set the Find text
@@ -84,7 +87,10 @@ namespace Helixoft.MultiLineSearch.SearchReplace
             }
             catch (Exception)
             {
+                return false;
             }
+
+            return true;
         }
 
 

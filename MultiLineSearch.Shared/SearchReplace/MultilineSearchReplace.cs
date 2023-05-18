@@ -98,7 +98,12 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         case FindReplaceKind.Find:
                             dte.ExecuteCommand("Edit.Find");
                             // populate quick find texts in VS 17.0+
-                            NewVsQuickFind.PopulateQuickFindValues(findText, replaceText, true);
+                            bool ok = NewVsQuickFind.PopulateQuickFindValues(findText, replaceText, true);
+                            if (!ok)
+                            {
+                                // Try another hack for 17.5
+                                ok = NewVsQuickFind2.PopulateQuickFindValues(findText, replaceText, true);
+                            }
                             break;
                         case FindReplaceKind.FindInFiles:
                             dte.ExecuteCommand("Edit.FindinFiles");
@@ -108,7 +113,12 @@ namespace Helixoft.MultiLineSearch.SearchReplace
                         case FindReplaceKind.Replace:
                             dte.ExecuteCommand("Edit.Replace");
                             // populate quick find texts in VS 17.0+
-                            NewVsQuickFind.PopulateQuickFindValues(findText, replaceText, true);
+                            ok = NewVsQuickFind.PopulateQuickFindValues(findText, replaceText, true);
+                            if (!ok)
+                            {
+                                // Try another hack for 17.5
+                                ok = NewVsQuickFind2.PopulateQuickFindValues(findText, replaceText, true);
+                            }
                             break;
                         case FindReplaceKind.ReplaceInFiles:
                             dte.ExecuteCommand("Edit.ReplaceinFiles");

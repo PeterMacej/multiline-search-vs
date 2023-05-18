@@ -1,4 +1,10 @@
 # Version history
+
+Version 3.4
+(18\. May 2023)
+
+* FIX: In VS 2022 v17.5+, the Quick Find/Replace box was not populated with the correct text and settings. Find/Replace in Files worked fine.
+
 Version 3.3
 (11\. December 2021)
 
